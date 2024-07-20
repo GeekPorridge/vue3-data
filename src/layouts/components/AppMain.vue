@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { useTagsViewStore } from "@/store/modules/tags-view"
-import { useSettingsStore } from "@/store/modules/settings"
 
 const tagsViewStore = useTagsViewStore()
-const settingsStore = useSettingsStore()
 </script>
 
 <template>

@@ -3,26 +3,19 @@ import { computed, watchEffect } from "vue"
 import { storeToRefs } from "pinia"
 import { useSettingsStore } from "@/store/modules/settings"
 import useResize from "./hooks/useResize"
-import { useWatermark } from "@/hooks/useWatermark"
-import { useDevice } from "@/hooks/useDevice"
-import { useLayoutMode } from "@/hooks/useLayoutMode"
 import LeftMode from "./LeftMode.vue"
-import { Settings } from "./components"
 import { getCssVariableValue, setCssVariableValue } from "@/utils"
 
 /** Layout 布局响应式 */
 useResize()
 
-const { setWatermark, clearWatermark } = useWatermark()
-const { isMobile } = useDevice()
-const { isLeft, isTop, isLeftTop } = useLayoutMode()
 const settingsStore = useSettingsStore()
-const { showSettings, showTagsView, showWatermark, showGreyMode, showColorWeakness } = storeToRefs(settingsStore)
+const { showTagsView } = storeToRefs(settingsStore)
 
 const classes = computed(() => {
   return {
-    showGreyMode: showGreyMode.value,
-    showColorWeakness: showColorWeakness.value
+    showGreyMode: false,
+    showColorWeakness: false
   }
 })
 
@@ -39,7 +32,6 @@ watchEffect(() => {
 
 <template>
   <div :class="classes">
-    <!-- 左侧模式 -->
     <LeftMode />
   </div>
 </template>

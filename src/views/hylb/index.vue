@@ -8,7 +8,7 @@
 import ListTable from "@/components/ListTable/index.vue"
 
 const handleClick = (record) => {
-  console.log("record", "是数据值")
+  console.log(record)
 }
 
 const columns = [

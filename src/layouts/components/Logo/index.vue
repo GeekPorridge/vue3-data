@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { useLayoutMode } from "@/hooks/useLayoutMode"
-
 const VITE_APP_TITLE = import.meta.env.VITE_APP_TITLE
 
 interface Props {
@@ -10,12 +8,10 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   collapse: true
 })
-
-const { isLeft, isTop } = useLayoutMode()
 </script>
 
 <template>
-  <div class="layout-logo-container" :class="{ collapse: props.collapse, 'layout-mode-top': isTop }">
+  <div class="layout-logo-container" :class="{ collapse: props.collapse }">
     <transition name="layout-logo-fade">
       <router-link class="layout-logo-content">
         <img

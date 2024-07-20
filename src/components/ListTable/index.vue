@@ -107,7 +107,8 @@ const getTableData = async () => {
   }
 }
 
-watch([page, pageSize], ([]) => {
+watch([page, pageSize], ([newPage, newPageSize]) => {
+  console.log(newPage, newPageSize)
   getTableData()
 })
 
