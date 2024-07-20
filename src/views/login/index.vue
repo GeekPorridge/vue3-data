@@ -78,12 +78,12 @@ createCode()
     <!-- <Owl :close-eyes="isFocus" />  -->
     <div class="login-content">
       <div class="img-container">
-        <img src="@/assets/layouts/logo-text-2.png" />
+        <img src="http://144.48.83.77:9002/xh_admin/images/登录界面/u14.png" />
       </div>
       <div class="login-card">
         <div class="title">
           <div class="logo">
-            <img src="@/assets/layouts/logo-text-2.png" />
+            <img src="http://144.48.83.77:9002/xh_admin/images/登录界面/u15.svg" />
           </div>
           <div class="cn">企业数据服务解决方案系统</div>
           <div class="en">Enterprise Data Service Solutions</div>
@@ -161,17 +161,17 @@ createCode()
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 680px;
-    max-width: 90%;
+    width: 840px;
+    height: 600px;
     // box-shadow: 0 0 10px #dcdfe6;
-    background-color: var(--el-bg-color);
+    // background-color: var(--el-bg-color);
     overflow: hidden;
     .img-container {
-      flex: 1;
+      width: 420px;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: aliceblue;
       img {
         width: 100%;
         height: 100%;
@@ -185,38 +185,42 @@ createCode()
     cursor: pointer;
   }
   .login-card {
-    flex: 1;
-    // width: 480px;
-    // max-width: 90%;
-    // border-radius: 20px;
-    // box-shadow: 0 0 10px #dcdfe6;
-    background-color: var(--el-bg-color);
+    height: 100%;
+    width: 420px;
+    background: #fff;
+    // background-color: var(--el-bg-color);
     overflow: hidden;
     .title {
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 50px 0 60px;
+
       .logo {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 350px;
+        width: 115px;
+        height: 115px;
+        margin-bottom: 38px;
         img {
           height: 100%;
+          width: 100%;
         }
       }
 
       .cn,
       .en {
-        color: #3981f4;
+        color: #0079fe;
       }
       .cn {
-        font-size: 24px;
-        font-weight: bolder;
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 37px;
       }
       .en {
-        font-size: 19px;
-        margin-top: 4px;
+        font-size: 20px;
+        line-height: 32px;
       }
     }
     .content {
