@@ -3,12 +3,15 @@ import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import { useUserStore } from "@/store/modules/user"
 import { type FormInstance, type FormRules } from "element-plus"
-import { User, Lock } from "@element-plus/icons-vue"
+import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
+import { getLoginCodeApi } from "@/api/login"
 import { type LoginRequestData } from "@/api/login/types/login"
+// import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
+// import Owl from "./components/Owl.vue"
 import { useFocus } from "./hooks/useFocus"
 
 const router = useRouter()
-const { handleBlur, handleFocus } = useFocus()
+const { isFocus, handleBlur, handleFocus } = useFocus()
 
 /** 登录表单元素的引用 */
 const loginFormRef = ref<FormInstance | null>(null)
@@ -16,6 +19,7 @@ const loginFormRef = ref<FormInstance | null>(null)
 /** 登录按钮 Loading */
 const loading = ref(false)
 /** 验证码图片 URL */
+const codeUrl = ref("")
 /** 登录表单数据 */
 const loginFormData: LoginRequestData = reactive({
   username: "admin",
@@ -53,10 +57,25 @@ const handleLogin = () => {
     }
   })
 }
+/** 创建验证码 */
+const createCode = () => {
+  // 先清空验证码的输入
+  loginFormData.code = ""
+  // 获取验证码
+  codeUrl.value = ""
+  getLoginCodeApi().then((res) => {
+    codeUrl.value = res.data
+  })
+}
+
+/** 初始化验证码 */
+createCode()
 </script>
 
 <template>
   <div class="login-container">
+    <!-- <ThemeSwitch class="theme-switch" /> -->
+    <!-- <Owl :close-eyes="isFocus" />  -->
     <div class="login-content">
       <div class="img-container">
         <img src="@/assets/layouts/logo-text-2.png" />
@@ -66,8 +85,8 @@ const handleLogin = () => {
           <div class="logo">
             <img src="@/assets/layouts/logo-text-2.png" />
           </div>
-          <div>企业数据服务解决方案系统</div>
-          <div>Enterprise Data Service Solutions</div>
+          <div class="cn">企业数据服务解决方案系统</div>
+          <div class="en">Enterprise Data Service Solutions</div>
         </div>
         <div class="content">
           <el-form ref="loginFormRef" :model="loginFormData" :rules="loginFormRules" @keyup.enter="handleLogin">
@@ -134,6 +153,7 @@ const handleLogin = () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #3981f4;
   width: 100%;
   min-height: 100%;
 
@@ -143,7 +163,7 @@ const handleLogin = () => {
     align-items: center;
     width: 680px;
     max-width: 90%;
-    box-shadow: 0 0 10px #dcdfe6;
+    // box-shadow: 0 0 10px #dcdfe6;
     background-color: var(--el-bg-color);
     overflow: hidden;
     .img-container {
@@ -173,6 +193,9 @@ const handleLogin = () => {
     background-color: var(--el-bg-color);
     overflow: hidden;
     .title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       .logo {
         display: flex;
         justify-content: center;
@@ -181,6 +204,19 @@ const handleLogin = () => {
         img {
           height: 100%;
         }
+      }
+
+      .cn,
+      .en {
+        color: #3981f4;
+      }
+      .cn {
+        font-size: 24px;
+        font-weight: bolder;
+      }
+      .en {
+        font-size: 19px;
+        margin-top: 4px;
       }
     }
     .content {
