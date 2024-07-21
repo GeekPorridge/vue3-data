@@ -224,7 +224,7 @@ createCode()
       }
     }
     .content {
-      padding: 20px 50px 50px 50px;
+      padding: 20px 60px 50px 60px;
       :deep(.el-input-group__append) {
         padding: 0;
         overflow: hidden;
@@ -237,8 +237,16 @@ createCode()
           text-align: center;
         }
       }
+
+      :deep(.el-input__wrapper) {
+        .el-input__inner {
+          height: 48px;
+          font-size: 16px;
+        }
+      }
       .el-button {
         width: 100%;
+        height: 50px;
         margin-top: 10px;
       }
     }
