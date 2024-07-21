@@ -3,7 +3,7 @@
   <el-card v-loading="isLoding" shadow="never">
     <!-- 表格 -->
     <div class="table-wrapper">
-      <el-table row-key="id" :data="list" style="width: 100%">
+      <el-table row-key="id" :border="IsShowBorder" :data="list" style="width: 100%">
         <el-table-column
           v-for="column in columns"
           :key="column.name"
@@ -53,6 +53,10 @@ import { ref, watch } from "vue"
 const props = defineProps<{
   url: string
   isPagination?: boolean
+  IsShowBorder: {
+    type: Boolean
+    default: false
+  }
   columns: Array<{ name: string; label: string }>
 }>()
 
