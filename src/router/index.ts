@@ -93,6 +93,186 @@ export const constantRoutes: RouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: "/xtgl",
+    meta: {
+      title: "系统管理",
+      elIcon: "Grid"
+    },
+    component: Layouts,
+    children: [
+      {
+        path: "xtgl",
+        component: () => import("@/views/xtgl/index.vue"),
+        name: "XTGL",
+        meta: {
+          title: "系统管理"
+        }
+      }
+    ]
+  },
+  {
+    path: "/nrgl",
+    meta: {
+      title: "内容管理",
+      elIcon: "Grid"
+    },
+    component: Layouts,
+    children: [
+      {
+        path: "banner",
+        component: () => import("@/views/nrgl/index.vue"),
+        name: "BANNER",
+        meta: {
+          title: "banner"
+        }
+      },
+      {
+        path: "pmd",
+        component: () => {},
+        name: "PMD",
+        meta: {
+          title: "跑马灯"
+        }
+      },
+      {
+        path: "zzfw",
+        component: () => {},
+        name: "ZZFW",
+        meta: {
+          title: "自助服务"
+        }
+      },
+      {
+        path: "zzfl",
+        component: () => {},
+        name: "ZZFL",
+        meta: {
+          title: "自助分类"
+        }
+      }
+    ]
+  },
+  {
+    path: "/zfgl",
+    meta: {
+      title: "支付管理",
+      elIcon: "Grid"
+    },
+    component: Layouts,
+    children: [
+      {
+        path: "zfgl",
+        component: () => import("@/views/zfgl/index.vue"),
+        name: "ZFGL",
+        meta: {
+          title: "支付管理"
+        }
+      }
+    ]
+  },
+  {
+    path: "/jkgl",
+    meta: {
+      title: "接口管理",
+      elIcon: "Grid"
+    },
+    component: Layouts,
+    children: [
+      {
+        path: "jkkey",
+        component: () => import("@/views/jkgl/index.vue"),
+        name: "JKKEY",
+        meta: {
+          title: "接口Key"
+        }
+      },
+      {
+        path: "jkfl",
+        component: () => {},
+        name: "JKFL",
+        meta: {
+          title: "接口分类"
+        }
+      },
+      {
+        path: "jklb",
+        component: () => {},
+        name: "JKLB",
+        meta: {
+          title: "接口列表"
+        }
+      }
+    ]
+  },
+  {
+    path: "/qxgl",
+    meta: {
+      title: "权限管理",
+      elIcon: "Grid"
+    },
+    component: Layouts,
+    children: [
+      {
+        path: "glylb",
+        component: () => import("@/views/qxgl/index.vue"),
+        name: "GLYLB",
+        meta: {
+          title: "管理员列表"
+        }
+      },
+      {
+        path: "jsgl",
+        component: () => {},
+        name: "JSGL",
+        meta: {
+          title: "角色管理"
+        }
+      },
+      {
+        path: "cdgl",
+        component: () => {},
+        name: "CDGL",
+        meta: {
+          title: "菜单管理"
+        }
+      }
+    ]
+  },
+  {
+    path: "/rzgl",
+    meta: {
+      title: "日志管理",
+      elIcon: "Grid"
+    },
+    component: Layouts,
+    children: [
+      {
+        path: "hyrz",
+        component: () => import("@/views/rzgl/index.vue"),
+        name: "HYRZ",
+        meta: {
+          title: "会员日志"
+        }
+      },
+      {
+        path: "hydl",
+        component: () => {},
+        name: "HYDL",
+        meta: {
+          title: "代理日志"
+        }
+      },
+      {
+        path: "htrz",
+        component: () => {},
+        name: "HTRZ",
+        meta: {
+          title: "后台日志"
+        }
+      }
+    ]
   }
 ]
 
