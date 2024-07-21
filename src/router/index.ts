@@ -98,7 +98,8 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: "/xtgl",
     meta: {
       title: "系统管理",
-      elIcon: "Grid"
+      elIcon: "Grid",
+      alwaysShow: true
     },
     component: Layouts,
     children: [
@@ -158,8 +159,10 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: "/zfgl",
     meta: {
       title: "支付管理",
-      elIcon: "Grid"
+      elIcon: "Grid",
+      alwaysShow: true
     },
+
     component: Layouts,
     children: [
       {
