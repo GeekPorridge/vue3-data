@@ -2,6 +2,7 @@
 import { ref } from "vue"
 
 import ListTable from "@/components/ListTable/index.vue"
+import themeColor from "./components/themeColor/index.vue"
 
 // tab
 const currentTab = ref<number>(1)
@@ -35,7 +36,7 @@ const tabListConfig = [
   {
     key: 6,
     tab: "主题颜色",
-    component: ListTable
+    component: themeColor
   }
 ]
 const tabChange = (key: number) => {
@@ -99,6 +100,9 @@ const columns = [
 </template>
 
 <style lang="scss" scoped>
+.demo-tabs {
+  height: 100%;
+}
 .demo-tabs > .el-tabs__content {
   padding: 32px;
   color: #6b778c;
