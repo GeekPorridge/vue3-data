@@ -1,4 +1,5 @@
 <template>
+  <!-- 会员等级 -->
   <div class="app-container">
     <ListTable :url="'table'" :isPagination="true" :columns="columns" />
   </div>
@@ -13,12 +14,44 @@ const handleClick = (record) => {
 
 const columns = [
   {
-    name: "username",
-    label: "用户名"
+    name: "id",
+    label: "id"
   },
   {
-    name: "email",
-    label: "邮箱"
+    name: "zd",
+    label: "字段"
+  },
+  {
+    name: "zd",
+    label: "字段"
+  },
+  {
+    name: "zd",
+    label: "字段"
+  },
+  {
+    name: "zd",
+    label: "字段"
+  },
+  {
+    name: "zd",
+    label: "字段"
+  },
+  {
+    name: "zd",
+    label: "字段"
+  },
+  {
+    name: "zd",
+    label: "字段"
+  },
+  {
+    name: "zd",
+    label: "字段"
+  },
+  {
+    name: "zd",
+    label: "字段"
   },
   {
     name: "actions",
@@ -26,12 +59,8 @@ const columns = [
     type: "button",
     actions: [
       {
-        label: "详情",
-        handler: handleClick
-      },
-      {
         label: "编辑",
-        handler: () => {}
+        handler: handleClick
       }
     ]
   }

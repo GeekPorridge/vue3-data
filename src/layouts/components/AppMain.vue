@@ -7,14 +7,7 @@ const tagsViewStore = useTagsViewStore()
 <template>
   <section class="app-main">
     <div class="app-scrollbar">
-      <!-- key 采用 route.path 和 route.fullPath 有着不同的效果，大多数时候 path 更通用 -->
-      <router-view v-slot="{ Component, route }">
-        <transition name="el-fade-in" mode="out-in">
-          <keep-alive :include="tagsViewStore.cachedViews">
-            <component :is="Component" :key="route.path" class="app-container-grow" />
-          </keep-alive>
-        </transition>
-      </router-view>
+      <router-view></router-view>
       <!-- 页脚 -->
     </div>
     <!-- 返回顶部 -->

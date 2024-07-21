@@ -10,9 +10,10 @@
           :prop="column.name"
           :label="column.label"
           :width="column.width"
+          :fixed="column.fixed"
           align="center"
         >
-          <template v-if="column.type === 'button'" #default="scope">
+          <template fixed="right" v-if="column.type === 'button'" #default="scope">
             <div>
               <el-button
                 v-for="action in column.actions"
@@ -25,6 +26,15 @@
                 {{ action.label }}
               </el-button>
             </div>
+          </template>
+          <template v-if="column.type === 'switch'" #default="scope">
+            <el-switch
+              v-model="scope.row[column.switchModel]"
+              inline-prompt
+              active-text="是"
+              inactive-text="否"
+              @change="column.switchChange(scope.row)"
+            />
           </template>
         </el-table-column>
       </el-table>
@@ -47,17 +57,21 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch, defineProps, defineExpose } from "vue"
 import { request } from "@/utils/service"
 
-import { ref, watch } from "vue"
 const props = defineProps<{
   url: string
-  isPagination?: boolean
-  isShowBorder: {
+  isPagination?: {
+    type: Boolean
+    default: true
+  }
+  isShowBorder?: {
     type: Boolean
     default: false
   }
   columns: Array<{ name: string; label: string }>
+  formParams: Object
 }>()
 
 const processObject = (obj) => {
@@ -81,6 +95,7 @@ const page = ref(1)
 const pageSize = ref(10)
 const total = ref(100)
 const isLoding = ref(false)
+const value3 = ref(true)
 
 const handleSizeChange = (val: number) => {
   pageSize.value = val
@@ -97,7 +112,8 @@ const getTableData = async () => {
       currentPage: page.value,
       size: pageSize.value,
       username: "",
-      phone: ""
+      phone: "",
+      ...props.formParams
     })
 
     const key = processObject(res.data)
@@ -111,9 +127,12 @@ const getTableData = async () => {
   }
 }
 
-watch([page, pageSize], ([newPage, newPageSize]) => {
-  console.log(newPage, newPageSize)
+watch([page, pageSize], ([]) => {
   getTableData()
+})
+
+defineExpose({
+  getTableData
 })
 
 getTableData()
@@ -127,5 +146,12 @@ getTableData()
 .pager-wrapper {
   display: flex;
   justify-content: flex-end;
+}
+
+.actions_button {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 </style>

@@ -70,7 +70,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "hylb",
-        component: () => import("@/views/hylb/index.vue"),
+        component: () => import("@/views/member/hylb.vue"),
         name: "HYLB",
         meta: {
           title: "会员列表"
@@ -78,7 +78,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "hydj",
-        component: () => {},
+        component: () => import("@/views/member/hydj.vue"),
         name: "HYDJ",
         meta: {
           title: "会员等级"
@@ -86,10 +86,155 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "fypz",
-        component: () => {},
+        component: () => import("@/views/member/fypz.vue"),
         name: "FYPZ",
         meta: {
           title: "返佣配置"
+        }
+      }
+    ]
+  },
+  {
+    path: "/cwgl",
+    meta: {
+      title: "财务管理",
+      elIcon: "Grid"
+    },
+    component: Layouts,
+    children: [
+      {
+        path: "hyck",
+        component: () => import("@/views/finance/hyck.vue"),
+        name: "HYCK",
+        meta: {
+          title: "会员存款"
+        }
+      },
+      {
+        path: "hyzz",
+        component: () => import("@/views/finance/hyzz.vue"),
+        name: "HYZZ",
+        meta: {
+          title: "会员转账"
+        }
+      },
+      {
+        path: "hyqk",
+        component: () => import("@/views/finance/hyqk.vue"),
+        name: "HYQK",
+        meta: {
+          title: "会员取款"
+        }
+      },
+      {
+        path: "hyfy",
+        component: () => import("@/views/finance/hyfy.vue"),
+        name: "HYFY",
+        meta: {
+          title: "会员返佣"
+        }
+      },
+      {
+        path: "hytj",
+        component: () => import("@/views/finance/hytj.vue"),
+        name: "HYTJ",
+        meta: {
+          title: "会员统计"
+        }
+      }
+    ]
+  },
+  {
+    path: "/dlgl",
+    meta: {
+      title: "代理管理",
+      elIcon: "Grid"
+    },
+    component: Layouts,
+    children: [
+      {
+        path: "dlbl",
+        component: () => {},
+        name: "DLLB",
+        meta: {
+          title: "代理列表"
+        }
+      },
+      {
+        path: "dlyj",
+        component: () => {},
+        name: "DLYJ",
+        meta: {
+          title: "代理佣金"
+        }
+      },
+      {
+        path: "dltj",
+        component: () => {},
+        name: "DLTJ",
+        meta: {
+          title: "代理统计"
+        }
+      }
+    ]
+  },
+  {
+    path: "/hdgl",
+    meta: {
+      title: "活动管理",
+      elIcon: "Grid",
+      alwaysShow: true
+    },
+    component: Layouts,
+    children: [
+      {
+        path: "dlbl",
+        component: () => {},
+        name: "DLLB",
+        meta: {
+          title: "活动分类"
+        }
+      }
+    ]
+  },
+  {
+    path: "/zntz",
+    meta: {
+      title: "站内通知",
+      elIcon: "Grid"
+    },
+    component: Layouts,
+    children: [
+      {
+        path: "tzlb",
+        component: () => {},
+        name: "TZLB",
+        meta: {
+          title: "通知列表"
+        }
+      },
+      {
+        path: "fklb",
+        component: () => {},
+        name: "FKLB",
+        meta: {
+          title: "反馈列表"
+        }
+      },
+      {
+        path: "tzfl",
+        component: () => {},
+        name: "TZFL",
+        meta: {
+          title: "通知分类"
+        }
+      },
+      {
+        path: "fkfl",
+        component: () => {},
+        name: "FKFL",
+        meta: {
+          title: "反馈分类"
         }
       }
     ]
