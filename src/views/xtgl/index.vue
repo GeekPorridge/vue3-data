@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <ListTable :url="'table'" :isPagination="true" :columns="columns" :IsShowBorder="true" />
+    <ListTable :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="true" />
   </div>
 </template>
 
