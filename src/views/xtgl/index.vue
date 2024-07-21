@@ -116,4 +116,13 @@ const columns = [
   vertical-align: middle;
   margin-left: 4px;
 }
+
+:deep(.demo-tabs) {
+  .el-tabs__item.is-active {
+    background-color: #f5f7fa;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: #dcdfe6;
+  }
+}
 </style>
