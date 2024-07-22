@@ -311,11 +311,11 @@ export const constantRoutes: RouteRecordRaw[] = [
     component: Layouts,
     children: [
       {
-        path: "zfgl",
-        component: () => import("@/views/zfgl/index.vue"),
-        name: "ZFGL",
+        path: "yhlb",
+        component: () => import("@/views/zfgl/yhlb.vue"),
+        name: "YHLB",
         meta: {
-          title: "支付管理"
+          title: "银行列表"
         }
       }
     ]
