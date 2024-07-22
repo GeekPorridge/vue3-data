@@ -77,3 +77,9 @@ const options = [
   }
 ]
 </script>
+
+<style lang="scss" scoped>
+.el-card {
+  border-color: transparent;
+}
+</style>

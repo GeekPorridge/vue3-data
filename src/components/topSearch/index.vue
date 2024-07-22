@@ -74,7 +74,7 @@ const handlerReset = () => {
 
 .top-search-container {
   background: #fff;
-  padding: 10px 30px 30px;
+  padding: 10px 30px 0px;
 
   .box {
     padding-top: 20px;
