@@ -398,23 +398,23 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "hyrz",
-        component: () => import("@/views/rzgl/index.vue"),
+        component: () => import("@/views/rzgl/hyrz.vue"),
         name: "HYRZ",
         meta: {
           title: "会员日志"
         }
       },
       {
-        path: "hydl",
-        component: () => {},
-        name: "HYDL",
+        path: "dlrz",
+        component: () => import("@/views/rzgl/dlrz.vue"),
+        name: "DLRZ",
         meta: {
           title: "代理日志"
         }
       },
       {
         path: "htrz",
-        component: () => {},
+        component: () => import("@/views/rzgl/htrz.vue"),
         name: "HTRZ",
         meta: {
           title: "后台日志"
