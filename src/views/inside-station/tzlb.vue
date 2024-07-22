@@ -1,5 +1,5 @@
 <template>
-  <!-- 会员存款 -->
+  <!-- 通知列表 -->
   <div class="app-container">
     <el-card style="margin-bottom: 10px">
       <el-form :inline="true" ref="formRef" :model="formInline">
@@ -20,6 +20,12 @@
           <el-button @click="resetForm(formRef)">重置</el-button>
         </el-form-item>
       </el-form>
+      <div class="table_button">
+        <el-button type="primary">
+          <el-icon><CirclePlusFilled /></el-icon>
+          新增
+        </el-button>
+      </div>
     </el-card>
     <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
   </div>
@@ -28,6 +34,8 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue"
 import ListTable from "@/components/ListTable/index.vue"
+
+const handleSwitchChange = () => {}
 
 const columns = [
   {
@@ -51,8 +59,11 @@ const columns = [
     label: "字段"
   },
   {
-    name: "zd",
-    label: "字段"
+    name: "createTime",
+    label: "开关字段",
+    type: "switch",
+    switchModel: "createTime",
+    switchChange: handleSwitchChange
   },
   {
     name: "zd",
@@ -67,8 +78,8 @@ const columns = [
     label: "字段"
   },
   {
-    name: "url",
-    label: "图片头像字段"
+    name: "zd",
+    label: "字段"
   },
   {
     name: "actions",
@@ -77,11 +88,11 @@ const columns = [
     fixed: "right",
     actions: [
       {
-        label: "同意申请",
+        label: "编辑",
         handler: () => {}
       },
       {
-        label: "拒绝申请",
+        label: "删除",
         handler: () => {}
       }
     ]
@@ -110,4 +121,4 @@ const resetForm = (formEl) => {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped></style>

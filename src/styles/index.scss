@@ -56,3 +56,9 @@ a:hover {
 div:focus {
   outline: none;
 }
+
+.table_button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

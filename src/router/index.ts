@@ -153,8 +153,8 @@ export const constantRoutes: RouteRecordRaw[] = [
     component: Layouts,
     children: [
       {
-        path: "dlbl",
-        component: () => {},
+        path: "dllb",
+        component: () => import("@/views/acting/dllb.vue"),
         name: "DLLB",
         meta: {
           title: "代理列表"
@@ -162,7 +162,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "dlyj",
-        component: () => {},
+        component: () => import("@/views/acting/dlyj.vue"),
         name: "DLYJ",
         meta: {
           title: "代理佣金"
@@ -170,7 +170,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "dltj",
-        component: () => {},
+        component: () => import("@/views/acting/dltj.vue"),
         name: "DLTJ",
         meta: {
           title: "代理统计"
@@ -178,6 +178,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       }
     ]
   },
+
   {
     path: "/hdgl",
     meta: {
@@ -189,8 +190,8 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "dlbl",
-        component: () => {},
-        name: "DLLB",
+        component: () => import("@/views/activity/hdfl.vue"),
+        name: "HDFL",
         meta: {
           title: "活动分类"
         }
@@ -207,7 +208,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "tzlb",
-        component: () => {},
+        component: () => import("@/views/inside-station/tzlb.vue"),
         name: "TZLB",
         meta: {
           title: "通知列表"
@@ -215,7 +216,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "fklb",
-        component: () => {},
+        component: () => import("@/views/inside-station/fklb.vue"),
         name: "FKLB",
         meta: {
           title: "反馈列表"
@@ -223,7 +224,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "tzfl",
-        component: () => {},
+        component: () => import("@/views/inside-station/tzfl.vue"),
         name: "TZFL",
         meta: {
           title: "通知分类"
@@ -231,7 +232,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "fkfl",
-        component: () => {},
+        component: () => import("@/views/inside-station/fkfl.vue"),
         name: "FKFL",
         meta: {
           title: "反馈分类"

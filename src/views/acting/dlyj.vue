@@ -1,5 +1,5 @@
 <template>
-  <!-- 会员存款 -->
+  <!-- 代理佣金 -->
   <div class="app-container">
     <el-card style="margin-bottom: 10px">
       <el-form :inline="true" ref="formRef" :model="formInline">
@@ -67,24 +67,8 @@ const columns = [
     label: "字段"
   },
   {
-    name: "url",
-    label: "图片头像字段"
-  },
-  {
-    name: "actions",
-    label: "操作",
-    type: "button",
-    fixed: "right",
-    actions: [
-      {
-        label: "同意申请",
-        handler: () => {}
-      },
-      {
-        label: "拒绝申请",
-        handler: () => {}
-      }
-    ]
+    name: "zd",
+    label: "字段"
   }
 ]
 
