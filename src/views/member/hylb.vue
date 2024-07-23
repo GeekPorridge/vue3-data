@@ -21,51 +21,94 @@
         </el-form-item>
       </el-form>
       <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
+      <CardHolderModal ref="cardHolderRef" :record="listRecord" />
+      <EditModal ref="editModalRef" :record="listRecord" />
+      <ComplexModal ref="complexModalRef" :record="listRecord" />
+      <AmountModal ref="amountModalRef" :record="listRecord" />
     </el-card>
-    <Modal ref="modalRef" :type="modalType" :record="records" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from "vue"
+import { ElMessage, ElMessageBox } from "element-plus"
 import { EditPen, SuccessFilled, DeleteFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
-import Modal from "./components/modal.vue"
+import CardHolderModal from "./components/cardHolderModal.vue"
+import EditModal from "./components/editModal.vue"
+import ComplexModal from "./components/complexModal.vue"
+import AmountModal from "./components/amountModal.vue"
 
-let modalType
 const tableRef = ref(null)
 const formRef = ref()
-const modalRef = ref(null)
-const records = ref()
+const cardHolderRef = ref(null) // 卡包ref
+const editModalRef = ref(null) // 编辑ref
+const complexModalRef = ref(null) // 加减ref
+const amountModalRef = ref(null) // 额度ref
+const listRecord = ref() // 列表数据
+const modalType = ref("")
 const formInline = reactive({
   search: "",
   type: "",
   date: ""
 })
 
-const handleModalOpen = (record) => {
-  if (modalRef.value) {
-    records.value = record
-    modalRef.value.openModal()
+// 弹框调用
+const handleModalOpen = (ref, record) => {
+  if (ref.value) {
+    listRecord.value = record
+    ref.value.openModal()
   }
 }
 
 // 打开卡包
 const handleCardHolder = (record) => {
-  modalType = "CardHolder"
-  handleModalOpen(record)
+  handleModalOpen(cardHolderRef, record)
 }
 
 // 编辑弹框
 const handleEdit = (record) => {
-  modalType = "Edit"
-  handleModalOpen(record)
+  handleModalOpen(editModalRef, record)
 }
 
 // 加/减弹框
 const handleComplex = (record) => {
-  modalType = "Complex"
-  handleModalOpen(record)
+  handleModalOpen(complexModalRef, record)
+}
+
+// 额度操作
+const handleAmount = (record) => {
+  handleModalOpen(amountModalRef, record)
+}
+
+// 代理操作
+const handleProxy = (record) => {
+  ElMessageBox.confirm(`确定对[id=${record.id}]进行升级为代理操作?`, {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning"
+  })
+    .then(() => {
+      console.log("成功")
+    })
+    .catch(() => {
+      console.log("失败")
+    })
+}
+
+// 删除操作
+const handleDelete = (record) => {
+  ElMessageBox.confirm(`确定对[id=${record.id}]进行删除操作?`, {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning"
+  })
+    .then(() => {
+      console.log("删除成功")
+    })
+    .catch(() => {
+      console.log("删除失败")
+    })
 }
 
 const handleSwitchChange = (record) => {}
@@ -110,34 +153,40 @@ const columns = [
     fixed: "right",
     actions: [
       {
+        type: "primary",
         icon: EditPen,
         label: "卡包",
         handler: handleCardHolder
       },
       {
+        type: "primary",
         icon: EditPen,
         label: "编辑",
         handler: handleEdit
       },
       {
+        type: "primary",
         icon: SuccessFilled,
         label: "加/扣款",
         handler: handleComplex
       },
       {
+        type: "primary",
         icon: SuccessFilled,
         label: "额度管理",
-        handler: () => {}
+        handler: handleAmount
       },
       {
+        type: "primary",
         icon: SuccessFilled,
         label: "升为代理",
-        handler: () => {}
+        handler: handleProxy
       },
       {
+        type: "danger",
         icon: DeleteFilled,
         label: "删除",
-        handler: () => {}
+        handler: handleDelete
       }
     ]
   }

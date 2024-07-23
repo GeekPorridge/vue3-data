@@ -19,8 +19,8 @@
                 v-for="action in column.actions"
                 :key="action.label"
                 link
-                type="primary"
                 size="small"
+                :type="action.type"
                 @click="action.handler(scope.row)"
               >
                 <template v-if="action.icon">
