@@ -3,7 +3,7 @@
   <el-card v-loading="isLoding" shadow="never">
     <!-- 表格 -->
     <div class="table-wrapper">
-      <el-table row-key="id" :border="isShowBorder" :data="list" style="width: 100%">
+      <el-table row-key="id" :border="showBorder" :data="list" style="width: 100%">
         <el-table-column
           v-for="column in columns"
           :key="column.name"
@@ -23,6 +23,11 @@
                 size="small"
                 @click="action.handler(scope.row)"
               >
+                <template v-if="action.icon">
+                  <el-icon>
+                    <component :is="action.icon" />
+                  </el-icon>
+                </template>
                 {{ action.label }}
               </el-button>
             </div>
@@ -40,7 +45,7 @@
       </el-table>
     </div>
     <!-- 分页 -->
-    <div class="pager-wrapper" v-if="isPagination">
+    <div class="pager-wrapper" v-if="showPagination">
       <el-pagination
         v-model:current-page="page"
         v-model:page-size="pageSize"
@@ -60,6 +65,14 @@
 import { ref, watch, defineProps, defineExpose } from "vue"
 import { request } from "@/utils/service"
 
+/**
+ * 组件的属性定义
+ * @property {string} url - 获取数据的接口地址
+ * @property {boolean} [isPagination=true] - 是否显示分页
+ * @property {boolean} [isShowBorder=false] - 是否显示表格边框
+ * @property {Array<{ name: string, label: string }>} columns - 表格列配置
+ * @property {Object} formParams - 表单参数
+ */
 const props = defineProps<{
   url: string
   isPagination?: {
@@ -73,6 +86,15 @@ const props = defineProps<{
   columns: Array<{ name: string; label: string }>
   formParams: Object
 }>()
+
+const list = ref()
+const page = ref(1)
+const pageSize = ref(10)
+const total = ref(100)
+const isLoding = ref(false)
+const value3 = ref(true)
+const showPagination = ref<Boolean>(props.isPagination ?? true)
+const showBorder = ref<Boolean>(props.isShowBorder ?? false)
 
 const processObject = (obj) => {
   for (const key in obj) {
@@ -88,20 +110,6 @@ const getListApi = (params) => {
     method: "get",
     params
   })
-}
-
-const list = ref()
-const page = ref(1)
-const pageSize = ref(10)
-const total = ref(100)
-const isLoding = ref(false)
-const value3 = ref(true)
-
-const handleSizeChange = (val: number) => {
-  pageSize.value = val
-}
-const handleCurrentChange = (val: number) => {
-  page.value = val
 }
 
 const getTableData = async () => {
@@ -125,6 +133,13 @@ const getTableData = async () => {
   } finally {
     isLoding.value = false
   }
+}
+
+const handleSizeChange = (val: number) => {
+  pageSize.value = val
+}
+const handleCurrentChange = (val: number) => {
+  page.value = val
 }
 
 watch([page, pageSize], ([]) => {

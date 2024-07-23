@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
           class="layout-logo-text"
           alt=""
         />
-        <div class="layout-text">{{ VITE_APP_TITLE }}</div>
+        <div class="layout-text">{{ $t("dataServeSystemTitile") }}</div>
       </router-link>
     </transition>
   </div>

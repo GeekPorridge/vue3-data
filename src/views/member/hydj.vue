@@ -6,6 +6,7 @@
 </template>
 
 <script setup lang="ts">
+import { EditPen } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
 
 const handleClick = (record) => {
@@ -59,6 +60,7 @@ const columns = [
     type: "button",
     actions: [
       {
+        icon: EditPen,
         label: "编辑",
         handler: handleClick
       }

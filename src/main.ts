@@ -4,6 +4,7 @@ import App from "@/App.vue"
 import store from "@/store"
 import router from "@/router"
 import "@/router/permission"
+import i18n from "./messages"
 // load
 import { loadSvg } from "@/icons"
 import { loadPlugins } from "@/plugins"
@@ -25,7 +26,7 @@ loadSvg(app)
 /** 加载自定义指令 */
 loadDirectives(app)
 
-app.use(store).use(router)
+app.use(store).use(router).use(i18n)
 router.isReady().then(() => {
   app.mount("#app")
 })

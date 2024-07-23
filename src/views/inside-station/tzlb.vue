@@ -1,7 +1,7 @@
 <template>
   <!-- 通知列表 -->
   <div class="app-container">
-    <el-card style="margin-bottom: 10px">
+    <el-card>
       <el-form :inline="true" ref="formRef" :model="formInline">
         <el-form-item prop="search">
           <el-input v-model="formInline.search" placeholder="搜索字段" />
@@ -20,14 +20,14 @@
           <el-button @click="resetForm(formRef)">重置</el-button>
         </el-form-item>
       </el-form>
-      <div class="table_button">
+      <div class="table_button" style="margin-bottom: 12px">
         <el-button type="primary">
           <el-icon><CirclePlusFilled /></el-icon>
           新增
         </el-button>
       </div>
+      <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
     </el-card>
-    <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
   </div>
 </template>
 

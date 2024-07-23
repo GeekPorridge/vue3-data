@@ -1,15 +1,15 @@
 <template>
   <!-- 通知分类 -->
   <div class="app-container">
-    <el-card style="margin-bottom: 10px">
-      <div class="table_button">
+    <el-card>
+      <div class="table_button" style="margin-bottom: 12px">
         <el-button type="primary">
           <el-icon><CirclePlusFilled /></el-icon>
           新增
         </el-button>
       </div>
+      <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
     </el-card>
-    <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
   </div>
 </template>
 

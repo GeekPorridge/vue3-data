@@ -6,6 +6,7 @@ import { UserFilled } from "@element-plus/icons-vue"
 import Hamburger from "../Hamburger/index.vue"
 import Breadcrumb from "../Breadcrumb/index.vue"
 import Notify from "@/components/Notify/index.vue"
+import Language from "../Language/index.vue"
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -28,6 +29,7 @@ const logout = () => {
     <Hamburger :is-active="appStore.sidebar.opened" class="hamburger" @toggle-click="toggleSidebar" />
     <Breadcrumb class="breadcrumb" />
     <div class="right-menu">
+      <Language class="right-menu-item" />
       <Notify class="right-menu-item" />
       <el-dropdown class="right-menu-item">
         <div class="right-menu-avatar">

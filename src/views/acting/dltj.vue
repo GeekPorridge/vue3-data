@@ -21,7 +21,6 @@
         </el-form-item>
       </el-form>
     </el-card>
-    <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
   </div>
 </template>
 
