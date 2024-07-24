@@ -1,7 +1,7 @@
 <!-- 站点配置 -->
 <template>
   <div class="container">
-    <ListTable :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="true"></ListTable>
+    <ListTable ref="tableRef" :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="true"></ListTable>
 
     <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList"></EditModal>
   </div>
