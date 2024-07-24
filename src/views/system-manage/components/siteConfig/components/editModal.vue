@@ -61,17 +61,17 @@
             </el-col>
           </el-row>
           <el-row :gutter="24">
-            <el-col :span="12">
+            <el-col :span="8">
               <el-form-item prop="zd7" label="多语言翻译字段5">
                 <el-input v-model="formInline.zd7" placeholder="请输入文字字段" />
               </el-form-item>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="8">
               <el-form-item prop="zd8" label="多语言翻译字段6">
                 <el-input v-model="formInline.zd8" placeholder="请输入文字字段" />
               </el-form-item>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="8">
               <el-form-item prop="zd9" label="多语言翻译字段5">
                 <el-input v-model="formInline.zd9" placeholder="请输入文字字段" />
               </el-form-item>
