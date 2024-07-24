@@ -1,20 +1,21 @@
 <!-- 注册配置 -->
 <template>
   <div class="container">
-    <ListTable :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="true"></ListTable>
+    <ListTable ref="tableRef" :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="true"></ListTable>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue"
+
 import ListTable from "@/components/ListTable/index.vue"
 
-// 站点配置
-const handleClick = (record: Object) => {
-  console.log(record)
-}
-
-const handleSwitchChange = () => {
-  console.log("handleSwitchChange-----")
+const tableRef = ref(null) // 列表ref
+const handleSwitchChange = (record) => {
+  if (tableRef.value) {
+    tableRef.value.getTableData()
+  }
+  console.log("handleSwitchChange-----", record)
 }
 
 const columns = [
@@ -35,17 +36,17 @@ const columns = [
     label: "字段"
   },
   {
-    name: "email",
+    name: "kg1",
     label: "开关字段",
     type: "switch",
-    switchModel: "email",
+    switchModel: "kg1",
     switchChange: handleSwitchChange
   },
   {
-    name: "email",
+    name: "kg2",
     label: "开关字段",
     type: "switch",
-    switchModel: "email",
+    switchModel: "kg2",
     switchChange: handleSwitchChange
   }
 ]
