@@ -21,11 +21,11 @@
         </el-form-item>
       </el-form>
       <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
-      <CardHolderModal ref="cardHolderRef" :record="listRecord" />
-      <EditModal ref="editModalRef" :record="listRecord" />
-      <ComplexModal ref="complexModalRef" :record="listRecord" />
-      <AmountModal ref="amountModalRef" :record="listRecord" />
     </el-card>
+    <CardHolderModal ref="cardHolderRef" :record="listRecord" />
+    <EditModal ref="editModalRef" :record="listRecord" />
+    <ComplexModal ref="complexModalRef" :record="listRecord" />
+    <AmountModal ref="amountModalRef" :record="listRecord" />
   </div>
 </template>
 

@@ -27,6 +27,8 @@
 
 <script setup lang="ts">
 import { ref, reactive } from "vue"
+import { ElMessage, ElMessageBox } from "element-plus"
+import { SuccessFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
 
 const tableRef = ref(null)
@@ -51,6 +53,21 @@ const resetForm = (formEl) => {
 }
 
 const handleSwitchChange = (record) => {}
+
+// 更新操作
+const handleOnUpdate = (record) => {
+  ElMessageBox.confirm(`确定对[id=${record.id}]行手动返佣更新吗?`, {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning"
+  })
+    .then(() => {
+      console.log("成功")
+    })
+    .catch(() => {
+      console.log("失败")
+    })
+}
 
 const columns = [
   {
@@ -103,8 +120,10 @@ const columns = [
     fixed: "right",
     actions: [
       {
+        type: "primary",
+        icon: SuccessFilled,
         label: "更新",
-        handler: () => {}
+        handler: handleOnUpdate
       }
     ]
   }

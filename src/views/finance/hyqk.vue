@@ -21,13 +21,40 @@
         </el-form-item>
       </el-form>
       <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
+      <ApplyModal ref="applylModalRef" :record="listRecord" :type="applyModalType" />
     </el-card>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from "vue"
+import { SuccessFilled, DeleteFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
+import ApplyModal from "./components/applyModal.vue"
+
+const listRecord = ref() // 列表数据
+const applylModalRef = ref(null) // 申请ref
+const applyModalType = ref("") // 类型
+
+// 弹框调用
+const handleModalOpen = (ref, record) => {
+  if (ref.value) {
+    listRecord.value = record
+    ref.value.openModal()
+  }
+}
+
+// 同意申请
+const handleOkApply = (record) => {
+  handleModalOpen(applylModalRef, record)
+  applyModalType.value = "agree"
+}
+
+// 拒绝申请
+const handleNoApply = (record) => {
+  handleModalOpen(applylModalRef, record)
+  applyModalType.value = "reject"
+}
 
 const columns = [
   {
@@ -75,14 +102,19 @@ const columns = [
     label: "操作",
     type: "button",
     fixed: "right",
+    width: "400px",
     actions: [
       {
+        icon: SuccessFilled,
+        type: "primary",
         label: "同意申请",
-        handler: () => {}
+        handler: handleOkApply
       },
       {
+        icon: DeleteFilled,
+        type: "danger",
         label: "拒绝申请",
-        handler: () => {}
+        handler: handleNoApply
       }
     ]
   }
