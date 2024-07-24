@@ -1,5 +1,5 @@
 <template>
-  <el-dialog destroy-on-close v-model="open" title="编辑" class="xtgl_edite-model__dialog">
+  <el-dialog destroy-on-close v-model="open" title="编辑" class="xtgl_siteConfig_edite-model__dialog">
     <el-card shadow="never">
       <el-form ref="formRef" :label-position="'top'" :model="formInline">
         <div class="top-card">
@@ -188,7 +188,7 @@ defineExpose({ openModal })
 </style> -->
 
 <style lang="scss">
-.xtgl_edite-model__dialog {
+.xtgl_siteConfig_edite-model__dialog {
   padding: 0 0 16px;
   border-radius: 5px;
   overflow: hidden;

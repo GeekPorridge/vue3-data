@@ -9,7 +9,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue"
-import { EditPen, SuccessFilled, DeleteFilled } from "@element-plus/icons-vue"
+
+import { EditPen } from "@element-plus/icons-vue"
 
 import ListTable from "@/components/ListTable/index.vue"
 import EditModal from "@/views/system-manage/components/siteConfig/components/editModal.vue"
