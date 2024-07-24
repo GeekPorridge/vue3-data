@@ -1,15 +1,41 @@
+<!-- 站点配置 -->
+<template>
+  <div class="container">
+    <ListTable :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="true"></ListTable>
+
+    <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList"></EditModal>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref } from "vue"
+import { EditPen, SuccessFilled, DeleteFilled } from "@element-plus/icons-vue"
 
 import ListTable from "@/components/ListTable/index.vue"
+import EditModal from "@/views/system-manage/components/siteConfig/components/editModal.vue"
 
-// 站点配置
-const handleClick = (record: Object) => {
-  console.log(record)
+const tableRef = ref(null) // 列表ref
+const editModalRef = ref(null) // 编辑ref
+const listRecord = ref() // 列表数据
+
+// 弹框调用
+const handleModalOpen = (ref, record) => {
+  if (ref.value) {
+    listRecord.value = record
+    ref.value.openModal()
+  }
 }
 
-const handlerEdite = () => {
-  console.log("handlerEdite-----")
+// 编辑弹框
+const handleEdit = (record) => {
+  handleModalOpen(editModalRef, record)
+}
+
+const updateList = (record) => {
+  if (tableRef.value) {
+    tableRef.value.getTableData()
+  }
+  console.log("record---", record)
 }
 
 const columns = [
@@ -19,53 +45,39 @@ const columns = [
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
-  },
-  {
-    name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "actions",
@@ -73,18 +85,14 @@ const columns = [
     type: "button",
     actions: [
       {
+        type: "primary",
+        icon: EditPen,
         label: "编辑",
-        handler: handlerEdite
+        handler: handleEdit
       }
     ]
   }
 ]
 </script>
-<!-- 站点配置 -->
-<template>
-  <div class="container">
-    <ListTable :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="true"></ListTable>
-  </div>
-</template>
 
 <style lang="scss" scoped></style>

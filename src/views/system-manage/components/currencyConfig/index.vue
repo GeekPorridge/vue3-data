@@ -24,18 +24,15 @@ const columns = [
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "email",

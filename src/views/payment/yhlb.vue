@@ -36,23 +36,19 @@ const columns = [
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "email",
@@ -63,23 +59,19 @@ const columns = [
   },
   {
     name: "tpzd",
-    label: "图片字段",
-    text: "显示图/尺寸固定"
+    label: "图片字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "zd",
-    label: "字段",
-    text: "字段内容"
+    label: "字段"
   },
   {
     name: "actions",
