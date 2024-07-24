@@ -27,38 +27,53 @@
 
         <div class="bottom-card">
           <el-row :gutter="24">
-            <el-col :span="12">
+            <el-col :span="8">
               <el-form-item prop="zd1" label="多语言翻译字段1">
                 <el-input v-model="formInline.zd1" placeholder="请输入文字字段" />
               </el-form-item>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="8">
               <el-form-item prop="zd2" label="多语言翻译字段2">
                 <el-input v-model="formInline.zd2" placeholder="请输入文字字段" />
               </el-form-item>
             </el-col>
-          </el-row>
-          <el-row :gutter="24">
-            <el-col :span="12">
-              <el-form-item prop="zd3" label="多语言翻译字段3">
+            <el-col :span="8">
+              <el-form-item prop="zd3" label="多语言翻译字段2">
                 <el-input v-model="formInline.zd3" placeholder="请输入文字字段" />
               </el-form-item>
             </el-col>
-            <el-col :span="12">
-              <el-form-item prop="zd14" label="多语言翻译字段4">
+          </el-row>
+          <el-row :gutter="24">
+            <el-col :span="8">
+              <el-form-item prop="zd4" label="多语言翻译字段3">
                 <el-input v-model="formInline.zd4" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item prop="zd5" label="多语言翻译字段4">
+                <el-input v-model="formInline.zd5" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item prop="zd6" label="多语言翻译字段4">
+                <el-input v-model="formInline.zd6" placeholder="请输入文字字段" />
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="24">
             <el-col :span="12">
-              <el-form-item prop="zd5" label="多语言翻译字段5">
-                <el-input v-model="formInline.zd5" placeholder="请输入文字字段" />
+              <el-form-item prop="zd7" label="多语言翻译字段5">
+                <el-input v-model="formInline.zd7" placeholder="请输入文字字段" />
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item prop="zd6" label="多语言翻译字段6">
-                <el-input v-model="formInline.zd6" placeholder="请输入文字字段" />
+              <el-form-item prop="zd8" label="多语言翻译字段6">
+                <el-input v-model="formInline.zd8" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item prop="zd9" label="多语言翻译字段5">
+                <el-input v-model="formInline.zd9" placeholder="请输入文字字段" />
               </el-form-item>
             </el-col>
           </el-row>
@@ -103,7 +118,10 @@ const formInline = reactive({
   zd3: "",
   zd4: "",
   zd5: "",
-  zd6: ""
+  zd6: "",
+  zd7: "",
+  zd8: "",
+  zd9: ""
 })
 
 // 清空表单
