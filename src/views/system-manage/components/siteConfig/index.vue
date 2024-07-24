@@ -35,7 +35,7 @@ const updateList = (record) => {
   if (tableRef.value) {
     tableRef.value.getTableData()
   }
-  console.log("record---", record)
+  console.log("更新列表数据record---", record)
 }
 
 const columns = [

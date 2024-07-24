@@ -1,68 +1,68 @@
 <template>
   <el-dialog destroy-on-close v-model="open" title="编辑" class="xtgl_edite-model__dialog">
     <el-card shadow="never">
-      <el-form ref="topForm" :label-position="'top'" :model="formInline1">
-        <el-row :gutter="24">
-          <el-col :span="12">
-            <el-form-item prop="zdbt" label="字段标题">
-              <el-input v-model="formInline1.zdbt" placeholder="请输入文字字段" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item prop="zdbs" label="字段标识">
-              <el-input v-model="formInline1.zdbs" placeholder="请输入文字字段" />
-            </el-form-item>
-          </el-col>
-        </el-row>
+      <el-form ref="formRef" :label-position="'top'" :model="formInline">
+        <div class="top-card">
+          <el-row :gutter="24">
+            <el-col :span="12">
+              <el-form-item prop="zdbt" label="字段标题">
+                <el-input v-model="formInline.zdbt" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item prop="zdbs" label="字段标识">
+                <el-input v-model="formInline.zdbs" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+          </el-row>
 
-        <el-row :gutter="24">
-          <el-col :span="24">
-            <el-form-item prop="bz" label="备注">
-              <el-input v-model="formInline1.bz" placeholder="备注" />
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
-    </el-card>
+          <el-row :gutter="24">
+            <el-col :span="24">
+              <el-form-item prop="bz" label="备注">
+                <el-input v-model="formInline.bz" placeholder="备注" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </div>
 
-    <el-card shadow="never">
-      <el-form ref="bottomForm" :label-position="'top'" :model="formInline2">
-        <el-row :gutter="24">
-          <el-col :span="12">
-            <el-form-item prop="zd1" label="多语言翻译字段1">
-              <el-input v-model="formInline2.zd1" placeholder="请输入文字字段" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item prop="zd2" label="多语言翻译字段2">
-              <el-input v-model="formInline2.zd2" placeholder="请输入文字字段" />
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="24">
-          <el-col :span="12">
-            <el-form-item prop="zd3" label="多语言翻译字段3">
-              <el-input v-model="formInline2.zd3" placeholder="请输入文字字段" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item prop="zd14" label="多语言翻译字段4">
-              <el-input v-model="formInline2.zd4" placeholder="请输入文字字段" />
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="24">
-          <el-col :span="12">
-            <el-form-item prop="zd5" label="多语言翻译字段5">
-              <el-input v-model="formInline2.zd5" placeholder="请输入文字字段" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item prop="zd6" label="多语言翻译字段6">
-              <el-input v-model="formInline2.zd6" placeholder="请输入文字字段" />
-            </el-form-item>
-          </el-col>
-        </el-row>
+        <div class="bottom-card">
+          <el-row :gutter="24">
+            <el-col :span="12">
+              <el-form-item prop="zd1" label="多语言翻译字段1">
+                <el-input v-model="formInline.zd1" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item prop="zd2" label="多语言翻译字段2">
+                <el-input v-model="formInline.zd2" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="24">
+            <el-col :span="12">
+              <el-form-item prop="zd3" label="多语言翻译字段3">
+                <el-input v-model="formInline.zd3" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item prop="zd14" label="多语言翻译字段4">
+                <el-input v-model="formInline.zd4" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="24">
+            <el-col :span="12">
+              <el-form-item prop="zd5" label="多语言翻译字段5">
+                <el-input v-model="formInline.zd5" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item prop="zd6" label="多语言翻译字段6">
+                <el-input v-model="formInline.zd6" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </div>
       </el-form>
     </el-card>
 
@@ -83,23 +83,21 @@ type RefDom<T extends HTMLElement = HTMLDivElement> = Ref<T>
 
 const props = defineProps<{
   type: string
-  record: Object
+  record: Object // 编辑的列表数据
 }>()
 
 const emit = defineEmits(["updateList"])
 
-const topForm = ref(null) // 表单ref
-const bottomForm = ref(null) // 表单ref
+const formRef = ref(null) // 表单ref
 
 const open = ref(false)
 const data = ref(props.record || {})
-const formInline1 = reactive({
+
+// 表单模拟字段
+const formInline = reactive({
   zdbt: "",
   zdbs: "",
-  bz: ""
-})
-
-const formInline2 = reactive({
+  bz: "",
   zd1: "",
   zd2: "",
   zd3: "",
@@ -110,14 +108,9 @@ const formInline2 = reactive({
 
 // 清空表单
 const clearFrom = () => {
-  if (topForm.value) {
-    topForm.value.resetFields()
-    topForm.value.clearValidate()
-  }
-
-  if (bottomForm.value) {
-    bottomForm.value.resetFields()
-    bottomForm.value.clearValidate()
+  if (formRef.value) {
+    formRef.value.resetFields()
+    formRef.value.clearValidate()
   }
 }
 // 打开弹框
@@ -126,7 +119,7 @@ const openModal = () => {
 }
 
 const saveData = () => {
-  console.log(formInline1, formInline2, "保存数据：请求api")
+  console.log(formInline, "保存数据：请求api")
 
   return {
     success: true,
@@ -209,8 +202,17 @@ defineExpose({ openModal })
 
   .el-card__body {
     margin-top: 20px;
-    border: 1px solid rgba(237, 237, 237, 1);
-    border-radius: 10px;
+    padding: 0;
+    .bottom-card,
+    .top-card {
+      padding: 20px;
+      border: 1px solid rgba(237, 237, 237, 1);
+      border-radius: 10px;
+    }
+
+    .bottom-card {
+      margin-top: 20px;
+    }
 
     .el-form-item__label {
       font-size: 14px;
