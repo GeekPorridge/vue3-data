@@ -88,20 +88,5 @@ const columns = [
 }
 .container {
   background: #fff;
-  .btn-container {
-    display: flex;
-    justify-content: flex-end;
-    padding: 40px 22px 0px;
-
-    .el-button {
-      width: 80px;
-      height: 35px;
-      .icon {
-        margin-bottom: 2px;
-        margin-right: 4px;
-        font-weight: bolder;
-      }
-    }
-  }
 }
 </style>

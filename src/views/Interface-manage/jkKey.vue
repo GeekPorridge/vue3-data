@@ -144,7 +144,7 @@ const columns = [
   .btn-container {
     display: flex;
     justify-content: flex-end;
-    padding: 20px 22px 0px;
+    padding: 0px 22px 0px;
 
     .el-button {
       width: 80px;

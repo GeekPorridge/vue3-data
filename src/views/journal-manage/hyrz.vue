@@ -1,27 +1,43 @@
 <!-- 会员日志 -->
 <template>
   <div class="app-container">
-    <div class="container">
-      <topSearch
-        @handleSearch="handleSearch"
-        text1="搜索字段"
-        text2="选择类型字段"
-        text3="选择日期范围"
-        :options="options"
-      ></topSearch>
-      <ListTable :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="true"></ListTable>
-    </div>
+    <el-card>
+      <div class="container">
+        <el-form :inline="true" ref="formRef" :model="formInline">
+          <el-form-item prop="search">
+            <el-input v-model="formInline.search" placeholder="搜索字段" />
+          </el-form-item>
+          <el-form-item prop="type">
+            <el-select style="width: 200px" v-model="formInline.type" placeholder="选择类型字段">
+              <el-option label="Zone one" value="shanghai" />
+              <el-option label="Zone two" value="beijing" />
+            </el-select>
+          </el-form-item>
+          <el-form-item prop="date">
+            <el-date-picker v-model="formInline.date" type="date" placeholder="选择日期范围" />
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="handleSubmit(formRef)">查询</el-button>
+            <el-button @click="resetForm(formRef)">重置</el-button>
+          </el-form-item>
+        </el-form>
+
+        <ListTable
+          ref="tableRef"
+          :url="'table'"
+          :isPagination="true"
+          :columns="columns"
+          :isShowBorder="true"
+        ></ListTable>
+      </div>
+    </el-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import topSearch from "@/components/topSearch/index.vue"
-import ListTable from "@/components/ListTable/index.vue"
+import { ref, reactive } from "vue"
 
-// 站点配置
-const handleSearch = (record: Object) => {
-  console.log(record, "handleSearch--")
-}
+import ListTable from "@/components/ListTable/index.vue"
 
 const columns = [
   {
@@ -54,28 +70,26 @@ const columns = [
   }
 ]
 
-const options = [
-  {
-    value: "Option1",
-    label: "Option1"
-  },
-  {
-    value: "Option2",
-    label: "Option2"
-  },
-  {
-    value: "Option3",
-    label: "Option3"
-  },
-  {
-    value: "Option4",
-    label: "Option4"
-  },
-  {
-    value: "Option5",
-    label: "Option5"
+const tableRef = ref(null)
+const formRef = ref()
+const formInline = reactive({
+  search: "",
+  type: "",
+  date: ""
+})
+
+const handleSubmit = (formEl) => {
+  if (!formEl) return
+  if (tableRef.value) {
+    tableRef.value.getTableData()
   }
-]
+  formEl.resetFields()
+}
+
+const resetForm = (formEl) => {
+  if (!formEl) return
+  formEl.resetFields()
+}
 </script>
 
 <style lang="scss" scoped>

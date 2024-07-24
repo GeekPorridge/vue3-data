@@ -98,7 +98,7 @@ const columns = [
   .btn-container {
     display: flex;
     justify-content: flex-end;
-    padding: 40px 22px 0px;
+    padding: 10px 22px 0px;
 
     .el-button {
       width: 80px;
