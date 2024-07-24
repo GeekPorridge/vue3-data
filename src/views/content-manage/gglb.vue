@@ -23,18 +23,27 @@
         </el-form>
 
         <div class="btn-container">
-          <el-button type="primary" @click="handleClick"><span class="icon">+</span>新增</el-button>
+          <el-button type="primary" @click="handleAdd"><span class="icon">+</span>新增</el-button>
         </div>
 
-        <ListTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="true" />
+        <ListTable
+          ref="tableRef"
+          :url="'table'"
+          :isPagination="true"
+          :columns="columns"
+          :isShowBorder="true"
+          :formParams="formInline"
+        />
       </div>
     </el-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue"
+import { ref, reactive, markRaw } from "vue"
 
+import { ElMessageBox } from "element-plus"
+import { EditPen, DeleteFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
 
 const tableRef = ref(null)
@@ -45,6 +54,11 @@ const formInline = reactive({
   type: "",
   date: ""
 })
+
+// 新增
+const handleAdd = () => {
+  console.log("handleAdd")
+}
 
 const handleSubmit = (formEl) => {
   if (!formEl) return
@@ -58,20 +72,40 @@ const resetForm = (formEl) => {
   if (!formEl) return
   formEl.resetFields()
 }
-const handleClick = (record) => {
-  console.log(record)
+
+// 弹框调用
+const handleModalOpen = (ref, record) => {
+  if (ref.value) {
+    listRecord.value = record
+    ref.value.openModal()
+  }
 }
 
-const handleSwitchChange = () => {
-  console.log("handleSwitchChange-----")
+const handleSwitchChange = (record) => {
+  if (tableRef.value) {
+    tableRef.value.getTableData()
+  }
+  console.log("handleSwitchChange-----", record)
 }
 
-const handlerEdite = () => {
-  console.log("handlerEdite-----")
+// 编辑弹框
+const handleEdit = (record) => {
+  handleModalOpen(editModalRef, record)
 }
 
-const handlerDel = () => {
-  console.log("handlerDel----")
+// 删除操作
+const handleDelete = (record) => {
+  ElMessageBox.confirm(`确定对[id=${record.id}]进行删除操作?`, "提示", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning"
+  })
+    .then(() => {
+      console.log("删除成功")
+    })
+    .catch(() => {
+      console.log("删除失败")
+    })
 }
 
 const columns = [
@@ -100,7 +134,7 @@ const columns = [
     name: "zt",
     label: "开关字段",
     type: "switch",
-    switchModel: "email",
+    switchModel: "zt",
     switchChange: handleSwitchChange
   },
 
@@ -124,14 +158,20 @@ const columns = [
     name: "actions",
     label: "操作",
     type: "button",
+    width: "160px",
     actions: [
       {
+        type: "primary",
+        icon: EditPen,
         label: "编辑",
-        handler: handlerEdite
+        handler: handleEdit
       },
+
       {
+        type: "danger",
+        icon: DeleteFilled,
         label: "删除",
-        handler: handlerDel
+        handler: handleDelete
       }
     ]
   }
@@ -147,7 +187,7 @@ const columns = [
   .btn-container {
     display: flex;
     justify-content: flex-end;
-    padding: 20px 22px 0px;
+    padding: 0px 22px 0px;
 
     .el-button {
       width: 80px;
