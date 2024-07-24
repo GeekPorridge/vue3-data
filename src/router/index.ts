@@ -268,8 +268,16 @@ export const constantRoutes: RouteRecordRaw[] = [
     component: Layouts,
     children: [
       {
+        path: "gglb",
+        component: () => import("@/views/nrgl/gglb.vue"),
+        name: "GGLB",
+        meta: {
+          title: "公告列表"
+        }
+      },
+      {
         path: "banner",
-        component: () => import("@/views/nrgl/index.vue"),
+        component: () => import("@/views/nrgl/banner.vue"),
         name: "BANNER",
         meta: {
           title: "banner"
@@ -277,7 +285,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "pmd",
-        component: () => {},
+        component: () => import("@/views/nrgl/pmd.vue"),
         name: "PMD",
         meta: {
           title: "跑马灯"
@@ -285,7 +293,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "zzfw",
-        component: () => {},
+        component: () => import("@/views/nrgl/zzfw.vue"),
         name: "ZZFW",
         meta: {
           title: "自助服务"
@@ -293,7 +301,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "zzfl",
-        component: () => {},
+        component: () => import("@/views/nrgl/zzfl.vue"),
         name: "ZZFL",
         meta: {
           title: "自助分类"
@@ -331,7 +339,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "jkkey",
-        component: () => import("@/views/jkgl/index.vue"),
+        component: () => import("@/views/jkgl/jkKey.vue"),
         name: "JKKEY",
         meta: {
           title: "接口Key"
@@ -339,7 +347,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "jkfl",
-        component: () => {},
+        component: () => import("@/views/jkgl/jkfl.vue"),
         name: "JKFL",
         meta: {
           title: "接口分类"
@@ -347,7 +355,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "jklb",
-        component: () => {},
+        component: () => import("@/views/jkgl/jklb.vue"),
         name: "JKLB",
         meta: {
           title: "接口列表"
@@ -365,7 +373,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "glylb",
-        component: () => import("@/views/qxgl/index.vue"),
+        component: () => import("@/views/qxgl/glylb.vue"),
         name: "GLYLB",
         meta: {
           title: "管理员列表"
@@ -373,7 +381,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "jsgl",
-        component: () => {},
+        component: () => import("@/views/qxgl/jsgl.vue"),
         name: "JSGL",
         meta: {
           title: "角色管理"
@@ -381,7 +389,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "cdgl",
-        component: () => {},
+        component: () => import("@/views/qxgl/cdgl.vue"),
         name: "CDGL",
         meta: {
           title: "菜单管理"
