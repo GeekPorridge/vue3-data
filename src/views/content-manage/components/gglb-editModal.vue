@@ -1,34 +1,67 @@
 <template>
-  <el-dialog destroy-on-close v-model="open" title="编辑" class="xtgl_photoConfig_edite-model__dialog">
-    <el-card shadow="never">
+  <el-dialog destroy-on-close v-model="open" title="编辑" class="nrgl_gglb_edite-model__dialog">
+    <el-card :shadow="'never'">
       <el-form ref="formRef" :label-position="'top'" :model="formInline">
         <div class="top-card">
           <el-row :gutter="24">
-            <el-col>
-              <el-form-item prop="tpbt" label="图片标题">
-                <el-input v-model="formInline.tpbt" placeholder="请输入文字字段" />
+            <el-col :span="8">
+              <el-form-item prop="isDialog" label="是否弹窗">
+                <el-radio-group v-model="formInline.isDialog" class="ml-4">
+                  <el-radio value="1" size="large">是</el-radio>
+                  <el-radio value="2" size="large">否</el-radio>
+                </el-radio-group>
               </el-form-item>
             </el-col>
-          </el-row>
-
-          <el-row :gutter="24">
-            <el-col>
-              <el-form-item prop="ms" label="描述">
-                <el-input v-model="formInline.ms" placeholder="描述" />
+            <el-col :span="8">
+              <el-form-item prop="isTop" label="是否置顶">
+                <el-radio-group v-model="formInline.isTop" class="ml-4">
+                  <el-radio value="1" size="large">是</el-radio>
+                  <el-radio value="2" size="large">否</el-radio>
+                </el-radio-group>
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item prop="pmqz" label="排名权重数字越大排名越靠前">
+                <el-radio-group v-model="formInline.pmqz" class="ml-4">
+                  <el-input-number controls-position="right" placeholder="请输入">
+                    <template #decrease-icon>
+                      <el-icon>
+                        <Minus />
+                      </el-icon>
+                    </template>
+                    <template #increase-icon>
+                      <el-icon>
+                        <Plus />
+                      </el-icon>
+                    </template>
+                  </el-input-number>
+                </el-radio-group>
               </el-form-item>
             </el-col>
           </el-row>
         </div>
+      </el-form>
 
+      <el-form :model="formTabInline">
         <div class="bottom-card">
-          <el-row :gutter="24">
-            <el-col>
-              <div class="img-title">图片<span>尺寸描述</span></div>
-              <div class="img-box">
-                <el-image :src="formInline.img" fit="contain" />
-              </div>
-            </el-col>
-          </el-row>
+          <el-tabs type="border-card" class="demo-tabs" @tab-change="tabChange">
+            <el-tab-pane v-for="item in tabConfig" :label="item.tab">
+              <el-row :gutter="24">
+                <el-col>
+                  <el-form-item prop="bt" :label="`标题多语言${formTabInline.active}`">
+                    <el-input v-model="formInline.bt" placeholder="请输入文字字段" />
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row :gutter="24">
+                <el-col>
+                  <el-form-item prop="nr" :label="`内容多语言${formTabInline.active}`">
+                    <el-input v-model="formInline.nr" placeholder="请输入文字字段" />
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </el-tab-pane>
+          </el-tabs>
         </div>
       </el-form>
     </el-card>
@@ -52,7 +85,6 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(["updateList"])
-
 const formRef = ref(null) // 表单ref
 
 const open = ref(false)
@@ -60,10 +92,49 @@ const data = ref(props.record || {})
 
 // 表单模拟字段
 const formInline = reactive({
-  tpbt: "",
-  ms: "",
-  img: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
+  isDialog: "", // 是否弹窗
+  isTop: "1", // 是否置顶
+  pmqz: "" // 排名权重
 })
+
+const formTabInline = reactive({
+  active: 1,
+  bt: "", // 标题多语言N
+  nr: "" // 内容多语言N
+})
+
+const tabConfig = [
+  {
+    key: 1,
+    tab: "多语言1"
+  },
+  {
+    key: 2,
+    tab: "多语言2"
+  },
+  {
+    key: 3,
+    tab: "多语言3"
+  },
+  {
+    key: 4,
+    tab: "多语言4"
+  },
+
+  {
+    key: 5,
+    tab: "多语言5"
+  },
+  {
+    key: 6,
+    tab: "多语言6"
+  }
+]
+
+// tab切换
+const tabChange = (key: number) => {
+  formTabInline.active = ++key
+}
 
 // 清空表单
 const clearFrom = () => {
@@ -73,7 +144,7 @@ const clearFrom = () => {
   }
 }
 // 打开弹框
-const openModal = () => {
+const openModal = (type) => {
   open.value = true
 }
 
@@ -129,7 +200,7 @@ defineExpose({ openModal })
 </style> -->
 
 <style lang="scss">
-.xtgl_photoConfig_edite-model__dialog {
+.nrgl_gglb_edite-model__dialog {
   padding: 0 0 16px;
   border-radius: 5px;
   overflow: hidden;
@@ -159,6 +230,10 @@ defineExpose({ openModal })
     }
   }
 
+  .el-card {
+    border: transparent;
+  }
+
   .el-card__body {
     margin-top: 20px;
     padding: 0;
@@ -171,22 +246,6 @@ defineExpose({ openModal })
 
     .bottom-card {
       margin-top: 20px;
-
-      .img-title {
-        font-size: 14px;
-        color: #666;
-        line-height: 28px;
-        margin-bottom: 8px;
-      }
-
-      .img-box {
-        width: 200px;
-        height: 200px;
-        .el-image {
-          width: 100%;
-          height: 100%;
-        }
-      }
     }
 
     .el-form-item__label {

@@ -34,6 +34,8 @@
           :isShowBorder="true"
           :formParams="formInline"
         />
+
+        <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList"></EditModal>
       </div>
     </el-card>
   </div>
@@ -45,9 +47,12 @@ import { ref, reactive, markRaw } from "vue"
 import { ElMessageBox } from "element-plus"
 import { EditPen, DeleteFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
+import EditModal from "./components/gglb-editModal.vue"
 
-const tableRef = ref(null)
-const formRef = ref()
+const tableRef = ref(null) // 列表ref
+const formRef = ref() // 表单ref
+const editModalRef = ref(null) // 编辑ref
+const listRecord = ref() // 列表数据
 
 const formInline = reactive({
   search: "",
@@ -57,7 +62,7 @@ const formInline = reactive({
 
 // 新增
 const handleAdd = () => {
-  console.log("handleAdd")
+  handleModalOpen(editModalRef, {}, "add")
 }
 
 const handleSubmit = (formEl) => {
@@ -74,10 +79,10 @@ const resetForm = (formEl) => {
 }
 
 // 弹框调用
-const handleModalOpen = (ref, record) => {
+const handleModalOpen = (ref, record, type = "") => {
   if (ref.value) {
     listRecord.value = record
-    ref.value.openModal()
+    ref.value.openModal(type)
   }
 }
 
@@ -90,7 +95,7 @@ const handleSwitchChange = (record) => {
 
 // 编辑弹框
 const handleEdit = (record) => {
-  handleModalOpen(editModalRef, record)
+  handleModalOpen(editModalRef, record, "edit")
 }
 
 // 删除操作
