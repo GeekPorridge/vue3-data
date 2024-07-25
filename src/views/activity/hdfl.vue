@@ -10,14 +10,49 @@
       </div>
       <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
     </el-card>
+    <EditModal ref="editModalRef" :record="listRecord" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from "vue"
+import { ElMessage, ElMessageBox } from "element-plus"
+import { EditPen, DeleteFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
+import EditModal from "./components/editModal.vue"
 
 const handleSwitchChange = () => {}
+
+const listRecord = ref() // 列表数据
+const editModalRef = ref(null) // 编辑ref
+
+// 弹框调用
+const handleModalOpen = (ref, record) => {
+  if (ref.value) {
+    listRecord.value = record
+    ref.value.openModal()
+  }
+}
+
+// 编辑弹框
+const handleEdit = (record) => {
+  handleModalOpen(editModalRef, record)
+}
+
+// 删除操作
+const handleDelete = (record) => {
+  ElMessageBox.confirm(`确定对[id=${record.id}]进行删除操作?`, {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning"
+  })
+    .then(() => {
+      console.log("删除成功")
+    })
+    .catch(() => {
+      console.log("删除失败")
+    })
+}
 
 const columns = [
   {
@@ -58,16 +93,16 @@ const columns = [
     fixed: "right",
     actions: [
       {
+        type: "primary",
+        icon: EditPen,
         label: "编辑",
-        handler: () => {}
+        handler: handleEdit
       },
       {
-        label: "加/扣款",
-        handler: () => {}
-      },
-      {
-        label: "绑定域名",
-        handler: () => {}
+        type: "danger",
+        icon: DeleteFilled,
+        label: "删除",
+        handler: handleDelete
       }
     ]
   }

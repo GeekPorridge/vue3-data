@@ -22,14 +22,49 @@
       </el-form>
       <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
     </el-card>
+    <EditModal ref="editModalRef" :record="listRecord" />
+    <ComplexModal ref="complexModalRef" :record="listRecord" />
+    <BindingModal ref="bindingModalRef" :record="listRecord" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from "vue"
+import { SuccessFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
+import EditModal from "./components/editModal.vue"
+import ComplexModal from "./components/complexModal.vue"
+import BindingModal from "./components/bindingModal.vue"
 
 const handleSwitchChange = () => {}
+
+const editModalRef = ref(null) // 编辑ref
+const listRecord = ref() // 列表数据
+const complexModalRef = ref(null) // 加减ref
+const bindingModalRef = ref(null) // 绑定ref
+
+// 弹框调用
+const handleModalOpen = (ref, record) => {
+  if (ref.value) {
+    listRecord.value = record
+    ref.value.openModal()
+  }
+}
+
+// 编辑弹框
+const handleEdit = (record) => {
+  handleModalOpen(editModalRef, record)
+}
+
+// 加/减弹框
+const handleComplex = (record) => {
+  handleModalOpen(complexModalRef, record)
+}
+
+// 绑定弹框
+const handleBinding = (record) => {
+  handleModalOpen(bindingModalRef, record)
+}
 
 const columns = [
   {
@@ -68,18 +103,25 @@ const columns = [
     label: "操作",
     type: "button",
     fixed: "right",
+    width: "400px",
     actions: [
       {
+        type: "primary",
+        icon: SuccessFilled,
         label: "编辑",
-        handler: () => {}
+        handler: handleEdit
       },
       {
+        type: "primary",
+        icon: SuccessFilled,
         label: "加/扣款",
-        handler: () => {}
+        handler: handleComplex
       },
       {
+        type: "primary",
+        icon: SuccessFilled,
         label: "绑定域名",
-        handler: () => {}
+        handler: handleBinding
       }
     ]
   }
