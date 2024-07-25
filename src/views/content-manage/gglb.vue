@@ -34,10 +34,10 @@
           :isShowBorder="true"
           :formParams="formInline"
         />
-
-        <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList"></EditModal>
       </div>
     </el-card>
+
+    <EditModal from="gglb" ref="editModalRef" :record="listRecord" @updateList="updateList"></EditModal>
   </div>
 </template>
 
@@ -140,10 +140,10 @@ const columns = [
   },
 
   {
-    name: "zt",
+    name: "kg",
     label: "开关字段",
     type: "switch",
-    switchModel: "zt",
+    switchModel: "kg",
     switchChange: handleSwitchChange
   },
 

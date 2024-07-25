@@ -12,12 +12,23 @@
                 </el-radio-group>
               </el-form-item>
             </el-col>
-            <el-col :span="8">
+            <el-col v-if="from === 'gglb'" :span="8">
               <el-form-item prop="isTop" label="是否置顶">
                 <el-radio-group v-model="formInline.isTop" class="ml-4">
                   <el-radio value="1" size="large">是</el-radio>
                   <el-radio value="2" size="large">否</el-radio>
                 </el-radio-group>
+              </el-form-item>
+            </el-col>
+
+            <el-col v-if="from === 'zzfw'" :span="8">
+              <el-form-item prop="zzfl">
+                <template #label>
+                  <div class="tab-title">自助分类<span>请在自助分类创建分类类型</span></div>
+                </template>
+                <el-select v-model="formInline.zzfl" placeholder="请选择类型">
+                  <el-option v-for="item in zzflOptions" :key="item.value" :label="item.label" :value="item.value" />
+                </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="8">
@@ -88,11 +99,16 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * 公告列表 和 自助服务 弹窗
+ * @from 来自字段 gglb/zzfw
+ * @record 当前编辑的数据
+ */
 import { ElMessage } from "element-plus"
-import { ref, Ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
+import { ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
 
 const props = defineProps<{
-  type: string
+  from: string
   record: Object // 编辑的列表数据
 }>()
 
@@ -107,11 +123,26 @@ const title = {
   edite: "编辑",
   add: "新增"
 }
+const zzflOptions = [
+  {
+    value: "分类1",
+    label: "分类1"
+  },
+  {
+    value: "分类2",
+    label: "分类2"
+  },
+  {
+    value: "分类3",
+    label: "分类3"
+  }
+]
 
 // 表单模拟字段
 const formInline = reactive({
   isDialog: "", // 是否弹窗
   isTop: "1", // 是否置顶
+  zzfl: "", // 自助分类
   pmqz: "" // 排名权重
 })
 
