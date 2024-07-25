@@ -10,12 +10,12 @@
       </div>
     </el-card>
 
-    <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList"></EditModal>
+    <EditModal ref="editModalRef" from="banner" :record="listRecord" @updateList="updateList"></EditModal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue"
+import { ref } from "vue"
 
 import { ElMessageBox } from "element-plus"
 import { EditPen, DeleteFilled } from "@element-plus/icons-vue"

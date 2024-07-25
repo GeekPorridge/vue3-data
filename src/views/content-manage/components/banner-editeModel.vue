@@ -5,7 +5,7 @@
         <div class="top-card">
           <el-row :gutter="24">
             <el-col :span="12">
-              <el-form-item prop="bannerBT" label="banner标题">
+              <el-form-item prop="bannerBT" :label="`${textConfig[from]}标题`">
                 <el-input v-model="formInline.bannerBT" placeholder="请输入文字标题" />
               </el-form-item>
             </el-col>
@@ -52,7 +52,9 @@
             <el-col :span="12">
               <el-form-item prop="bannerYX">
                 <template #label>
-                  <div class="tab-title">banner语系<span>根据前端语言显示</span><span class="tip">可多选</span></div>
+                  <div class="tab-title">
+                    {{ `${textConfig[from]}语系` }}<span>根据前端语言显示</span><span class="tip">可多选</span>
+                  </div>
                 </template>
 
                 <el-select
@@ -107,11 +109,17 @@
 
         <div class="bottom-card">
           <el-row :gutter="24">
-            <el-col>
+            <el-col v-if="from === 'banner'">
               <div class="img-title">banner图片<span>尺寸说明</span></div>
               <div class="img-box">
                 <el-image :src="formInline.img" fit="contain" />
               </div>
+            </el-col>
+
+            <el-col v-if="from === 'pmd'">
+              <el-form-item prop="pmdnr" label="跑马灯内容">
+                <el-input v-model="formInline.pmdnr" type="textarea" placeholder="内容" />
+              </el-form-item>
             </el-col>
           </el-row>
         </div>
@@ -128,12 +136,18 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * banner 和 跑马灯 弹窗
+ * @from 来自字段 banner/pmd
+ * @record 当前编辑的数据
+ */
+
 import { ElMessage } from "element-plus"
-import { ref, Ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
+import { ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
 
 const props = defineProps<{
-  type: string
   record: Object // 编辑的列表数据
+  from: string
 }>()
 
 const emit = defineEmits(["updateList"])
@@ -147,6 +161,10 @@ const title = {
   edite: "编辑",
   add: "新增"
 }
+const textConfig = {
+  banner: "banner",
+  pmd: "跑马灯"
+}
 
 // 表单模拟字段
 const formInline = reactive({
@@ -157,7 +175,8 @@ const formInline = reactive({
   newWindow: "2", // 是否打开新窗口
   url: "",
   bz: "", // 备注
-  img: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
+  img: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
+  pmdnr: "" // 跑马灯内容
 })
 
 // 可选语系列表
@@ -328,16 +347,22 @@ defineExpose({ openModal })
       line-height: 28px;
     }
 
-    .el-input__wrapper:hover {
-      box-shadow: 0 0 0 1px #409eff inset;
-    }
-
     .el-input__inner {
       height: 38px;
     }
 
     .el-select__wrapper {
       height: 40px;
+    }
+
+    .el-textarea__inner {
+      min-height: 80px !important;
+    }
+
+    .el-textarea__inner:hover,
+    .el-select__wrapper:hover,
+    .el-input__wrapper:hover {
+      box-shadow: 0 0 0 1px #409eff inset;
     }
 
     input::-webkit-input-placeholder {
