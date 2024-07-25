@@ -1,25 +1,28 @@
 <template>
-  <el-dialog destroy-on-close v-model="open" title="编辑" class="xtgl_siteConfig_edite-model__dialog">
+  <el-dialog destroy-on-close v-model="open" :title="title[dialogType]" class="xtgl_siteConfig_edite-model__dialog">
     <el-card shadow="never">
       <el-form ref="formRef" :label-position="'top'" :model="formInline">
         <div class="top-card">
           <el-row :gutter="24">
-            <el-col :span="12">
-              <el-form-item prop="zdbt" label="字段标题">
-                <el-input v-model="formInline.zdbt" placeholder="请输入文字字段" />
+            <el-col :span="8">
+              <el-form-item prop="yhmc" label="银行名称">
+                <el-input v-model="formInline.yhmc" placeholder="请输入文字字段" />
               </el-form-item>
             </el-col>
-            <el-col :span="12">
-              <el-form-item prop="zdbs" label="字段标识">
-                <el-input v-model="formInline.zdbs" placeholder="请输入文字字段" />
+            <el-col :span="8">
+              <el-form-item prop="jcbs" label="简称标识">
+                <el-input v-model="formInline.jcbs" placeholder="请输入文字字段" />
               </el-form-item>
             </el-col>
-          </el-row>
-
-          <el-row :gutter="24">
-            <el-col :span="24">
-              <el-form-item prop="bz" label="备注">
-                <el-input v-model="formInline.bz" placeholder="备注" />
+            <el-col :span="8">
+              <el-form-item prop="sfkq">
+                <template #label>
+                  <div class="tab-title">是否开启<span>默认开启</span></div>
+                </template>
+                <el-radio-group v-model="formInline.sfkq" class="ml-4">
+                  <el-radio value="1" size="large">开启</el-radio>
+                  <el-radio value="2" size="large">关闭</el-radio>
+                </el-radio-group>
               </el-form-item>
             </el-col>
           </el-row>
@@ -78,6 +81,19 @@
             </el-col>
           </el-row>
         </div>
+
+        <div class="bottom-card">
+          <el-col>
+            <el-form-item prop="img">
+              <template #label>
+                <div class="tab-title">图片<span>预览图</span></div>
+              </template>
+              <div class="img-box">
+                <el-image :src="formInline.img" fit="contain" />
+              </div>
+            </el-form-item>
+          </el-col>
+        </div>
       </el-form>
     </el-card>
 
@@ -108,11 +124,17 @@ const formRef = ref(null) // 表单ref
 const open = ref(false)
 const data = ref(props.record || {})
 
+const dialogType = ref("edite") // 弹窗类型  编辑：edite  新增：add
+const title = {
+  edite: "编辑",
+  add: "新增"
+}
+
 // 表单模拟字段
 const formInline = reactive({
-  zdbt: "",
-  zdbs: "",
-  bz: "",
+  yhmc: "", // 银行名称
+  jcbs: "", // 简称标识
+  sfkq: "1", // 是否开启
   zd1: "",
   zd2: "",
   zd3: "",
@@ -121,7 +143,8 @@ const formInline = reactive({
   zd6: "",
   zd7: "",
   zd8: "",
-  zd9: ""
+  zd9: "",
+  img: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
 })
 
 // 清空表单
@@ -132,7 +155,8 @@ const clearFrom = () => {
   }
 }
 // 打开弹框
-const openModal = () => {
+const openModal = (type = "edite") => {
+  dialogType.value = type
   open.value = true
 }
 
@@ -156,7 +180,7 @@ const saveModel = async () => {
   const { success, data } = await saveData()
   if (success) {
     ElMessage({
-      message: "编辑成功",
+      message: `${title[dialogType.value]}成功`,
       type: "success"
     })
     emit("updateList", data)
@@ -192,6 +216,10 @@ defineExpose({ openModal })
   padding: 0 0 16px;
   border-radius: 5px;
   overflow: hidden;
+  .el-card {
+    border-color: transparent;
+  }
+
   .el-dialog__header {
     height: 50px;
     background-color: rgba(245, 245, 245, 1);
@@ -226,10 +254,29 @@ defineExpose({ openModal })
       padding: 20px;
       border: 1px solid rgba(237, 237, 237, 1);
       border-radius: 10px;
+
+      .tab-title {
+        font-size: 14px;
+        color: #666;
+        line-height: 28px;
+        span {
+          font-size: 12px;
+          color: #999;
+        }
+      }
     }
 
     .bottom-card {
       margin-top: 20px;
+
+      .img-box {
+        width: 100px;
+        height: 100px;
+        .el-image {
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
 
     .el-form-item__label {
