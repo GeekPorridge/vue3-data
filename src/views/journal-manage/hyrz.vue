@@ -9,8 +9,7 @@
           </el-form-item>
           <el-form-item prop="type">
             <el-select style="width: 200px" v-model="formInline.type" placeholder="选择类型字段">
-              <el-option label="Zone one" value="shanghai" />
-              <el-option label="Zone two" value="beijing" />
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
           </el-form-item>
           <el-form-item prop="date">
@@ -38,6 +37,21 @@
 import { ref, reactive } from "vue"
 
 import ListTable from "@/components/ListTable/index.vue"
+
+const options = [
+  {
+    value: "类型1",
+    label: "类型1"
+  },
+  {
+    value: "类型2",
+    label: "类型2"
+  },
+  {
+    value: "类型3",
+    label: "类型3"
+  }
+]
 
 const columns = [
   {
