@@ -60,6 +60,13 @@ const formInline = reactive({
   date: ""
 })
 
+// 更新表格数据
+const updateList = () => {
+  if (tableRef.value) {
+    tableRef.value.getTableData()
+  }
+}
+
 // 新增
 const handleAdd = () => {
   handleModalOpen(editModalRef, {}, "add")
@@ -67,9 +74,7 @@ const handleAdd = () => {
 
 const handleSubmit = (formEl) => {
   if (!formEl) return
-  if (tableRef.value) {
-    tableRef.value.getTableData()
-  }
+  updateList()
   formEl.resetFields()
 }
 
@@ -87,15 +92,13 @@ const handleModalOpen = (ref, record, type = "") => {
 }
 
 const handleSwitchChange = (record) => {
-  if (tableRef.value) {
-    tableRef.value.getTableData()
-  }
+  updateList()
   console.log("handleSwitchChange-----", record)
 }
 
 // 编辑弹框
 const handleEdit = (record) => {
-  handleModalOpen(editModalRef, record, "edit")
+  handleModalOpen(editModalRef, record, "edite")
 }
 
 // 删除操作
@@ -107,6 +110,7 @@ const handleDelete = (record) => {
   })
     .then(() => {
       console.log("删除成功")
+      updateList()
     })
     .catch(() => {
       console.log("删除失败")

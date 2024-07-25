@@ -1,5 +1,5 @@
 <template>
-  <el-dialog destroy-on-close v-model="open" title="编辑" class="nrgl_gglb_edite-model__dialog">
+  <el-dialog destroy-on-close v-model="open" :title="title[dialogType]" class="nrgl_gglb_edite-model__dialog">
     <el-card :shadow="'never'">
       <el-form ref="formRef" :label-position="'top'" :model="formInline">
         <div class="top-card">
@@ -21,42 +21,54 @@
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item prop="pmqz" label="排名权重数字越大排名越靠前">
-                <el-radio-group v-model="formInline.pmqz" class="ml-4">
-                  <el-input-number controls-position="right" placeholder="请输入">
-                    <template #decrease-icon>
-                      <el-icon>
-                        <Minus />
-                      </el-icon>
-                    </template>
-                    <template #increase-icon>
-                      <el-icon>
-                        <Plus />
-                      </el-icon>
-                    </template>
-                  </el-input-number>
-                </el-radio-group>
+              <el-form-item prop="pmqz">
+                <template #label>
+                  <div class="tab-title">排名权重<span>数字越大排名越靠前</span></div>
+                </template>
+                <el-input-number
+                  v-model="formInline.pmqz"
+                  :step="10"
+                  controls-position="right"
+                  placeholder="请输入数字字段"
+                >
+                  <template #decrease-icon>
+                    <el-icon>
+                      <Minus />
+                    </el-icon>
+                  </template>
+                  <template #increase-icon>
+                    <el-icon>
+                      <Plus />
+                    </el-icon>
+                  </template>
+                </el-input-number>
               </el-form-item>
             </el-col>
           </el-row>
         </div>
       </el-form>
 
-      <el-form :model="formTabInline">
+      <el-form ref="formTabRef" :model="formTabInline">
         <div class="bottom-card">
           <el-tabs type="border-card" class="demo-tabs" @tab-change="tabChange">
             <el-tab-pane v-for="item in tabConfig" :label="item.tab">
               <el-row :gutter="24">
                 <el-col>
-                  <el-form-item prop="bt" :label="`标题多语言${formTabInline.active}`">
-                    <el-input v-model="formInline.bt" placeholder="请输入文字字段" />
+                  <el-form-item prop="bt">
+                    <template #label>
+                      <div class="tab-title">{{ `标题多语言${formTabInline.active}` }}</div>
+                    </template>
+                    <el-input v-model="formTabInline.bt" placeholder="请输入文字标题" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row :gutter="24">
                 <el-col>
-                  <el-form-item prop="nr" :label="`内容多语言${formTabInline.active}`">
-                    <el-input v-model="formInline.nr" placeholder="请输入文字字段" />
+                  <el-form-item prop="nr">
+                    <template #label>
+                      <div class="tab-title">{{ `内容多语言${formTabInline.active}` }}</div>
+                    </template>
+                    <el-input v-model="formTabInline.nr" placeholder="富文本" />
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -86,9 +98,15 @@ const props = defineProps<{
 
 const emit = defineEmits(["updateList"])
 const formRef = ref(null) // 表单ref
+const formTabRef = ref(null) // 底部表单ref
 
 const open = ref(false)
 const data = ref(props.record || {})
+const dialogType = ref("edite") // 弹窗类型  编辑：edite  新增：add
+const title = {
+  edite: "编辑",
+  add: "新增"
+}
 
 // 表单模拟字段
 const formInline = reactive({
@@ -133,6 +151,10 @@ const tabConfig = [
 
 // tab切换
 const tabChange = (key: number) => {
+  if (formTabRef.value) {
+    formTabRef.value.resetFields()
+    formTabRef.value.clearValidate()
+  }
   formTabInline.active = ++key
 }
 
@@ -142,14 +164,20 @@ const clearFrom = () => {
     formRef.value.resetFields()
     formRef.value.clearValidate()
   }
+
+  if (formTabRef.value) {
+    formTabRef.value.resetFields()
+    formTabRef.value.clearValidate()
+  }
 }
 // 打开弹框
-const openModal = (type) => {
+const openModal = (type = "edite") => {
+  dialogType.value = type
   open.value = true
 }
 
 const saveData = () => {
-  console.log(formInline, "保存数据：请求api")
+  console.log(formInline, formTabInline, "保存数据：请求api")
 
   return {
     success: true,
@@ -244,8 +272,28 @@ defineExpose({ openModal })
       border-radius: 10px;
     }
 
+    .top-card {
+      .tab-title {
+        span {
+          font-size: 12px;
+          color: #999;
+        }
+      }
+    }
+
     .bottom-card {
       margin-top: 20px;
+      .el-form-item {
+        flex-direction: column;
+        .el-form-item__label {
+          justify-content: flex-start;
+        }
+      }
+      .tab-title {
+        font-size: 14px;
+        color: #666;
+        line-height: 28px;
+      }
     }
 
     .el-form-item__label {
@@ -281,6 +329,21 @@ defineExpose({ openModal })
       /* IE浏览器 */
       font-size: 14px;
       color: #ccc;
+    }
+  }
+
+  .el-tabs {
+    border: transparent;
+    .el-tabs__header {
+      background: none;
+      border: transparent;
+      margin-bottom: 20px;
+      .el-tabs__item {
+        border: none;
+      }
+    }
+    .el-tabs__content {
+      padding: 0;
     }
   }
 }
