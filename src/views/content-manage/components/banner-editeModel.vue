@@ -232,7 +232,7 @@ const saveModel = async () => {
   const { success, data } = await saveData()
   if (success) {
     ElMessage({
-      message: "编辑成功",
+      message: `${title[dialogType.value]}成功`,
       type: "success"
     })
     emit("updateList", data)
