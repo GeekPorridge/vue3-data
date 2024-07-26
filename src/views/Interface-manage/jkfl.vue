@@ -4,22 +4,46 @@
     <div class="container">
       <ListTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="true" />
     </div>
+
+    <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList"></EditModal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue"
+import { ref } from "vue"
+
+import { EditPen } from "@element-plus/icons-vue"
 
 import ListTable from "@/components/ListTable/index.vue"
+import EditModal from "./components/jkfl-editModal.vue"
 
-const tableRef = ref(null)
+const tableRef = ref(null) // 列表ref
+const editModalRef = ref(null) // 编辑ref
+const listRecord = ref() // 列表数据
 
-const handleSwitchChange = () => {
-  console.log("handleSwitchChange-----")
+// 弹框调用
+const handleModalOpen = (ref, record) => {
+  if (ref.value) {
+    listRecord.value = record
+    ref.value.openModal()
+  }
 }
 
-const handlerEdite = () => {
-  console.log("handlerEdite-----")
+// 编辑弹框
+const handleEdit = (record) => {
+  handleModalOpen(editModalRef, record)
+}
+
+const updateList = (record) => {
+  if (tableRef.value) {
+    tableRef.value.getTableData()
+  }
+  console.log("更新列表数据record---", record)
+}
+
+const handleSwitchChange = (record, value) => {
+  updateList()
+  console.log("开关字段", record, value)
 }
 
 const columns = [
@@ -45,10 +69,10 @@ const columns = [
   },
 
   {
-    name: "zt",
+    name: "kg",
     label: "开关字段",
     type: "switch",
-    switchModel: "email",
+    switchModel: "kg",
     switchChange: handleSwitchChange
   },
 
@@ -72,10 +96,13 @@ const columns = [
     name: "actions",
     label: "操作",
     type: "button",
+    width: "100px",
     actions: [
       {
+        type: "primary",
+        icon: EditPen,
         label: "编辑",
-        handler: handlerEdite
+        handler: handleEdit
       }
     ]
   }

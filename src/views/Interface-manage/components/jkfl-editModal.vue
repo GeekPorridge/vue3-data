@@ -1,6 +1,6 @@
 <template>
-  <el-dialog destroy-on-close v-model="open" :title="title[dialogType]" class="jkgl_jkKey_edite-model__dialog">
-    <el-card :shadow="'never'">
+  <el-dialog destroy-on-close v-model="open" title="编辑" class="jkgl_jkfl_edite-model__dialog">
+    <el-card shadow="never">
       <el-form ref="formRef" :label-position="'top'" :model="formInline">
         <div class="top-card">
           <el-row :gutter="24">
@@ -61,10 +61,83 @@
               </el-form-item>
             </el-col>
           </el-row>
+        </div>
+
+        <div class="bottom-card">
           <el-row :gutter="24">
-            <el-col>
-              <el-form-item prop="bz" label="备注">
-                <el-input v-model="formInline.bz" placeholder="备注" />
+            <el-col :span="8">
+              <el-form-item prop="zd1" label="多语言翻译字段1">
+                <el-input v-model="formInline.zd1" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item prop="zd2" label="多语言翻译字段2">
+                <el-input v-model="formInline.zd2" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item prop="zd3" label="多语言翻译字段3">
+                <el-input v-model="formInline.zd3" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="24">
+            <el-col :span="8">
+              <el-form-item prop="zd4" label="多语言翻译字段4">
+                <el-input v-model="formInline.zd4" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item prop="zd5" label="多语言翻译字段5">
+                <el-input v-model="formInline.zd5" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item prop="zd6" label="多语言翻译字段6">
+                <el-input v-model="formInline.zd6" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="24">
+            <el-col :span="8">
+              <el-form-item prop="zd7" label="多语言翻译字段7">
+                <el-input v-model="formInline.zd7" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item prop="zd8" label="多语言翻译字段8">
+                <el-input v-model="formInline.zd8" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item prop="zd9" label="多语言翻译字段9">
+                <el-input v-model="formInline.zd9" placeholder="请输入文字字段" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </div>
+
+        <div class="bottom-card img-card">
+          <el-row :gutter="24">
+            <el-col :span="12">
+              <el-form-item prop="img">
+                <template #label>
+                  <div class="tab-title">图标<span>未选中状态</span></div>
+                </template>
+                <div class="img-box">
+                  <el-image :src="formInline.img" fit="contain" />
+                </div>
+              </el-form-item>
+            </el-col>
+
+            <el-col :span="12">
+              <el-form-item prop="img">
+                <template #label>
+                  <div class="tab-title">图标<span>选中状态</span></div>
+                </template>
+                <div class="img-box">
+                  <el-image :src="formInline.img" fit="contain" />
+                </div>
               </el-form-item>
             </el-col>
           </el-row>
@@ -82,26 +155,22 @@
 </template>
 
 <script setup lang="ts">
-/**
- * @record 当前编辑的数据
- */
 import { ElMessage } from "element-plus"
-import { ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
+import { ref, Ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
+
+type RefDom<T extends HTMLElement = HTMLDivElement> = Ref<T>
 
 const props = defineProps<{
+  type: string
   record: Object // 编辑的列表数据
 }>()
 
 const emit = defineEmits(["updateList"])
+
 const formRef = ref(null) // 表单ref
 
 const open = ref(false)
 const data = ref(props.record || {})
-const dialogType = ref("edite") // 弹窗类型  编辑：edite  新增：add
-const title = {
-  edite: "编辑",
-  add: "新增"
-}
 
 // 表单模拟字段
 const formInline = reactive({
@@ -110,7 +179,19 @@ const formInline = reactive({
   jkbs: "", // 接口标识
   sfkq: "1", // 是否开启
   pmqz: "", // 排名权重
-  bz: "" // 备注
+  zdbt: "",
+  zdbs: "",
+  bz: "",
+  zd1: "",
+  zd2: "",
+  zd3: "",
+  zd4: "",
+  zd5: "",
+  zd6: "",
+  zd7: "",
+  zd8: "",
+  zd9: "",
+  img: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
 })
 
 // 清空表单
@@ -121,8 +202,7 @@ const clearFrom = () => {
   }
 }
 // 打开弹框
-const openModal = (type = "edite") => {
-  dialogType.value = type
+const openModal = () => {
   open.value = true
 }
 
@@ -146,7 +226,7 @@ const saveModel = async () => {
   const { success, data } = await saveData()
   if (success) {
     ElMessage({
-      message: `${title[dialogType.value]}成功`,
+      message: "编辑成功",
       type: "success"
     })
     emit("updateList", data)
@@ -176,12 +256,21 @@ defineExpose({ openModal })
   padding: 0;
 }
 </style> -->
-ß
+
 <style lang="scss">
-.jkgl_jkKey_edite-model__dialog {
+.jkgl_jkfl_edite-model__dialog {
   padding: 0 0 16px;
   border-radius: 5px;
   overflow: hidden;
+
+  .el-card {
+    border: transparent;
+
+    .el-col {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
   .el-dialog__header {
     height: 50px;
     background-color: rgba(245, 245, 245, 1);
@@ -208,10 +297,6 @@ defineExpose({ openModal })
     }
   }
 
-  .el-card {
-    border: transparent;
-  }
-
   .el-card__body {
     margin-top: 20px;
     padding: 0;
@@ -234,6 +319,17 @@ defineExpose({ openModal })
 
     .bottom-card {
       margin-top: 20px;
+    }
+
+    .img-card {
+      .img-box {
+        width: 100px;
+        height: 100px;
+        .el-image {
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
 
     .el-form-item__label {
@@ -269,21 +365,6 @@ defineExpose({ openModal })
       /* IE浏览器 */
       font-size: 14px;
       color: #ccc;
-    }
-  }
-
-  .el-tabs {
-    border: transparent;
-    .el-tabs__header {
-      background: none;
-      border: transparent;
-      margin-bottom: 20px;
-      .el-tabs__item {
-        border: none;
-      }
-    }
-    .el-tabs__content {
-      padding: 0;
     }
   }
 }
