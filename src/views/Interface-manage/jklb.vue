@@ -9,8 +9,7 @@
           </el-form-item>
           <el-form-item prop="type">
             <el-select style="width: 200px" v-model="formInline.type" placeholder="选择类型字段">
-              <el-option label="Zone one" value="shanghai" />
-              <el-option label="Zone two" value="beijing" />
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
           </el-form-item>
           <el-form-item prop="date">
@@ -23,22 +22,29 @@
         </el-form>
 
         <div class="btn-container">
-          <el-button type="primary" @click="handleClick"><span class="icon">+</span>新增</el-button>
+          <el-button type="primary" @click="handleAdd"><span class="icon">+</span>新增</el-button>
         </div>
 
         <ListTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="true" />
       </div>
     </el-card>
+
+    <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from "vue"
 
+import { ElMessageBox } from "element-plus"
+import { EditPen, DeleteFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
+import EditModal from "./components/jklb-editModal.vue"
 
-const tableRef = ref(null)
-const formRef = ref()
+const tableRef = ref(null) // 列表ref
+const formRef = ref() // 表单ref
+const editModalRef = ref(null) // 编辑ref
+const listRecord = ref() // 编辑的列表数据
 
 const formInline = reactive({
   search: "",
@@ -46,11 +52,36 @@ const formInline = reactive({
   date: ""
 })
 
-const handleSubmit = (formEl) => {
-  if (!formEl) return
+const options = [
+  {
+    value: "类型1",
+    label: "类型1"
+  },
+  {
+    value: "类型2",
+    label: "类型2"
+  },
+  {
+    value: "类型3",
+    label: "类型3"
+  }
+]
+
+// 更新表格数据
+const updateList = () => {
   if (tableRef.value) {
     tableRef.value.getTableData()
   }
+}
+
+// 新增
+const handleAdd = () => {
+  handleModalOpen(editModalRef, {}, "add")
+}
+
+const handleSubmit = (formEl) => {
+  if (!formEl) return
+  updateList()
   formEl.resetFields()
 }
 
@@ -58,20 +89,39 @@ const resetForm = (formEl) => {
   if (!formEl) return
   formEl.resetFields()
 }
-const handleClick = (record) => {
-  console.log(record)
+
+// 弹框调用
+const handleModalOpen = (ref, record: Object, type = "") => {
+  if (ref.value) {
+    listRecord.value = record
+    ref.value.openModal(type)
+  }
 }
 
-const handleSwitchChange = () => {
-  console.log("handleSwitchChange-----")
+const handleSwitchChange = (record: Object) => {
+  updateList()
+  console.log("handleSwitchChange-----", record)
 }
 
-const handlerEdite = () => {
-  console.log("handlerEdite-----")
+// 编辑弹框
+const handleEdit = (record: Object) => {
+  handleModalOpen(editModalRef, record, "edite")
 }
 
-const handlerDel = () => {
-  console.log("handlerDel----")
+// 删除操作
+const handleDelete = (record: Object) => {
+  ElMessageBox.confirm(`确定对[id=${record.id}]进行删除操作?`, "提示", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning"
+  })
+    .then(() => {
+      console.log("删除成功")
+      updateList()
+    })
+    .catch(() => {
+      console.log("删除失败")
+    })
 }
 
 const columns = [
@@ -97,10 +147,10 @@ const columns = [
   },
 
   {
-    name: "zt",
-    label: "状态",
+    name: "kg",
+    label: "开关字段",
     type: "switch",
-    switchModel: "email",
+    switchModel: "kg",
     switchChange: handleSwitchChange
   },
 
@@ -124,14 +174,20 @@ const columns = [
     name: "actions",
     label: "操作",
     type: "button",
+    width: "160px",
     actions: [
       {
+        type: "primary",
+        icon: EditPen,
         label: "编辑",
-        handler: handlerEdite
+        handler: handleEdit
       },
+
       {
+        type: "danger",
+        icon: DeleteFilled,
         label: "删除",
-        handler: handlerDel
+        handler: handleDelete
       }
     ]
   }
