@@ -1,6 +1,6 @@
 <template>
   <el-dialog v-model="open" :title="data.id + '绑定域名'">
-    <el-card> </el-card>
+    <el-card />
     <template #footer>
       <div class="dialog-footer">
         <el-button @click="closeModal">取消</el-button>
@@ -11,23 +11,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, defineProps, defineExpose } from "vue"
+import { ref, watch, defineProps, defineExpose } from "vue"
 
 const props = defineProps<{
-  type: string
-  record: Object
+  record: any
 }>()
 
 const open = ref(false)
 const data = ref(props.record || {})
-const dynamicValidateForm = reactive({
-  domains: [
-    {
-      key: 1,
-      value: ""
-    }
-  ]
-})
 
 // 打开弹框
 const openModal = () => {

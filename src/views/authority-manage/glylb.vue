@@ -10,7 +10,7 @@
       </div>
     </el-card>
 
-    <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList"></EditModal>
+    <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList" />
   </div>
 </template>
 

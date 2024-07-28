@@ -121,8 +121,7 @@
 import { ref, watch, defineProps, defineExpose } from "vue"
 
 const props = defineProps<{
-  type: string
-  record: Object
+  record: any
 }>()
 
 const open = ref(false)

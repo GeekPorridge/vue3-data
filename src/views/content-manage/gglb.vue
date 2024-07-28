@@ -37,7 +37,7 @@
       </div>
     </el-card>
 
-    <EditModal from="gglb" ref="editModalRef" :record="listRecord" @updateList="updateList"></EditModal>
+    <EditModal from="gglb" ref="editModalRef" :record="listRecord" @updateList="updateList" />
   </div>
 </template>
 

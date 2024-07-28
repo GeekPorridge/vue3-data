@@ -35,16 +35,22 @@ import ListTable from "@/components/ListTable/index.vue"
 import EditModal from "./components/editModal.vue"
 import ComplexModal from "./components/complexModal.vue"
 import BindingModal from "./components/bindingModal.vue"
+import { FormInstance } from "element-plus"
 
-const handleSwitchChange = () => {}
-
+const tableRef = ref<any>(null)
+const formRef = ref()
+const formInline = reactive({
+  search: "",
+  type: "",
+  date: ""
+})
 const editModalRef = ref(null) // 编辑ref
 const listRecord = ref() // 列表数据
 const complexModalRef = ref(null) // 加减ref
 const bindingModalRef = ref(null) // 绑定ref
 
 // 弹框调用
-const handleModalOpen = (ref, record) => {
+const handleModalOpen = (ref: any, record: any) => {
   if (ref.value) {
     listRecord.value = record
     ref.value.openModal()
@@ -52,19 +58,21 @@ const handleModalOpen = (ref, record) => {
 }
 
 // 编辑弹框
-const handleEdit = (record) => {
+const handleEdit = (record: any) => {
   handleModalOpen(editModalRef, record)
 }
 
 // 加/减弹框
-const handleComplex = (record) => {
+const handleComplex = (record: any) => {
   handleModalOpen(complexModalRef, record)
 }
 
 // 绑定弹框
-const handleBinding = (record) => {
+const handleBinding = (record: any) => {
   handleModalOpen(bindingModalRef, record)
 }
+
+const handleSwitchChange = () => {}
 
 const columns = [
   {
@@ -127,15 +135,7 @@ const columns = [
   }
 ]
 
-const tableRef = ref(null)
-const formRef = ref()
-const formInline = reactive({
-  search: "",
-  type: "",
-  date: ""
-})
-
-const handleSubmit = (formEl) => {
+const handleSubmit = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   if (tableRef.value) {
     tableRef.value.getTableData()
@@ -143,7 +143,7 @@ const handleSubmit = (formEl) => {
   formEl.resetFields()
 }
 
-const resetForm = (formEl) => {
+const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
 }

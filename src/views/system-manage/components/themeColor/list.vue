@@ -13,7 +13,7 @@ const props = defineProps<{
       <div class="title">{{ title }}</div>
       <div class="list-content">
         <div class="item" v-for="(item, index) in list" :key="index">
-          <colorCon :initColor="item.color"></colorCon>
+          <colorCon :initColor="item.color" />
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <!-- 注册配置 -->
 <template>
   <div class="container">
-    <ListTable ref="tableRef" :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="true"></ListTable>
+    <ListTable ref="tableRef" :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="true" />
   </div>
 </template>
 

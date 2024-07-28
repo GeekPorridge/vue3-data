@@ -31,13 +31,21 @@ import { ref, reactive } from "vue"
 import { SuccessFilled, DeleteFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
 import ApplyModal from "./components/applyModal.vue"
+import { FormInstance } from "element-plus"
 
+const tableRef = ref<any>(null)
+const formRef = ref()
+const formInline = reactive({
+  search: "",
+  type: "",
+  date: ""
+})
 const listRecord = ref() // 列表数据
 const applylModalRef = ref(null) // 申请ref
 const applyModalType = ref("") // 类型
 
 // 弹框调用
-const handleModalOpen = (ref, record) => {
+const handleModalOpen = (ref: any, record: any) => {
   if (ref.value) {
     listRecord.value = record
     ref.value.openModal()
@@ -45,13 +53,13 @@ const handleModalOpen = (ref, record) => {
 }
 
 // 同意申请
-const handleOkApply = (record) => {
+const handleOkApply = (record: any) => {
   handleModalOpen(applylModalRef, record)
   applyModalType.value = "agree"
 }
 
 // 拒绝申请
-const handleNoApply = (record) => {
+const handleNoApply = (record: any) => {
   handleModalOpen(applylModalRef, record)
   applyModalType.value = "reject"
 }
@@ -120,15 +128,7 @@ const columns = [
   }
 ]
 
-const tableRef = ref(null)
-const formRef = ref()
-const formInline = reactive({
-  search: "",
-  type: "",
-  date: ""
-})
-
-const handleSubmit = () => {
+const handleSubmit = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   if (tableRef.value) {
     tableRef.value.getTableData()
@@ -136,7 +136,7 @@ const handleSubmit = () => {
   formEl.resetFields()
 }
 
-const resetForm = (formEl) => {
+const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
 }

@@ -52,7 +52,7 @@
               </template>
             </el-input-number>
           </div>
-          <div style="margin-top: 25px;">
+          <div style="margin-top: 25px">
             <el-button type="primary">提交按钮</el-button>
           </div>
         </div>
@@ -75,8 +75,7 @@ import { ref, watch, defineProps, defineExpose } from "vue"
 import ListTable from "@/components/ListTable/index.vue"
 
 const props = defineProps<{
-  type: string
-  record: Object
+  record: any
 }>()
 
 const open = ref(false)

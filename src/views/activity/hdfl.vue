@@ -8,7 +8,7 @@
           新增
         </el-button>
       </div>
-      <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
+      <ListTable ref="tableRef" :url="'table'" :columns="columns" />
     </el-card>
     <EditModal ref="editModalRef" :record="listRecord" />
   </div>
@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from "vue"
-import { ElMessage, ElMessageBox } from "element-plus"
+import { ElMessageBox } from "element-plus"
 import { EditPen, DeleteFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
 import EditModal from "./components/editModal.vue"
@@ -25,9 +25,10 @@ const handleSwitchChange = () => {}
 
 const listRecord = ref() // 列表数据
 const editModalRef = ref(null) // 编辑ref
+const tableRef = ref(null)
 
 // 弹框调用
-const handleModalOpen = (ref, record) => {
+const handleModalOpen = (ref: any, record: any) => {
   if (ref.value) {
     listRecord.value = record
     ref.value.openModal()
@@ -35,12 +36,12 @@ const handleModalOpen = (ref, record) => {
 }
 
 // 编辑弹框
-const handleEdit = (record) => {
+const handleEdit = (record: any) => {
   handleModalOpen(editModalRef, record)
 }
 
 // 删除操作
-const handleDelete = (record) => {
+const handleDelete = (record: any) => {
   ElMessageBox.confirm(`确定对[id=${record.id}]进行删除操作?`, {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
@@ -107,27 +108,6 @@ const columns = [
     ]
   }
 ]
-
-const tableRef = ref(null)
-const formRef = ref()
-const formInline = reactive({
-  search: "",
-  type: "",
-  date: ""
-})
-
-const handleSubmit = (formEl) => {
-  if (!formEl) return
-  if (tableRef.value) {
-    tableRef.value.getTableData()
-  }
-  formEl.resetFields()
-}
-
-const resetForm = (formEl) => {
-  if (!formEl) return
-  formEl.resetFields()
-}
 </script>
 
 <style lang="scss" scoped></style>

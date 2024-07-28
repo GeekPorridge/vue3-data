@@ -5,7 +5,7 @@
       <ListTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="true" />
     </div>
 
-    <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList"></EditModal>
+    <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList" />
   </div>
 </template>
 

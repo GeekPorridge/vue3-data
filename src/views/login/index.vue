@@ -3,7 +3,7 @@ import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import { useUserStore } from "@/store/modules/user"
 import { type FormInstance, type FormRules } from "element-plus"
-import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
+import { User, Lock } from "@element-plus/icons-vue"
 import { getLoginCodeApi } from "@/api/login"
 import { type LoginRequestData } from "@/api/login/types/login"
 // import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
@@ -11,7 +11,7 @@ import { type LoginRequestData } from "@/api/login/types/login"
 import { useFocus } from "./hooks/useFocus"
 
 const router = useRouter()
-const { isFocus, handleBlur, handleFocus } = useFocus()
+const { handleBlur, handleFocus } = useFocus()
 
 /** 登录表单元素的引用 */
 const loginFormRef = ref<FormInstance | null>(null)

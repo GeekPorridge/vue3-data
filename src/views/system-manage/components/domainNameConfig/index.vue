@@ -1,8 +1,8 @@
 <!-- 域名配置 -->
 <template>
   <div>
-    <ListTable ref="tableRef" :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="true"></ListTable>
-    <EditeDialog ref="editModalRef" :record="listRecord" @updateList="updateList"></EditeDialog>
+    <ListTable ref="tableRef" :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="true" />
+    <EditeDialog ref="editModalRef" :record="listRecord" @updateList="updateList" />
   </div>
 </template>
 

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref } from "vue"
 
 import list from "./list.vue"
 
@@ -65,13 +64,13 @@ const appColor = [
 <template>
   <div>
     <!-- h5 -->
-    <list title="主题颜色H5" :list="h5Color"></list>
+    <list title="主题颜色H5" :list="h5Color" />
 
     <!-- PC -->
-    <list title="主题颜色PC" :list="pcColor"></list>
+    <list title="主题颜色PC" :list="pcColor" />
 
     <!-- App -->
-    <list title="主题颜色APP" :list="appColor"></list>
+    <list title="主题颜色APP" :list="appColor" />
   </div>
 </template>
 

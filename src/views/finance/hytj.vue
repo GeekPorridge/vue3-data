@@ -27,6 +27,7 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue"
 import ListTable from "@/components/ListTable/index.vue"
+import { FormInstance } from "element-plus"
 
 const columns = [
   {
@@ -75,7 +76,7 @@ const columns = [
   }
 ]
 
-const tableRef = ref(null)
+const tableRef = ref<any>(null)
 const formRef = ref()
 const formInline = reactive({
   search: "",
@@ -83,7 +84,7 @@ const formInline = reactive({
   date: ""
 })
 
-const handleSubmit = () => {
+const handleSubmit = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   if (tableRef.value) {
     tableRef.value.getTableData()
@@ -91,7 +92,7 @@ const handleSubmit = () => {
   formEl.resetFields()
 }
 
-const resetForm = (formEl) => {
+const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
 }

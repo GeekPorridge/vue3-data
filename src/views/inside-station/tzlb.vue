@@ -33,7 +33,45 @@
 
 <script setup lang="ts">
 import { ref, reactive } from "vue"
+import { ElMessageBox, FormInstance } from "element-plus"
+import { DeleteFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
+
+const tableRef = ref<any>(null)
+const formRef = ref()
+const formInline = reactive({
+  search: "",
+  type: "",
+  date: ""
+})
+
+const handleSubmit = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  if (tableRef.value) {
+    tableRef.value.getTableData()
+  }
+  formEl.resetFields()
+}
+
+const resetForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.resetFields()
+}
+
+// 删除操作
+const handleDelete = (record: any) => {
+  ElMessageBox.confirm(`确定对[id=${record.id}]进行删除操作?`, {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning"
+  })
+    .then(() => {
+      console.log("删除成功")
+    })
+    .catch(() => {
+      console.log("删除失败")
+    })
+}
 
 const handleSwitchChange = () => {}
 
@@ -92,33 +130,14 @@ const columns = [
         handler: () => {}
       },
       {
+        type: "danger",
+        icon: DeleteFilled,
         label: "删除",
-        handler: () => {}
+        handler: handleDelete
       }
     ]
   }
 ]
-
-const tableRef = ref(null)
-const formRef = ref()
-const formInline = reactive({
-  search: "",
-  type: "",
-  date: ""
-})
-
-const handleSubmit = (formEl) => {
-  if (!formEl) return
-  if (tableRef.value) {
-    tableRef.value.getTableData()
-  }
-  formEl.resetFields()
-}
-
-const resetForm = (formEl) => {
-  if (!formEl) return
-  formEl.resetFields()
-}
 </script>
 
 <style lang="scss" scoped></style>

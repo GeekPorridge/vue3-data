@@ -21,13 +21,7 @@
           </el-form-item>
         </el-form>
 
-        <ListTable
-          ref="tableRef"
-          :url="'table'"
-          :isPagination="true"
-          :columns="columns"
-          :isShowBorder="true"
-        ></ListTable>
+        <ListTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="true" />
       </div>
     </el-card>
   </div>

@@ -68,20 +68,13 @@
 
 <script setup lang="ts">
 import { ref, reactive, watch } from "vue"
-import ListTable from "@/components/ListTable/index.vue"
 import { request } from "@/utils/service"
-
-const columns = [
-  {
-    name: "id",
-    label: "id"
-  }
-]
+import { FormInstance } from "element-plus"
 
 const list = ref()
 const page = ref(1)
 const pageSize = ref(10)
-const tableRef = ref(null)
+const tableRef = ref<any>(null)
 const total = ref(0)
 const isLoding = ref(false)
 const formRef = ref()
@@ -91,7 +84,7 @@ const formInline = reactive({
   date: ""
 })
 
-const getListApi = (params) => {
+const getListApi = (params: any) => {
   return request({
     url: "table",
     method: "get",
@@ -99,7 +92,7 @@ const getListApi = (params) => {
   })
 }
 
-const handleSubmit = (formEl) => {
+const handleSubmit = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   if (tableRef.value) {
     tableRef.value.getTableData()
@@ -107,7 +100,7 @@ const handleSubmit = (formEl) => {
   formEl.resetFields()
 }
 
-const resetForm = (formEl) => {
+const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
 }
@@ -125,7 +118,7 @@ const getTableData = async () => {
 
     isLoding.value = true
 
-    const res = await getListApi({
+    const res: any = await getListApi({
       currentPage: page.value,
       size: pageSize.value,
       username: "",
@@ -140,17 +133,6 @@ const getTableData = async () => {
     isLoding.value = false
   }
 }
-
-const tableData = [
-  {
-    date: "2016-05-03",
-    name: "Tom",
-    state: "California",
-    city: "Los Angeles",
-    address: "No. 189, Grove St, Los Angeles",
-    zip: "CA 90036"
-  }
-]
 
 watch([page, pageSize], ([]) => {
   getTableData()

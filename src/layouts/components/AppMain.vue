@@ -1,13 +1,9 @@
-<script lang="ts" setup>
-import { useTagsViewStore } from "@/store/modules/tags-view"
-
-const tagsViewStore = useTagsViewStore()
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <section class="app-main">
     <div class="app-scrollbar">
-      <router-view></router-view>
+      <router-view />
       <!-- 页脚 -->
     </div>
     <!-- 返回顶部 -->

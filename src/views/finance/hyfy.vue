@@ -27,11 +27,11 @@
 
 <script setup lang="ts">
 import { ref, reactive } from "vue"
-import { ElMessage, ElMessageBox } from "element-plus"
+import { ElMessageBox, FormInstance } from "element-plus"
 import { SuccessFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
 
-const tableRef = ref(null)
+const tableRef = ref<any>(null)
 const formRef = ref()
 const formInline = reactive({
   search: "",
@@ -39,7 +39,7 @@ const formInline = reactive({
   date: ""
 })
 
-const handleSubmit = () => {
+const handleSubmit = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   if (tableRef.value) {
     tableRef.value.getTableData()
@@ -47,15 +47,17 @@ const handleSubmit = () => {
   formEl.resetFields()
 }
 
-const resetForm = (formEl) => {
+const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
 }
 
-const handleSwitchChange = (record) => {}
+const handleSwitchChange = (record: any) => {
+  console.log(record)
+}
 
 // 更新操作
-const handleOnUpdate = (record) => {
+const handleOnUpdate = (record: any) => {
   ElMessageBox.confirm(`确定对[id=${record.id}]行手动返佣更新吗?`, {
     confirmButtonText: "确定",
     cancelButtonText: "取消",

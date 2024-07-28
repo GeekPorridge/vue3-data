@@ -28,7 +28,7 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue"
 
-const tableRef = ref(null)
+const tableRef = ref<any>(null)
 const formRef = ref()
 const formInline = reactive({
   search: "",
@@ -36,7 +36,7 @@ const formInline = reactive({
   date: ""
 })
 
-const handleSubmit = (formEl) => {
+const handleSubmit = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   if (tableRef.value) {
     tableRef.value.getTableData()
@@ -44,12 +44,13 @@ const handleSubmit = (formEl) => {
   formEl.resetFields()
 }
 
-const resetForm = (formEl) => {
+const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
 }
 
 import ListTable from "@/components/ListTable/index.vue"
+import { FormInstance } from "element-plus"
 
 const columns = [
   {

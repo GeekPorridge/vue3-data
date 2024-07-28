@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-tabs type="border-card" class="demo-tabs" @tab-change="tabChange">
       <el-tab-pane v-for="item in tabListConfig" :label="item.tab">
-        <component :is="item.component"> </component>
+        <component :is="item.component" />
       </el-tab-pane>
     </el-tabs>
   </div>

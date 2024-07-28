@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from "vue"
-import { ElMessage, ElMessageBox } from "element-plus"
+import { ElMessageBox, FormInstance } from "element-plus"
 import { EditPen, SuccessFilled, DeleteFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
 import CardHolderModal from "./components/cardHolderModal.vue"
@@ -39,14 +39,13 @@ import EditModal from "./components/editModal.vue"
 import ComplexModal from "./components/complexModal.vue"
 import AmountModal from "./components/amountModal.vue"
 
-const tableRef = ref(null)
+const tableRef = ref<any>(null)
 const formRef = ref()
 const cardHolderRef = ref(null) // 卡包ref
 const editModalRef = ref(null) // 编辑ref
 const complexModalRef = ref(null) // 加减ref
 const amountModalRef = ref(null) // 额度ref
 const listRecord = ref() // 列表数据
-const modalType = ref("")
 const formInline = reactive({
   search: "",
   type: "",
@@ -54,7 +53,7 @@ const formInline = reactive({
 })
 
 // 弹框调用
-const handleModalOpen = (ref, record) => {
+const handleModalOpen = (ref: any, record: any) => {
   if (ref.value) {
     listRecord.value = record
     ref.value.openModal()
@@ -62,27 +61,27 @@ const handleModalOpen = (ref, record) => {
 }
 
 // 打开卡包
-const handleCardHolder = (record) => {
+const handleCardHolder = (record: any) => {
   handleModalOpen(cardHolderRef, record)
 }
 
 // 编辑弹框
-const handleEdit = (record) => {
+const handleEdit = (record: any) => {
   handleModalOpen(editModalRef, record)
 }
 
 // 加/减弹框
-const handleComplex = (record) => {
+const handleComplex = (record: any) => {
   handleModalOpen(complexModalRef, record)
 }
 
 // 额度操作
-const handleAmount = (record) => {
+const handleAmount = (record: any) => {
   handleModalOpen(amountModalRef, record)
 }
 
 // 代理操作
-const handleProxy = (record) => {
+const handleProxy = (record: any) => {
   ElMessageBox.confirm(`确定对[id=${record.id}]进行升级为代理操作?`, {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
@@ -97,7 +96,7 @@ const handleProxy = (record) => {
 }
 
 // 删除操作
-const handleDelete = (record) => {
+const handleDelete = (record: any) => {
   ElMessageBox.confirm(`确定对[id=${record.id}]进行删除操作?`, {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
@@ -111,7 +110,9 @@ const handleDelete = (record) => {
     })
 }
 
-const handleSwitchChange = (record) => {}
+const handleSwitchChange = (record: any) => {
+  console.log(record)
+}
 
 const columns = [
   {
@@ -192,7 +193,7 @@ const columns = [
   }
 ]
 
-const handleSubmit = (formEl) => {
+const handleSubmit = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   if (tableRef.value) {
     tableRef.value.getTableData()
@@ -200,7 +201,7 @@ const handleSubmit = (formEl) => {
   formEl.resetFields()
 }
 
-const resetForm = (formEl) => {
+const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
 }

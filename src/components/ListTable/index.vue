@@ -75,16 +75,13 @@ import { request } from "@/utils/service"
  */
 const props = defineProps<{
   url: string
-  isPagination?: {
-    type: Boolean
-    default: true
-  }
+  isPagination?: Boolean
   isShowBorder?: {
     type: Boolean
     default: false
   }
-  columns: Array<{ name: string; label: string }>
-  formParams: Object
+  columns: Array<any>
+  formParams?: Object
 }>()
 
 const list = ref()
@@ -92,11 +89,10 @@ const page = ref(1)
 const pageSize = ref(10)
 const total = ref(0)
 const isLoding = ref(false)
-const value3 = ref(true)
-const showPagination = ref<Boolean>(props.isPagination ?? true)
-const showBorder = ref<Boolean>(props.isShowBorder ?? false)
+const showPagination = ref<any>(props.isPagination ?? true)
+const showBorder = ref<any>(props.isShowBorder ?? false)
 
-const processObject = (obj) => {
+const processObject = (obj: any) => {
   for (const key in obj) {
     if (Array.isArray(obj[key])) {
       return key
@@ -104,7 +100,7 @@ const processObject = (obj) => {
   }
 }
 
-const getListApi = (params) => {
+const getListApi = (params: object) => {
   return request({
     url: props.url,
     method: "get",
@@ -116,7 +112,7 @@ const getTableData = async () => {
   try {
     isLoding.value = true
 
-    const res = await getListApi({
+    const res: any = await getListApi({
       currentPage: page.value,
       size: pageSize.value,
       username: "",
@@ -124,7 +120,7 @@ const getTableData = async () => {
       ...props.formParams
     })
 
-    const key = processObject(res.data)
+    const key: string | any = processObject(res.data)
 
     list.value = res.data[key]
     total.value = res.data.total

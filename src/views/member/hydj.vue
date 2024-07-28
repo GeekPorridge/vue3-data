@@ -12,11 +12,11 @@ import { EditPen } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
 import MemberEditModal from "./components/memberEditModal.vue"
 
-const editModalRef = ref(null) // 编辑ref
+const editModalRef = ref<any>(null) // 编辑ref
 const listRecord = ref() // 列表数据
 
 // 编辑弹框
-const handleEdit = (record) => {
+const handleEdit = (record: any) => {
   if (editModalRef.value) {
     listRecord.value = record
     editModalRef.value.openModal()
