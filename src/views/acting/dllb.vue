@@ -24,7 +24,7 @@
     </el-card>
     <EditModal ref="editModalRef" :record="listRecord" />
     <ComplexModal ref="complexModalRef" :record="listRecord" />
-    <BindingModal ref="bindingModalRef" :record="listRecord" />
+    <BindingModal ref="bindingModalRef" :record="listRecord" @updateList="updateList" />
   </div>
 </template>
 
@@ -49,6 +49,12 @@ const listRecord = ref() // 列表数据
 const complexModalRef = ref(null) // 加减ref
 const bindingModalRef = ref(null) // 绑定ref
 
+// 更新表格数据
+const updateList = () => {
+  if (tableRef.value) {
+    tableRef.value.getTableData()
+  }
+}
 // 弹框调用
 const handleModalOpen = (ref: any, record: any) => {
   if (ref.value) {
