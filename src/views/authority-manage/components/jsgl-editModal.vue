@@ -1,33 +1,31 @@
 <template>
-  <el-dialog destroy-on-close v-model="open" :title="title[dialogType]" class="qxgl_glylb_edite-model__dialog">
+  <el-dialog destroy-on-close v-model="open" :title="title[dialogType]" class="qxgl_jsgl_edite-model__dialog">
     <el-card :shadow="'never'">
       <el-form ref="formRef" :label-position="'top'" :model="formInline">
         <div class="top-card">
           <el-row :gutter="24">
-            <el-col :span="12">
-              <el-form-item prop="yhm" label="用户名">
-                <el-input v-model="formInline.yhm" placeholder="请输入文本字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item prop="js" label="角色">
-                <el-select v-model="formInline.js" placeholder="选择选项">
-                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
-                </el-select>
+            <el-col>
+              <el-form-item prop="jsmc" label="角色名称">
+                <el-input v-model="formInline.jsmc" placeholder="请输入文字字段" />
               </el-form-item>
             </el-col>
           </el-row>
+        </div>
 
+        <div class="bottom-card">
           <el-row :gutter="24">
-            <el-col :span="12">
-              <el-form-item prop="dlzh" label="登录密码">
-                <el-input v-model="formInline.dlzh" placeholder="请输入文本字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item prop="dlmm" label="登录账号">
-                <el-input v-model="formInline.dlmm" placeholder="请输入文字字段" />
-              </el-form-item>
+            <el-col>
+              <el-form-item prop="streeValue">
+                <el-tree
+                  style="max-width: 600px"
+                  :data="streeMockData"
+                  show-checkbox
+                  node-key="id"
+                  :default-expanded-keys="[2, 3]"
+                  :default-checked-keys="[5]"
+                  :props="defaultProps"
+                  @check-change="checkChange"
+              /></el-form-item>
             </el-col>
           </el-row>
         </div>
@@ -64,29 +62,83 @@ const title = {
   edite: "编辑",
   add: "新增"
 }
-
-const options = [
+const streeMockData = [
   {
-    value: "角色1",
-    label: "角色1"
+    id: 1,
+    label: "会员管理",
+    children: [
+      {
+        id: 11,
+        label: "会员列表1",
+        children: [
+          {
+            id: 111,
+            label: "新增"
+          },
+          {
+            id: 112,
+            label: "删除"
+          }
+        ]
+      },
+      {
+        id: 12,
+        label: "会员列表2",
+        children: [
+          {
+            id: 121,
+            label: "新增"
+          },
+          {
+            id: 122,
+            label: "删除"
+          }
+        ]
+      }
+    ]
   },
   {
-    value: "角色2",
-    label: "角色2"
-  },
-  {
-    value: "角色3",
-    label: "角色3"
+    id: 2,
+    label: "系统管理",
+    children: [
+      {
+        id: 21,
+        label: "站点配置1",
+        children: [
+          {
+            id: 211,
+            label: "编辑"
+          }
+        ]
+      },
+      {
+        id: 22,
+        label: "站点配置2",
+        children: [
+          {
+            id: 221,
+            label: "编辑"
+          }
+        ]
+      }
+    ]
   }
 ]
+const defaultProps = {
+  children: "children",
+  label: "label"
+}
 
 // 表单模拟字段
 const formInline = reactive({
-  yhm: "", // 用户名
-  js: "", // 角色
-  dlzh: "", // 登录账号
-  dlmm: "" // 登录密码
+  jsmc: "", // 角色名称
+  streeValue: "" // 树结构后选中值
 })
+
+// 树结构选中值
+const checkChange = (data: Object, checked: boolean, indeterminate: boolean) => {
+  console.log(data, checked, indeterminate, formInline.streeValue, "树结构选中值")
+}
 
 // 清空表单
 const clearFrom = () => {
@@ -146,13 +198,8 @@ watch(
 defineExpose({ openModal })
 </script>
 
-<!-- <style lang="scss" scoped>
-:deep(.el-dialog) {
-  padding: 0;
-}
-</style> -->
 <style lang="scss">
-.qxgl_glylb_edite-model__dialog {
+.qxgl_jsgl_edite-model__dialog {
   padding: 0 0 16px;
   border-radius: 5px;
   overflow: hidden;
