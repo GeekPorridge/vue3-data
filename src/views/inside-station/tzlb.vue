@@ -21,22 +21,27 @@
         </el-form-item>
       </el-form>
       <div class="table_button" style="margin-bottom: 12px">
-        <el-button type="primary">
+        <el-button @click="handleAdd" type="primary">
           <el-icon><CirclePlusFilled /></el-icon>
           新增
         </el-button>
       </div>
       <ListTable ref="tableRef" :url="'table'" :columns="columns" :formParams="formInline" />
     </el-card>
+
+    <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from "vue"
 import { ElMessageBox, FormInstance } from "element-plus"
-import { DeleteFilled } from "@element-plus/icons-vue"
+import { DeleteFilled, EditPen } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
+import EditModal from "./components/tzlbEditModal.vue"
 
+const editModalRef = ref(null) // 编辑ref
+const listRecord = ref() // 编辑的列表数据
 const tableRef = ref<any>(null)
 const formRef = ref()
 const formInline = reactive({
@@ -44,6 +49,30 @@ const formInline = reactive({
   type: "",
   date: ""
 })
+
+// 弹框调用
+const handleModalOpen = (ref, record: Object, type = "") => {
+  if (ref.value) {
+    listRecord.value = record
+    ref.value.openModal(type)
+  }
+}
+// 更新表格数据
+const updateList = () => {
+  if (tableRef.value) {
+    tableRef.value.getTableData()
+  }
+}
+
+// 新增
+const handleAdd = () => {
+  handleModalOpen(editModalRef, {}, "add")
+}
+
+// 编辑弹框
+const handleEdit = (record: Object) => {
+  handleModalOpen(editModalRef, record, "edite")
+}
 
 const handleSubmit = (formEl: FormInstance | undefined) => {
   if (!formEl) return
@@ -126,8 +155,10 @@ const columns = [
     fixed: "right",
     actions: [
       {
+        type: "primary",
+        icon: EditPen,
         label: "编辑",
-        handler: () => {}
+        handler: handleEdit
       },
       {
         type: "danger",
