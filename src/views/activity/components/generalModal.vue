@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="open" :title="data.id + '编辑'">
+  <el-dialog v-model="open" :title="record ? data.id + '编辑' : '新增'">
     <el-card style="margin-bottom: 20px">
       <el-form :label-position="'top'">
         <el-row :gutter="24">
@@ -97,7 +97,7 @@
 import { ref, watch, defineProps, defineExpose } from "vue"
 
 const props = defineProps<{
-  record: any
+  record?: any
 }>()
 
 const open = ref(false)
