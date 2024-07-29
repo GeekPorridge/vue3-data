@@ -1,6 +1,6 @@
 <template>
   <el-dialog v-model="open" :title="data.id + '绑定域名'" class="dlgl_dllb_edite-model__dialog">
-    <el-card :shadow="'never'">
+    <el-card>
       <el-form ref="formRef" :label-position="'top'" :model="formInline">
         <div class="top-card" v-if="formInline.length">
           <div v-for="(item, index) in listData">
@@ -69,7 +69,7 @@ const openModal = () => {
 }
 
 // 表单值
-const formInline = reactive([
+const formInline = reactive<any>([
   {
     id: 1,
     dominType: "H5域名",
@@ -347,75 +347,63 @@ defineExpose({ openModal })
     }
   }
 
-  .el-card {
-    border: transparent;
-  }
-
-  .el-card__body {
-    margin-top: 20px;
-    padding: 0;
-    .bottom-card,
-    .top-card {
-      padding: 20px;
-      border: 1px solid rgba(237, 237, 237, 1);
-      border-radius: 10px;
-
-      .tab-title {
-        font-size: 14px;
-        color: #666;
-        line-height: 28px;
-        span {
-          font-size: 11px;
-          color: #999;
-        }
-      }
-    }
-
-    .bottom-card {
-      margin-top: 20px;
-    }
-
-    .el-form-item__label {
+  .bottom-card,
+  .top-card {
+    .tab-title {
       font-size: 14px;
       color: #666;
       line-height: 28px;
+      span {
+        font-size: 11px;
+        color: #999;
+      }
     }
+  }
 
-    .el-input__wrapper:hover {
-      box-shadow: 0 0 0 1px #409eff inset;
-    }
+  .bottom-card {
+    margin-top: 20px;
+  }
 
-    .el-input__wrapper {
-      border-radius: 4px 0px 0 4px;
-    }
+  .el-form-item__label {
+    font-size: 14px;
+    color: #666;
+    line-height: 28px;
+  }
 
-    .el-select__wrapper {
-      height: 45px;
-    }
-    .el-input__inner {
-      height: 43px;
-    }
+  .el-input__wrapper:hover {
+    box-shadow: 0 0 0 1px #409eff inset;
+  }
 
-    input::-webkit-input-placeholder {
-      /* 使用webkit内核的浏览器 */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input:-moz-placeholder {
-      /* Firefox版本4-18 */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input::-moz-placeholder {
-      /* Firefox版本19+ */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input:-ms-input-placeholder {
-      /* IE浏览器 */
-      font-size: 14px;
-      color: #ccc;
-    }
+  .el-input__wrapper {
+    border-radius: 4px 0px 0 4px;
+  }
+
+  .el-select__wrapper {
+    height: 45px;
+  }
+  .el-input__inner {
+    height: 43px;
+  }
+
+  input::-webkit-input-placeholder {
+    /* 使用webkit内核的浏览器 */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input:-moz-placeholder {
+    /* Firefox版本4-18 */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input::-moz-placeholder {
+    /* Firefox版本19+ */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input:-ms-input-placeholder {
+    /* IE浏览器 */
+    font-size: 14px;
+    color: #ccc;
   }
 
   .el-tabs {

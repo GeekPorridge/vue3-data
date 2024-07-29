@@ -43,15 +43,15 @@ import EditModal from "./components/tzlbEditModal.vue"
 const editModalRef = ref(null) // 编辑ref
 const listRecord = ref() // 编辑的列表数据
 const tableRef = ref<any>(null)
-const formRef = ref()
-const formInline = reactive({
+const formRef = ref<any>()
+const formInline = reactive<any>({
   search: "",
   type: "",
   date: ""
 })
 
 // 弹框调用
-const handleModalOpen = (ref, record: Object, type = "") => {
+const handleModalOpen = (ref: any, record: Object, type = "") => {
   if (ref.value) {
     listRecord.value = record
     ref.value.openModal(type)
