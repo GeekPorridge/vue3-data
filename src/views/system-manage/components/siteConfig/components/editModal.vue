@@ -1,85 +1,83 @@
 <template>
   <el-dialog destroy-on-close v-model="open" title="编辑" class="xtgl_siteConfig_edite-model__dialog">
-    <el-card shadow="never">
-      <el-form ref="formRef" :label-position="'top'" :model="formInline">
-        <div class="top-card">
-          <el-row :gutter="24">
-            <el-col :span="12">
-              <el-form-item prop="zdbt" label="字段标题">
-                <el-input v-model="formInline.zdbt" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item prop="zdbs" label="字段标识">
-                <el-input v-model="formInline.zdbs" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-          </el-row>
+    <el-form ref="formRef" :label-position="'top'" :model="formInline">
+      <el-card class="top-card">
+        <el-row :gutter="24">
+          <el-col :span="12">
+            <el-form-item prop="zdbt" label="字段标题">
+              <el-input v-model="formInline.zdbt" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item prop="zdbs" label="字段标识">
+              <el-input v-model="formInline.zdbs" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+        </el-row>
 
-          <el-row :gutter="24">
-            <el-col :span="24">
-              <el-form-item prop="bz" label="备注">
-                <el-input v-model="formInline.bz" placeholder="备注" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </div>
+        <el-row :gutter="24">
+          <el-col :span="24">
+            <el-form-item prop="bz" label="备注">
+              <el-input v-model="formInline.bz" placeholder="备注" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-card>
 
-        <div class="bottom-card">
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="zd1" label="多语言翻译字段1">
-                <el-input v-model="formInline.zd1" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd2" label="多语言翻译字段2">
-                <el-input v-model="formInline.zd2" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd3" label="多语言翻译字段3">
-                <el-input v-model="formInline.zd3" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="zd4" label="多语言翻译字段4">
-                <el-input v-model="formInline.zd4" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd5" label="多语言翻译字段5">
-                <el-input v-model="formInline.zd5" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd6" label="多语言翻译字段6">
-                <el-input v-model="formInline.zd6" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="zd7" label="多语言翻译字段7">
-                <el-input v-model="formInline.zd7" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd8" label="多语言翻译字段8">
-                <el-input v-model="formInline.zd8" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd9" label="多语言翻译字段9">
-                <el-input v-model="formInline.zd9" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </div>
-      </el-form>
-    </el-card>
+      <el-card class="bottom-card">
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="zd1" label="多语言翻译字段1">
+              <el-input v-model="formInline.zd1" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd2" label="多语言翻译字段2">
+              <el-input v-model="formInline.zd2" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd3" label="多语言翻译字段3">
+              <el-input v-model="formInline.zd3" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="zd4" label="多语言翻译字段4">
+              <el-input v-model="formInline.zd4" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd5" label="多语言翻译字段5">
+              <el-input v-model="formInline.zd5" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd6" label="多语言翻译字段6">
+              <el-input v-model="formInline.zd6" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="zd7" label="多语言翻译字段7">
+              <el-input v-model="formInline.zd7" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd8" label="多语言翻译字段8">
+              <el-input v-model="formInline.zd8" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd9" label="多语言翻译字段9">
+              <el-input v-model="formInline.zd9" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-card>
+    </el-form>
 
     <template #footer>
       <div class="dialog-footer">
@@ -207,54 +205,43 @@ defineExpose({ openModal })
     }
   }
 
-  .el-card__body {
+  .bottom-card {
     margin-top: 20px;
-    padding: 0;
-    .bottom-card,
-    .top-card {
-      padding: 20px;
-      border: 1px solid rgba(237, 237, 237, 1);
-      border-radius: 10px;
-    }
+  }
 
-    .bottom-card {
-      margin-top: 20px;
-    }
+  .el-form-item__label {
+    font-size: 14px;
+    color: #666;
+    line-height: 28px;
+  }
 
-    .el-form-item__label {
-      font-size: 14px;
-      color: #666;
-      line-height: 28px;
-    }
+  .el-input__wrapper:hover {
+    box-shadow: 0 0 0 1px #409eff inset;
+  }
 
-    .el-input__wrapper:hover {
-      box-shadow: 0 0 0 1px #409eff inset;
-    }
+  .el-input__inner {
+    // height: 40px;
+  }
 
-    .el-input__inner {
-      // height: 40px;
-    }
-
-    input::-webkit-input-placeholder {
-      /* 使用webkit内核的浏览器 */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input:-moz-placeholder {
-      /* Firefox版本4-18 */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input::-moz-placeholder {
-      /* Firefox版本19+ */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input:-ms-input-placeholder {
-      /* IE浏览器 */
-      font-size: 14px;
-      color: #ccc;
-    }
+  input::-webkit-input-placeholder {
+    /* 使用webkit内核的浏览器 */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input:-moz-placeholder {
+    /* Firefox版本4-18 */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input::-moz-placeholder {
+    /* Firefox版本19+ */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input:-ms-input-placeholder {
+    /* IE浏览器 */
+    font-size: 14px;
+    color: #ccc;
   }
 }
 </style>

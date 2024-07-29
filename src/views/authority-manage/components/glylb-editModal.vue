@@ -1,6 +1,6 @@
 <template>
   <el-dialog destroy-on-close v-model="open" :title="title[dialogType]" class="qxgl_glylb_edite-model__dialog">
-    <el-card :shadow="'never'">
+    <el-card>
       <el-form ref="formRef" :label-position="'top'" :model="formInline">
         <div class="top-card">
           <el-row :gutter="24">
@@ -177,19 +177,10 @@ defineExpose({ openModal })
     }
   }
 
-  .el-card {
-    border: transparent;
-  }
-
   .el-card__body {
     margin-top: 20px;
-    padding: 0;
     .bottom-card,
     .top-card {
-      padding: 20px;
-      border: 1px solid rgba(237, 237, 237, 1);
-      border-radius: 10px;
-
       .tab-title {
         font-size: 14px;
         color: #666;

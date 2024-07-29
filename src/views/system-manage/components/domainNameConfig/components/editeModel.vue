@@ -1,6 +1,6 @@
 <template>
   <el-dialog destroy-on-close v-model="open" title="编辑" class="xtgl_domainNameConfig_edite-model__dialog">
-    <el-card shadow="never">
+    <el-card>
       <el-form ref="formRef" :label-position="'top'" :model="formInline">
         <el-row :gutter="24">
           <el-col>
@@ -147,45 +147,39 @@ defineExpose({ openModal })
     }
   }
 
-  .el-card__body {
-    margin-top: 20px;
-    border: 1px solid rgba(237, 237, 237, 1);
-    border-radius: 10px;
+  .el-form-item__label {
+    font-size: 14px;
+    color: #666;
+    line-height: 28px;
+  }
 
-    .el-form-item__label {
-      font-size: 14px;
-      color: #666;
-      line-height: 28px;
-    }
+  .el-input__wrapper:hover {
+    box-shadow: 0 0 0 1px #409eff inset;
+  }
 
-    .el-input__wrapper:hover {
-      box-shadow: 0 0 0 1px #409eff inset;
-    }
+  .el-input__inner {
+    // height: 40px;
+  }
 
-    .el-input__inner {
-      // height: 40px;
-    }
-
-    input::-webkit-input-placeholder {
-      /* 使用webkit内核的浏览器 */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input:-moz-placeholder {
-      /* Firefox版本4-18 */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input::-moz-placeholder {
-      /* Firefox版本19+ */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input:-ms-input-placeholder {
-      /* IE浏览器 */
-      font-size: 14px;
-      color: #ccc;
-    }
+  input::-webkit-input-placeholder {
+    /* 使用webkit内核的浏览器 */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input:-moz-placeholder {
+    /* Firefox版本4-18 */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input::-moz-placeholder {
+    /* Firefox版本19+ */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input:-ms-input-placeholder {
+    /* IE浏览器 */
+    font-size: 14px;
+    color: #ccc;
   }
 }
 </style>

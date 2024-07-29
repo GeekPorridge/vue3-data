@@ -1,160 +1,158 @@
 <template>
   <el-dialog destroy-on-close v-model="open" title="编辑" class="jkgl_jklb_edite-model__dialog">
-    <el-card shadow="never">
-      <el-form ref="formRef" :label-position="'top'" :model="formInline">
-        <div class="top-card">
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="jkID" label="接口ID">
-                <el-input v-model="formInline.jkID" placeholder="请输入数字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="jkbs" label="接口标识">
-                <el-select v-model="formInline.jkbs" placeholder="请选择接口标识分类">
-                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
-                </el-select>
-              </el-form-item>
-            </el-col>
+    <el-form ref="formRef" :label-position="'top'" :model="formInline">
+      <el-card class="top-card">
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="jkID" label="接口ID">
+              <el-input v-model="formInline.jkID" placeholder="请输入数字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="jkbs" label="接口标识">
+              <el-select v-model="formInline.jkbs" placeholder="请选择接口标识分类">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+              </el-select>
+            </el-form-item>
+          </el-col>
 
-            <el-col :span="8">
-              <el-form-item prop="jkmc" label="接口名称">
-                <el-input v-model="formInline.jkmc" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </div>
+          <el-col :span="8">
+            <el-form-item prop="jkmc" label="接口名称">
+              <el-input v-model="formInline.jkmc" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-card>
 
-        <div class="bottom-card">
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="sfkq">
-                <template #label>
-                  <div class="tab-title">是否开启<span>默认开启</span></div>
+      <el-card class="bottom-card">
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="sfkq">
+              <template #label>
+                <div class="tab-title">是否开启<span>默认开启</span></div>
+              </template>
+              <el-radio-group v-model="formInline.sfkq" class="ml-4">
+                <el-radio value="1" size="large">开启</el-radio>
+                <el-radio value="2" size="large">关闭</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="pmqz">
+              <template #label>
+                <div class="tab-title">排名权重<span>数字越大排名越靠前</span></div>
+              </template>
+              <el-input-number
+                v-model="formInline.pmqz"
+                :step="10"
+                controls-position="right"
+                placeholder="请输入数字字段"
+              >
+                <template #decrease-icon>
+                  <el-icon>
+                    <Minus />
+                  </el-icon>
                 </template>
-                <el-radio-group v-model="formInline.sfkq" class="ml-4">
-                  <el-radio value="1" size="large">开启</el-radio>
-                  <el-radio value="2" size="large">关闭</el-radio>
-                </el-radio-group>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="pmqz">
-                <template #label>
-                  <div class="tab-title">排名权重<span>数字越大排名越靠前</span></div>
+                <template #increase-icon>
+                  <el-icon>
+                    <Plus />
+                  </el-icon>
                 </template>
-                <el-input-number
-                  v-model="formInline.pmqz"
-                  :step="10"
-                  controls-position="right"
-                  placeholder="请输入数字字段"
-                >
-                  <template #decrease-icon>
-                    <el-icon>
-                      <Minus />
-                    </el-icon>
-                  </template>
-                  <template #increase-icon>
-                    <el-icon>
-                      <Plus />
-                    </el-icon>
-                  </template>
-                </el-input-number>
-              </el-form-item>
-            </el-col>
+              </el-input-number>
+            </el-form-item>
+          </el-col>
 
-            <el-col :span="8">
-              <el-form-item prop="lxfl" label="类型分类">
-                <el-select v-model="formInline.lxfl" placeholder="请选择类型分类">
-                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-row>
+          <el-col :span="8">
+            <el-form-item prop="lxfl" label="类型分类">
+              <el-select v-model="formInline.lxfl" placeholder="请选择类型分类">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
 
-          <el-row :gutter="24">
-            <el-col>
-              <el-form-item prop="bq" label="标签">
-                <el-checkbox-group v-model="formInline.bq">
-                  <el-checkbox label="最新" value="new" />
-                  <el-checkbox label="热门" value="hot" />
-                  <el-checkbox label="推荐" value="recommend" />
-                </el-checkbox-group>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </div>
+        <el-row :gutter="24">
+          <el-col>
+            <el-form-item prop="bq" label="标签">
+              <el-checkbox-group v-model="formInline.bq">
+                <el-checkbox label="最新" value="new" />
+                <el-checkbox label="热门" value="hot" />
+                <el-checkbox label="推荐" value="recommend" />
+              </el-checkbox-group>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-card>
 
-        <div class="bottom-card">
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="zd1" label="多语言翻译字段1">
-                <el-input v-model="formInline.zd1" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd2" label="多语言翻译字段2">
-                <el-input v-model="formInline.zd2" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd3" label="多语言翻译字段3">
-                <el-input v-model="formInline.zd3" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="zd4" label="多语言翻译字段4">
-                <el-input v-model="formInline.zd4" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd5" label="多语言翻译字段5">
-                <el-input v-model="formInline.zd5" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd6" label="多语言翻译字段6">
-                <el-input v-model="formInline.zd6" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="zd7" label="多语言翻译字段7">
-                <el-input v-model="formInline.zd7" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd8" label="多语言翻译字段8">
-                <el-input v-model="formInline.zd8" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd9" label="多语言翻译字段9">
-                <el-input v-model="formInline.zd9" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </div>
+      <el-card class="bottom-card">
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="zd1" label="多语言翻译字段1">
+              <el-input v-model="formInline.zd1" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd2" label="多语言翻译字段2">
+              <el-input v-model="formInline.zd2" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd3" label="多语言翻译字段3">
+              <el-input v-model="formInline.zd3" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="zd4" label="多语言翻译字段4">
+              <el-input v-model="formInline.zd4" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd5" label="多语言翻译字段5">
+              <el-input v-model="formInline.zd5" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd6" label="多语言翻译字段6">
+              <el-input v-model="formInline.zd6" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="zd7" label="多语言翻译字段7">
+              <el-input v-model="formInline.zd7" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd8" label="多语言翻译字段8">
+              <el-input v-model="formInline.zd8" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd9" label="多语言翻译字段9">
+              <el-input v-model="formInline.zd9" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-card>
 
-        <div class="bottom-card img-card">
-          <el-row :gutter="24">
-            <el-col>
-              <el-form-item prop="img">
-                <template #label>
-                  <div class="tab-title">图片<span>预览图</span></div>
-                </template>
-                <div class="img-box">
-                  <el-image :src="formInline.img" fit="contain" />
-                </div>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </div>
-      </el-form>
-    </el-card>
+      <el-card class="bottom-card img-card">
+        <el-row :gutter="24">
+          <el-col>
+            <el-form-item prop="img">
+              <template #label>
+                <div class="tab-title">图片<span>预览图</span></div>
+              </template>
+              <div class="img-box">
+                <el-image :src="formInline.img" fit="contain" />
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-card>
+    </el-form>
 
     <template #footer>
       <div class="dialog-footer">
@@ -313,15 +311,15 @@ defineExpose({ openModal })
     }
   }
 
+  .bottom-card {
+    margin-top: 20px;
+  }
+
   .el-card__body {
     margin-top: 20px;
-    padding: 0;
+
     .bottom-card,
     .top-card {
-      padding: 20px;
-      border: 1px solid rgba(237, 237, 237, 1);
-      border-radius: 10px;
-
       .tab-title {
         font-size: 14px;
         color: #666;
@@ -331,10 +329,6 @@ defineExpose({ openModal })
           color: #999;
         }
       }
-    }
-
-    .bottom-card {
-      margin-top: 20px;
     }
 
     .img-card {

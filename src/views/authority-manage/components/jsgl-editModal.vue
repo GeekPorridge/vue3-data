@@ -1,36 +1,34 @@
 <template>
   <el-dialog destroy-on-close v-model="open" :title="title[dialogType]" class="qxgl_jsgl_edite-model__dialog">
-    <el-card :shadow="'never'">
-      <el-form ref="formRef" :label-position="'top'" :model="formInline">
-        <div class="top-card">
-          <el-row :gutter="24">
-            <el-col>
-              <el-form-item prop="jsmc" label="角色名称">
-                <el-input v-model="formInline.jsmc" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </div>
+    <el-form ref="formRef" :label-position="'top'" :model="formInline">
+      <el-card class="top-card">
+        <el-row :gutter="24">
+          <el-col>
+            <el-form-item prop="jsmc" label="角色名称">
+              <el-input v-model="formInline.jsmc" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-card>
 
-        <div class="bottom-card">
-          <el-row :gutter="24">
-            <el-col>
-              <el-form-item prop="streeValue">
-                <el-tree
-                  style="max-width: 600px"
-                  :data="streeMockData"
-                  show-checkbox
-                  node-key="id"
-                  :default-expanded-keys="[2, 3]"
-                  :default-checked-keys="[5]"
-                  :props="defaultProps"
-                  @check-change="checkChange"
-              /></el-form-item>
-            </el-col>
-          </el-row>
-        </div>
-      </el-form>
-    </el-card>
+      <el-card class="bottom-card">
+        <el-row :gutter="24">
+          <el-col>
+            <el-form-item prop="streeValue">
+              <el-tree
+                style="max-width: 600px"
+                :data="streeMockData"
+                show-checkbox
+                node-key="id"
+                :default-expanded-keys="[2, 3]"
+                :default-checked-keys="[5]"
+                :props="defaultProps"
+                @check-change="checkChange"
+            /></el-form-item>
+          </el-col>
+        </el-row>
+      </el-card>
+    </el-form>
 
     <template #footer>
       <div class="dialog-footer">
@@ -231,68 +229,8 @@ defineExpose({ openModal })
     }
   }
 
-  .el-card {
-    border: transparent;
-  }
-
-  .el-card__body {
+  .bottom-card {
     margin-top: 20px;
-    padding: 0;
-    .bottom-card,
-    .top-card {
-      padding: 20px;
-      border: 1px solid rgba(237, 237, 237, 1);
-      border-radius: 10px;
-
-      .tab-title {
-        font-size: 14px;
-        color: #666;
-        line-height: 28px;
-        span {
-          font-size: 11px;
-          color: #999;
-        }
-      }
-    }
-
-    .bottom-card {
-      margin-top: 20px;
-    }
-
-    .el-form-item__label {
-      font-size: 14px;
-      color: #666;
-      line-height: 28px;
-    }
-
-    .el-input__wrapper:hover {
-      box-shadow: 0 0 0 1px #409eff inset;
-    }
-
-    .el-input__inner {
-      // height: 40px;
-    }
-
-    input::-webkit-input-placeholder {
-      /* 使用webkit内核的浏览器 */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input:-moz-placeholder {
-      /* Firefox版本4-18 */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input::-moz-placeholder {
-      /* Firefox版本19+ */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input:-ms-input-placeholder {
-      /* IE浏览器 */
-      font-size: 14px;
-      color: #ccc;
-    }
   }
 
   .el-tabs {

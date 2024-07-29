@@ -1,101 +1,99 @@
 <template>
   <el-dialog destroy-on-close v-model="open" :title="title[dialogType]" class="xtgl_siteConfig_edite-model__dialog">
-    <el-card shadow="never">
-      <el-form ref="formRef" :label-position="'top'" :model="formInline">
-        <div class="top-card">
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="yhmc" label="银行名称">
-                <el-input v-model="formInline.yhmc" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="jcbs" label="简称标识">
-                <el-input v-model="formInline.jcbs" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="sfkq">
-                <template #label>
-                  <div class="tab-title">是否开启<span>默认开启</span></div>
-                </template>
-                <el-radio-group v-model="formInline.sfkq" class="ml-4">
-                  <el-radio value="1" size="large">开启</el-radio>
-                  <el-radio value="2" size="large">关闭</el-radio>
-                </el-radio-group>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </div>
-
-        <div class="bottom-card">
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="zd1" label="多语言翻译字段1">
-                <el-input v-model="formInline.zd1" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd2" label="多语言翻译字段2">
-                <el-input v-model="formInline.zd2" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd3" label="多语言翻译字段3">
-                <el-input v-model="formInline.zd3" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="zd4" label="多语言翻译字段4">
-                <el-input v-model="formInline.zd4" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd5" label="多语言翻译字段5">
-                <el-input v-model="formInline.zd5" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd6" label="多语言翻译字段6">
-                <el-input v-model="formInline.zd6" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="zd7" label="多语言翻译字段7">
-                <el-input v-model="formInline.zd7" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd8" label="多语言翻译字段8">
-                <el-input v-model="formInline.zd8" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="zd9" label="多语言翻译字段9">
-                <el-input v-model="formInline.zd9" placeholder="请输入文字字段" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </div>
-
-        <div class="bottom-card">
-          <el-col>
-            <el-form-item prop="img">
-              <template #label>
-                <div class="tab-title">图片<span>预览图</span></div>
-              </template>
-              <div class="img-box">
-                <el-image :src="formInline.img" fit="contain" />
-              </div>
+    <el-form ref="formRef" :label-position="'top'" :model="formInline">
+      <el-card class="top-card">
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="yhmc" label="银行名称">
+              <el-input v-model="formInline.yhmc" placeholder="请输入文字字段" />
             </el-form-item>
           </el-col>
-        </div>
-      </el-form>
-    </el-card>
+          <el-col :span="8">
+            <el-form-item prop="jcbs" label="简称标识">
+              <el-input v-model="formInline.jcbs" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="sfkq">
+              <template #label>
+                <div class="tab-title">是否开启<span>默认开启</span></div>
+              </template>
+              <el-radio-group v-model="formInline.sfkq" class="ml-4">
+                <el-radio value="1" size="large">开启</el-radio>
+                <el-radio value="2" size="large">关闭</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-card>
+
+      <el-card class="bottom-card">
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="zd1" label="多语言翻译字段1">
+              <el-input v-model="formInline.zd1" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd2" label="多语言翻译字段2">
+              <el-input v-model="formInline.zd2" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd3" label="多语言翻译字段3">
+              <el-input v-model="formInline.zd3" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="zd4" label="多语言翻译字段4">
+              <el-input v-model="formInline.zd4" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd5" label="多语言翻译字段5">
+              <el-input v-model="formInline.zd5" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd6" label="多语言翻译字段6">
+              <el-input v-model="formInline.zd6" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="zd7" label="多语言翻译字段7">
+              <el-input v-model="formInline.zd7" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd8" label="多语言翻译字段8">
+              <el-input v-model="formInline.zd8" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="zd9" label="多语言翻译字段9">
+              <el-input v-model="formInline.zd9" placeholder="请输入文字字段" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-card>
+
+      <el-card class="bottom-card">
+        <el-col>
+          <el-form-item prop="img">
+            <template #label>
+              <div class="tab-title">图片<span>预览图</span></div>
+            </template>
+            <div class="img-box">
+              <el-image :src="formInline.img" fit="contain" />
+            </div>
+          </el-form-item>
+        </el-col>
+      </el-card>
+    </el-form>
 
     <template #footer>
       <div class="dialog-footer">
@@ -207,9 +205,6 @@ defineExpose({ openModal })
   padding: 0 0 16px;
   border-radius: 5px;
   overflow: hidden;
-  .el-card {
-    border-color: transparent;
-  }
 
   .el-dialog__header {
     height: 50px;
@@ -237,73 +232,65 @@ defineExpose({ openModal })
     }
   }
 
-  .el-card__body {
+  .bottom-card {
     margin-top: 20px;
-    padding: 0;
-    .bottom-card,
-    .top-card {
-      padding: 20px;
-      border: 1px solid rgba(237, 237, 237, 1);
-      border-radius: 10px;
 
-      .tab-title {
-        font-size: 14px;
-        color: #666;
-        line-height: 28px;
-        span {
-          font-size: 12px;
-          color: #999;
-        }
+    .img-box {
+      width: 100px;
+      height: 100px;
+      .el-image {
+        width: 100%;
+        height: 100%;
       }
     }
+  }
 
-    .bottom-card {
-      margin-top: 20px;
-
-      .img-box {
-        width: 100px;
-        height: 100px;
-        .el-image {
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-
-    .el-form-item__label {
+  .bottom-card,
+  .top-card {
+    .tab-title {
       font-size: 14px;
       color: #666;
       line-height: 28px;
+      span {
+        font-size: 12px;
+        color: #999;
+      }
     }
+  }
 
-    .el-input__wrapper:hover {
-      box-shadow: 0 0 0 1px #409eff inset;
-    }
+  .el-form-item__label {
+    font-size: 14px;
+    color: #666;
+    line-height: 28px;
+  }
 
-    .el-input__inner {
-      // height: 40px;
-    }
+  .el-input__wrapper:hover {
+    box-shadow: 0 0 0 1px #409eff inset;
+  }
 
-    input::-webkit-input-placeholder {
-      /* 使用webkit内核的浏览器 */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input:-moz-placeholder {
-      /* Firefox版本4-18 */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input::-moz-placeholder {
-      /* Firefox版本19+ */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input:-ms-input-placeholder {
-      /* IE浏览器 */
-      font-size: 14px;
-      color: #ccc;
-    }
+  .el-input__inner {
+    // height: 40px;
+  }
+
+  input::-webkit-input-placeholder {
+    /* 使用webkit内核的浏览器 */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input:-moz-placeholder {
+    /* Firefox版本4-18 */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input::-moz-placeholder {
+    /* Firefox版本19+ */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input:-ms-input-placeholder {
+    /* IE浏览器 */
+    font-size: 14px;
+    color: #ccc;
   }
 }
 </style>

@@ -1,108 +1,106 @@
 <template>
   <el-dialog destroy-on-close v-model="open" :title="title[dialogType]" class="nrgl_gglb_edite-model__dialog">
-    <el-card :shadow="'never'">
-      <el-form ref="formRef" :label-position="'top'" :model="formInline">
-        <div class="top-card">
-          <el-row :gutter="24">
-            <el-col :span="8">
-              <el-form-item prop="isDialog" label="是否弹窗">
-                <el-radio-group v-model="formInline.isDialog" class="ml-4">
-                  <el-radio value="1" size="large">是</el-radio>
-                  <el-radio value="2" size="large">否</el-radio>
-                </el-radio-group>
-              </el-form-item>
-            </el-col>
-            <el-col v-if="from === 'gglb'" :span="8">
-              <el-form-item prop="isTop" label="是否置顶">
-                <el-radio-group v-model="formInline.isTop" class="ml-4">
-                  <el-radio value="1" size="large">是</el-radio>
-                  <el-radio value="2" size="large">否</el-radio>
-                </el-radio-group>
-              </el-form-item>
-            </el-col>
+    <el-form ref="formRef" :label-position="'top'" :model="formInline">
+      <el-card class="top-card">
+        <el-row :gutter="24">
+          <el-col :span="8">
+            <el-form-item prop="isDialog" label="是否弹窗">
+              <el-radio-group v-model="formInline.isDialog" class="ml-4">
+                <el-radio value="1" size="large">是</el-radio>
+                <el-radio value="2" size="large">否</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+          <el-col v-if="from === 'gglb'" :span="8">
+            <el-form-item prop="isTop" label="是否置顶">
+              <el-radio-group v-model="formInline.isTop" class="ml-4">
+                <el-radio value="1" size="large">是</el-radio>
+                <el-radio value="2" size="large">否</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
 
-            <el-col v-if="from === 'zzfw'" :span="8">
-              <el-form-item prop="zzfl">
-                <template #label>
-                  <div class="tab-title">自助分类<span>请在自助分类创建分类类型</span></div>
+          <el-col v-if="from === 'zzfw'" :span="8">
+            <el-form-item prop="zzfl">
+              <template #label>
+                <div class="tab-title">自助分类<span>请在自助分类创建分类类型</span></div>
+              </template>
+              <el-select v-model="formInline.zzfl" placeholder="请选择类型">
+                <el-option v-for="item in zzflOptions" :key="item.value" :label="item.label" :value="item.value" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item prop="pmqz">
+              <template #label>
+                <div class="tab-title">排名权重<span>数字越大排名越靠前</span></div>
+              </template>
+              <el-input-number
+                v-model="formInline.pmqz"
+                :step="10"
+                controls-position="right"
+                placeholder="请输入数字字段"
+              >
+                <template #decrease-icon>
+                  <el-icon>
+                    <Minus />
+                  </el-icon>
                 </template>
-                <el-select v-model="formInline.zzfl" placeholder="请选择类型">
-                  <el-option v-for="item in zzflOptions" :key="item.value" :label="item.label" :value="item.value" />
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item prop="pmqz">
-                <template #label>
-                  <div class="tab-title">排名权重<span>数字越大排名越靠前</span></div>
+                <template #increase-icon>
+                  <el-icon>
+                    <Plus />
+                  </el-icon>
                 </template>
-                <el-input-number
-                  v-model="formInline.pmqz"
-                  :step="10"
-                  controls-position="right"
-                  placeholder="请输入数字字段"
-                >
-                  <template #decrease-icon>
-                    <el-icon>
-                      <Minus />
-                    </el-icon>
-                  </template>
-                  <template #increase-icon>
-                    <el-icon>
-                      <Plus />
-                    </el-icon>
-                  </template>
-                </el-input-number>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </div>
-      </el-form>
+              </el-input-number>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-card>
+    </el-form>
 
-      <el-form ref="formTabRef" :model="formTabInline">
-        <div class="bottom-card">
-          <el-tabs type="border-card" class="demo-tabs" @tab-change="tabChange">
-            <el-tab-pane v-for="item in tabConfig" :label="item.tab">
-              <el-row :gutter="24">
-                <el-col>
-                  <el-form-item prop="bt">
-                    <template #label>
-                      <div class="tab-title">{{ `标题多语言${formTabInline.active}` }}</div>
-                    </template>
-                    <el-input v-model="formTabInline.bt" placeholder="请输入文字标题" />
-                  </el-form-item>
-                </el-col>
-              </el-row>
-              <el-row :gutter="24">
-                <el-col>
-                  <el-form-item prop="nr">
-                    <template #label>
-                      <div class="tab-title">{{ `内容多语言${formTabInline.active}` }}</div>
-                    </template>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-            </el-tab-pane>
-          </el-tabs>
+    <el-form ref="formTabRef" :model="formTabInline">
+      <el-card class="bottom-card">
+        <el-tabs type="border-card" class="demo-tabs" @tab-change="tabChange">
+          <el-tab-pane v-for="item in tabConfig" :label="item.tab">
+            <el-row :gutter="24">
+              <el-col>
+                <el-form-item prop="bt">
+                  <template #label>
+                    <div class="tab-title">{{ `标题多语言${formTabInline.active}` }}</div>
+                  </template>
+                  <el-input v-model="formTabInline.bt" placeholder="请输入文字标题" />
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="24">
+              <el-col>
+                <el-form-item prop="nr">
+                  <template #label>
+                    <div class="tab-title">{{ `内容多语言${formTabInline.active}` }}</div>
+                  </template>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-tab-pane>
+        </el-tabs>
 
-          <div class="editor-card">
-            <Toolbar
-              style="border-bottom: 1px solid #ccc"
-              :editor="editorRef"
-              :defaultConfig="toolbarConfig"
-              mode="default"
-            />
-            <Editor
-              style="height: 500px; overflow-y: hidden"
-              v-model="valueHtml"
-              :defaultConfig="editorConfig"
-              @onCreated="handleCreated"
-              mode="default"
-            />
-          </div>
+        <div class="editor-card">
+          <Toolbar
+            style="border-bottom: 1px solid #ccc"
+            :editor="editorRef"
+            :defaultConfig="toolbarConfig"
+            mode="default"
+          />
+          <Editor
+            style="height: 500px; overflow-y: hidden"
+            v-model="valueHtml"
+            :defaultConfig="editorConfig"
+            @onCreated="handleCreated"
+            mode="default"
+          />
         </div>
-      </el-form>
-    </el-card>
+      </el-card>
+    </el-form>
 
     <template #footer>
       <div class="dialog-footer">
@@ -335,84 +333,69 @@ defineExpose({ openModal })
     }
   }
 
-  .el-card {
-    border: transparent;
+  .top-card {
+    .tab-title {
+      span {
+        font-size: 12px;
+        color: #999;
+      }
+    }
   }
 
-  .el-card__body {
+  .bottom-card {
     margin-top: 20px;
-    padding: 0;
-    .bottom-card,
-    .top-card {
-      padding: 20px;
-      border: 1px solid rgba(237, 237, 237, 1);
-      border-radius: 10px;
-    }
-
-    .top-card {
-      .tab-title {
-        span {
-          font-size: 12px;
-          color: #999;
-        }
+    .el-form-item {
+      flex-direction: column;
+      .el-form-item__label {
+        justify-content: flex-start;
       }
     }
-
-    .bottom-card {
-      margin-top: 20px;
-      .el-form-item {
-        flex-direction: column;
-        .el-form-item__label {
-          justify-content: flex-start;
-        }
-      }
-      .tab-title {
-        font-size: 14px;
-        color: #666;
-        line-height: 28px;
-      }
-    }
-
-    .editor-card {
-      overflow: hidden;
-      border: 1px solid rgba(237, 237, 237, 1);
-      border-radius: 10px;
-    }
-
-    .el-form-item__label {
+    .tab-title {
       font-size: 14px;
       color: #666;
       line-height: 28px;
     }
+  }
 
-    .el-input__wrapper:hover {
-      box-shadow: 0 0 0 1px #409eff inset;
-    }
+  .editor-card {
+    overflow: hidden;
+    border: 1px solid rgba(237, 237, 237, 1);
+    border-radius: 10px;
+  }
 
-    .el-input__inner {
-      // height: 40px;
-    }
+  .el-form-item__label {
+    font-size: 14px;
+    color: #666;
+    line-height: 28px;
+  }
 
-    input::-webkit-input-placeholder {
-      /* 使用webkit内核的浏览器 */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input:-moz-placeholder {
-      /* Firefox版本4-18 */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input::-moz-placeholder {
-      /* Firefox版本19+ */
-      font-size: 14px;
-      color: #ccc;
-    }
-    input:-ms-input-placeholder {
-      /* IE浏览器 */
-      font-size: 14px;
-      color: #ccc;
-    }
+  .el-input__wrapper:hover {
+    box-shadow: 0 0 0 1px #409eff inset;
+  }
+
+  .el-input__inner {
+    // height: 40px;
+  }
+
+  input::-webkit-input-placeholder {
+    /* 使用webkit内核的浏览器 */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input:-moz-placeholder {
+    /* Firefox版本4-18 */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input::-moz-placeholder {
+    /* Firefox版本19+ */
+    font-size: 14px;
+    color: #ccc;
+  }
+  input:-ms-input-placeholder {
+    /* IE浏览器 */
+    font-size: 14px;
+    color: #ccc;
   }
 
   .el-tabs {
