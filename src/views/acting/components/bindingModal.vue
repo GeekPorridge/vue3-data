@@ -61,7 +61,7 @@ const emit = defineEmits(["updateList"])
 
 const open = ref(false)
 const data = ref(props.record || {})
-const formRef = ref(null) // 表单ref
+const formRef = ref<any>(null) // 表单ref
 
 // 打开弹框
 const openModal = () => {

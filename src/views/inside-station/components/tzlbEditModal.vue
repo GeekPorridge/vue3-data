@@ -129,8 +129,8 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(["updateList"])
-const formRef = ref(null) // 表单ref
-const formTabRef = ref(null) // 底部表单ref
+const formRef = ref<any>(null) // 表单ref
+const formTabRef = ref<any>(null) // 底部表单ref
 
 const open = ref(false)
 const data = ref(props.record || {})
