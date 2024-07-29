@@ -53,7 +53,7 @@ const tabListConfig = [
     component: themeColor
   }
 ]
-const tabChange = (key: number) => {
+const tabChange = (key: any) => {
   currentTab.value = key++
 }
 </script>

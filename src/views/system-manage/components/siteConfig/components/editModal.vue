@@ -94,16 +94,13 @@
 import { ElMessage } from "element-plus"
 import { ref, Ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
 
-type RefDom<T extends HTMLElement = HTMLDivElement> = Ref<T>
-
 const props = defineProps<{
-  type: string
   record: Object // 编辑的列表数据
 }>()
 
 const emit = defineEmits(["updateList"])
 
-const formRef = ref(null) // 表单ref
+const formRef = ref<any>(null) // 表单ref
 
 const open = ref(false)
 const data = ref(props.record || {})
@@ -137,8 +134,6 @@ const openModal = () => {
 }
 
 const saveData = () => {
-  console.log(formInline, "保存数据：请求api")
-
   return {
     success: true,
     data: "响应数据"
@@ -181,12 +176,6 @@ watch(
 defineExpose({ openModal })
 </script>
 
-<!-- <style lang="scss" scoped>
-:deep(.el-dialog) {
-  padding: 0;
-}
-</style> -->
-
 <style lang="scss">
 .xtgl_siteConfig_edite-model__dialog {
   padding: 0 0 16px;
@@ -208,8 +197,8 @@ defineExpose({ openModal })
   .dialog-footer {
     padding: 16px;
     .el-button {
-      width: 80px;
-      height: 30px;
+      // width: 80px;
+      // height: 30px;
       font-size: 12px;
     }
 
@@ -243,7 +232,7 @@ defineExpose({ openModal })
     }
 
     .el-input__inner {
-      height: 40px;
+      // height: 40px;
     }
 
     input::-webkit-input-placeholder {

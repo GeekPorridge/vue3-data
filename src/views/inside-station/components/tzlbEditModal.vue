@@ -243,7 +243,7 @@ const saveModel = async () => {
   const { success, data } = await saveData()
   if (success) {
     ElMessage({
-      message: `${title[dialogType.value]}成功`,
+      message: `操作成功`,
       type: "success"
     })
     emit("updateList", data)

@@ -21,7 +21,7 @@
           </el-form-item>
         </el-form>
 
-        <ListTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="true" />
+        <ListTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="isShowBorder" />
       </div>
     </el-card>
   </div>
@@ -77,7 +77,8 @@ const columns = [
   }
 ]
 
-const tableRef = ref(null)
+const isShowBorder = ref<any>(true)
+const tableRef = ref<any>(null)
 const formRef = ref()
 const formInline = reactive({
   search: "",
@@ -85,7 +86,7 @@ const formInline = reactive({
   date: ""
 })
 
-const handleSubmit = (formEl) => {
+const handleSubmit = (formEl: any) => {
   if (!formEl) return
   if (tableRef.value) {
     tableRef.value.getTableData()
@@ -93,7 +94,7 @@ const handleSubmit = (formEl) => {
   formEl.resetFields()
 }
 
-const resetForm = (formEl) => {
+const resetForm = (formEl: any) => {
   if (!formEl) return
   formEl.resetFields()
 }

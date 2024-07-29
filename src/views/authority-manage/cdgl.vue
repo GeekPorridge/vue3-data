@@ -6,7 +6,7 @@
         <div class="btn-container">
           <el-button type="primary" @click="handleAdd"><span class="icon">+</span>新增</el-button>
         </div>
-        <ListTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="true" />
+        <ListTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="isShowBorder" />
       </div>
     </el-card>
   </div>
@@ -22,22 +22,19 @@ import ListTable from "@/components/ListTable/index.vue"
 
 const tableRef = ref(null) // 列表ref
 const listRecord = ref() // 编辑的列表数据
-const handleAdd = (record: Object) => {
-  console.log("handleAdd---新增", record)
-}
+const isShowBorder = ref<any>(true)
 
-const handleSwitchChange = () => {
-  console.log("handleSwitchChange-----")
-}
+const handleAdd = (record: Object) => {}
+
+const handleSwitchChange = () => {}
 
 // 编辑弹框
 const handleEdit = (record: Object) => {
   listRecord.value = record
-  console.log("handleEdit---")
 }
 
 // 删除操作
-const handleDelete = (record: Object) => {
+const handleDelete = (record: any) => {
   ElMessageBox.confirm(`确定对[id=${record.id}]进行删除操作?`, "提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",

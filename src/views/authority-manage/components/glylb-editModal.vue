@@ -55,15 +55,15 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(["updateList"])
-const formRef = ref(null) // 表单ref
+const formRef = ref<any>(null) // 表单ref
 
 const open = ref(false)
 const data = ref(props.record || {})
-const dialogType = ref("edite") // 弹窗类型  编辑：edite  新增：add
-const title = {
+const dialogType = ref<any>("edite") // 弹窗类型  编辑：edite  新增：add
+const title = ref<any>({
   edite: "编辑",
   add: "新增"
-}
+})
 
 const options = [
   {
@@ -121,7 +121,7 @@ const saveModel = async () => {
   const { success, data } = await saveData()
   if (success) {
     ElMessage({
-      message: `${title[dialogType.value]}成功`,
+      message: `操作成功`,
       type: "success"
     })
     emit("updateList", data)
@@ -146,11 +146,6 @@ watch(
 defineExpose({ openModal })
 </script>
 
-<!-- <style lang="scss" scoped>
-:deep(.el-dialog) {
-  padding: 0;
-}
-</style> -->
 <style lang="scss">
 .qxgl_glylb_edite-model__dialog {
   padding: 0 0 16px;
@@ -172,8 +167,8 @@ defineExpose({ openModal })
   .dialog-footer {
     padding: 16px;
     .el-button {
-      width: 80px;
-      height: 30px;
+      // width: 80px;
+      // height: 30px;
       font-size: 12px;
     }
 
@@ -221,7 +216,7 @@ defineExpose({ openModal })
     }
 
     .el-input__inner {
-      height: 40px;
+      // height: 40px;
     }
 
     input::-webkit-input-placeholder {

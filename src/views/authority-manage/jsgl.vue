@@ -6,7 +6,7 @@
         <div class="btn-container">
           <el-button type="primary" @click="handleAdd"><span class="icon">+</span>新增</el-button>
         </div>
-        <ListTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="true" />
+        <ListTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="isShowBorder" />
       </div>
     </el-card>
 
@@ -22,9 +22,10 @@ import { EditPen, DeleteFilled } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
 import EditModal from "./components/jsgl-editModal.vue"
 
-const tableRef = ref(null) // 列表ref
+const tableRef = ref<any>(null) // 列表ref
 const editModalRef = ref(null) // 编辑ref
 const listRecord = ref() // 编辑的列表数据
+const isShowBorder = ref<any>(true)
 
 // 更新表格数据
 const updateList = () => {
@@ -39,17 +40,14 @@ const handleAdd = () => {
 }
 
 // 弹框调用
-const handleModalOpen = (ref, record: Object, type = "") => {
+const handleModalOpen = (ref: any, record: Object, type = "") => {
   if (ref.value) {
     listRecord.value = record
     ref.value.openModal(type)
   }
 }
 
-const handleSwitchChange = (record: Object) => {
-  updateList()
-  console.log("handleSwitchChange-----", record)
-}
+const handleSwitchChange = (record: Object) => {}
 
 // 编辑弹框
 const handleEdit = (record: Object) => {
@@ -57,7 +55,7 @@ const handleEdit = (record: Object) => {
 }
 
 // 删除操作
-const handleDelete = (record: Object) => {
+const handleDelete = (record: any) => {
   ElMessageBox.confirm(`确定对[id=${record.id}]进行删除操作?`, "提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",

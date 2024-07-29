@@ -1,7 +1,7 @@
 <!-- 货币配置 -->
 <template>
   <div>
-    <ListTable ref="tableRef" :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="true" />
+    <ListTable ref="tableRef" :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="isShowBorder" />
   </div>
 </template>
 
@@ -10,14 +10,10 @@ import { ref } from "vue"
 
 import ListTable from "@/components/ListTable/index.vue"
 
-const tableRef = ref(null) // 列表ref
+const tableRef = ref<any>(null) // 列表ref
+const isShowBorder = ref<any>(true)
 
-const handleSwitchChange = (record) => {
-  if (tableRef.value) {
-    tableRef.value.getTableData()
-  }
-  console.log("handleSwitchChange-----", record)
-}
+const handleSwitchChange = (record: Object) => {}
 
 const columns = [
   {

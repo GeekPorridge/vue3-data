@@ -167,18 +167,15 @@
 
 <script setup lang="ts">
 import { ElMessage } from "element-plus"
-import { ref, Ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
-
-type RefDom<T extends HTMLElement = HTMLDivElement> = Ref<T>
+import { ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
 
 const props = defineProps<{
-  type: string
   record: Object // 编辑的列表数据
 }>()
 
 const emit = defineEmits(["updateList"])
 
-const formRef = ref(null) // 表单ref
+const formRef = ref<any>(null) // 表单ref
 
 const open = ref(false)
 const data = ref(props.record || {})
@@ -199,7 +196,7 @@ const options = [
 ]
 
 // 表单模拟字段
-const formInline = reactive({
+const formInline = reactive<any>({
   jkID: "", // 接口ID
   jkmc: "", // 接口名称
   jkbs: "", // 接口标识
@@ -276,12 +273,6 @@ watch(
 defineExpose({ openModal })
 </script>
 
-<!-- <style lang="scss" scoped>
-:deep(.el-dialog) {
-  padding: 0;
-}
-</style> -->
-
 <style lang="scss">
 .jkgl_jklb_edite-model__dialog {
   padding: 0 0 16px;
@@ -312,8 +303,8 @@ defineExpose({ openModal })
   .dialog-footer {
     padding: 16px;
     .el-button {
-      width: 80px;
-      height: 30px;
+      // width: 80px;
+      // height: 30px;
       font-size: 12px;
     }
 
@@ -369,11 +360,11 @@ defineExpose({ openModal })
     }
 
     .el-input__inner {
-      height: 38px;
+      // height: 38px;
     }
 
     .el-select__wrapper {
-      height: 40px;
+      // height: 40px;
     }
 
     input::-webkit-input-placeholder {

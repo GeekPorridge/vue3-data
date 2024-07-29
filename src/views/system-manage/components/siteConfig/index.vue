@@ -1,7 +1,7 @@
 <!-- 站点配置 -->
 <template>
   <div class="container">
-    <ListTable ref="tableRef" :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="true" />
+    <ListTable ref="tableRef" :url="'table'" :isPagination="false" :columns="columns" :isShowBorder="isShowBorder" />
 
     <EditModal ref="editModalRef" :record="listRecord" @updateList="updateList" />
   </div>
@@ -15,12 +15,13 @@ import { EditPen } from "@element-plus/icons-vue"
 import ListTable from "@/components/ListTable/index.vue"
 import EditModal from "@/views/system-manage/components/siteConfig/components/editModal.vue"
 
-const tableRef = ref(null) // 列表ref
+const tableRef = ref<any>(null) // 列表ref
 const editModalRef = ref(null) // 编辑ref
 const listRecord = ref() // 列表数据
+const isShowBorder = ref<any>(true)
 
 // 弹框调用
-const handleModalOpen = (ref, record) => {
+const handleModalOpen = (ref: any, record: Object) => {
   if (ref.value) {
     listRecord.value = record
     ref.value.openModal()
@@ -28,15 +29,14 @@ const handleModalOpen = (ref, record) => {
 }
 
 // 编辑弹框
-const handleEdit = (record) => {
+const handleEdit = (record: Object) => {
   handleModalOpen(editModalRef, record)
 }
 
-const updateList = (record) => {
+const updateList = (record: Object) => {
   if (tableRef.value) {
     tableRef.value.getTableData()
   }
-  console.log("更新列表数据record---", record)
 }
 
 const columns = [
