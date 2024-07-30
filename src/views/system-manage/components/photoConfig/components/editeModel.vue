@@ -1,5 +1,11 @@
 <template>
-  <el-dialog destroy-on-close v-model="open" title="编辑" class="xtgl_photoConfig_edite-model__dialog">
+  <el-dialog
+    style="max-height: 650px; overflow-y: auto"
+    destroy-on-close
+    v-model="open"
+    title="编辑"
+    class="xtgl_photoConfig_edite-model__dialog"
+  >
     <el-card shadow="never">
       <el-form ref="formRef" :label-position="'top'" :model="formInline">
         <div class="top-card">
@@ -24,9 +30,7 @@
           <el-row :gutter="24">
             <el-col>
               <div class="img-title">图片<span>尺寸描述</span></div>
-              <div class="img-box">
-                <el-image :src="formInline.img" fit="contain" />
-              </div>
+              <uploaded></uploaded>
             </el-col>
           </el-row>
         </div>
@@ -45,6 +49,7 @@
 <script setup lang="ts">
 import { ElMessage } from "element-plus"
 import { ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
+import uploaded from "@/components/uploadPhoto/index.vue"
 
 const props = defineProps<{
   record: Object // 编辑的列表数据
@@ -150,6 +155,16 @@ defineExpose({ openModal })
     }
   }
 
+  .img-title {
+    font-size: 14px;
+    color: #666;
+    line-height: 28px;
+    margin-bottom: 8px;
+    span {
+      font-size: 12px;
+      color: #999;
+    }
+  }
   .el-card__body {
     margin-top: 20px;
     padding: 0;
@@ -162,13 +177,6 @@ defineExpose({ openModal })
 
     .bottom-card {
       margin-top: 20px;
-
-      .img-title {
-        font-size: 14px;
-        color: #666;
-        line-height: 28px;
-        margin-bottom: 8px;
-      }
 
       .img-box {
         width: 200px;

@@ -1,5 +1,11 @@
 <template>
-  <el-dialog destroy-on-close v-model="open" title="编辑" class="jkgl_jklb_edite-model__dialog">
+  <el-dialog
+    style="height: 650px; overflow-y: auto"
+    destroy-on-close
+    v-model="open"
+    title="编辑"
+    class="jkgl_jklb_edite-model__dialog"
+  >
     <el-form ref="formRef" :label-position="'top'" :model="formInline">
       <el-card class="top-card">
         <el-row :gutter="24">
@@ -29,7 +35,7 @@
           <el-col :span="8">
             <el-form-item prop="sfkq">
               <template #label>
-                <div class="tab-title">是否开启<span>默认开启</span></div>
+                <div class="tab-title">是否开启<span></span></div>
               </template>
               <el-radio-group v-model="formInline.sfkq" class="ml-4">
                 <el-radio value="1" size="large">开启</el-radio>
@@ -318,21 +324,21 @@ defineExpose({ openModal })
     margin-top: 20px;
   }
 
-  .el-card__body {
-    margin-top: 20px;
-
-    .bottom-card,
-    .top-card {
-      .tab-title {
-        font-size: 14px;
-        color: #666;
-        line-height: 28px;
-        span {
-          font-size: 11px;
-          color: #999;
-        }
+  .bottom-card,
+  .top-card {
+    .tab-title {
+      font-size: 14px;
+      color: #666;
+      line-height: 28px;
+      span {
+        font-size: 11px;
+        color: #999;
       }
     }
+  }
+
+  .el-card__body {
+    margin-top: 20px;
 
     .img-card {
       .img-box {

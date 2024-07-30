@@ -1,5 +1,11 @@
 <template>
-  <el-dialog destroy-on-close v-model="open" title="编辑" class="jkgl_jkfl_edite-model__dialog">
+  <el-dialog
+    style="height: 650px; overflow-y: auto"
+    destroy-on-close
+    v-model="open"
+    title="编辑"
+    class="jkgl_jkfl_edite-model__dialog"
+  >
     <el-form ref="formRef" :label-position="'top'" :model="formInline">
       <el-card class="top-card">
         <el-row :gutter="24">

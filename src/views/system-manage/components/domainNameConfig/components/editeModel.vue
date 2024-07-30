@@ -1,5 +1,11 @@
 <template>
-  <el-dialog destroy-on-close v-model="open" title="编辑" class="xtgl_domainNameConfig_edite-model__dialog">
+  <el-dialog
+    style="max-height: 650px; overflow-y: auto"
+    destroy-on-close
+    v-model="open"
+    title="编辑"
+    class="xtgl_domainNameConfig_edite-model__dialog"
+  >
     <el-card>
       <el-form ref="formRef" :label-position="'top'" :model="formInline">
         <el-row :gutter="24">
