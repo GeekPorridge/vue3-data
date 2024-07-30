@@ -1,14 +1,6 @@
-<!-- 菜单管理 -->
 <template>
   <div class="app-container">
-    <el-card>
-      <div class="container">
-        <div class="btn-container">
-          <el-button type="primary" @click="handleAdd"><span class="icon">+</span>新增</el-button>
-        </div>
-        <ListTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" :isShowBorder="isShowBorder" />
-      </div>
-    </el-card>
+    <TreeTable ref="tableRef" :url="'table'" :isPagination="true" :columns="columns" />
   </div>
 </template>
 
@@ -17,14 +9,10 @@ import { ref } from "vue"
 
 import { ElMessageBox } from "element-plus"
 import { EditPen, DeleteFilled } from "@element-plus/icons-vue"
-
-import ListTable from "@/components/ListTable/index.vue"
+import TreeTable from "./components/treeTable.vue"
 
 const tableRef = ref(null) // 列表ref
 const listRecord = ref() // 编辑的列表数据
-const isShowBorder = ref<any>(true)
-
-const handleAdd = () => {}
 
 const handleSwitchChange = () => {}
 
@@ -59,7 +47,8 @@ const columns = [
   },
   {
     name: "tb",
-    label: "图标"
+    label: "图标",
+    type: "icon"
   },
   {
     name: "sjcd",
@@ -112,27 +101,3 @@ const columns = [
   }
 ]
 </script>
-
-<style scoped lang="scss">
-.el-card {
-  border-color: transparent;
-}
-.container {
-  background: #fff;
-  .btn-container {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px 22px 0px;
-
-    .el-button {
-      width: 80px;
-      height: 35px;
-      .icon {
-        margin-bottom: 2px;
-        margin-right: 4px;
-        font-weight: bolder;
-      }
-    }
-  }
-}
-</style>
