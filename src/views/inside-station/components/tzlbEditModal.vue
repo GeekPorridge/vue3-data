@@ -296,6 +296,12 @@ defineExpose({ openModal })
   padding: 0 0 16px;
   border-radius: 5px;
   overflow: hidden;
+
+  .el-input-number,
+  .el-select {
+    width: 100%;
+  }
+
   .el-dialog__header {
     height: 50px;
     background-color: rgba(245, 245, 245, 1);
@@ -312,8 +318,8 @@ defineExpose({ openModal })
   .dialog-footer {
     padding: 16px;
     .el-button {
-      width: 80px;
-      height: 30px;
+      // width: 80px;
+      // height: 30px;
       font-size: 12px;
     }
 
@@ -362,7 +368,7 @@ defineExpose({ openModal })
   }
 
   .el-input__inner {
-    height: 40px;
+    // height: 40px;
   }
 
   input::-webkit-input-placeholder {

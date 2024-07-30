@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    style="height: 650px; overflow-y: auto"
+    style="height: 450px; overflow-y: auto"
     v-model="open"
     :title="data.id + '绑定域名'"
     class="dlgl_dllb_edite-model__dialog"
