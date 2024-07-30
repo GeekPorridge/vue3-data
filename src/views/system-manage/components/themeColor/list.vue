@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import colorCon from "./colorPickerCon.vue"
 
-const props = defineProps<{
+defineProps<{
   title: string
   list: Array<{ color: string; name: string }>
 }>()

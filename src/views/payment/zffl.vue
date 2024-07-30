@@ -35,13 +35,13 @@ const handleEdit = (record: any) => {
   handleModalOpen(editModalRef, record)
 }
 
-const updateList = (record: any) => {
+const updateList = () => {
   if (tableRef.value) {
     tableRef.value.getTableData()
   }
 }
 
-const handleSwitchChange = (record: any, value: any) => {}
+const handleSwitchChange = () => {}
 
 const columns = [
   {

@@ -15,8 +15,6 @@ const loginFormRef = ref<FormInstance | null>(null)
 
 /** 登录按钮 Loading */
 const loading = ref(false)
-/** 验证码图片 URL */
-const codeUrl = ref("")
 /** 登录表单数据 */
 const loginFormData: LoginRequestData = reactive({
   username: "admin",

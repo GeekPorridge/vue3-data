@@ -46,7 +46,7 @@ const handleAdd = () => {
   handleModalOpen(editModalRef, {}, "add")
 }
 
-const handleSwitchChange = (record: any) => {}
+const handleSwitchChange = () => {}
 
 // 编辑弹框
 const handleEdit = (record: any) => {

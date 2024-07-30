@@ -1,9 +1,14 @@
 <template>
-  <el-dialog v-model="open" :title="data.id + '绑定域名'" class="dlgl_dllb_edite-model__dialog">
+  <el-dialog
+    style="height: 650px; overflow-y: auto"
+    v-model="open"
+    :title="data.id + '绑定域名'"
+    class="dlgl_dllb_edite-model__dialog"
+  >
     <el-card>
       <el-form ref="formRef" :label-position="'top'" :model="formInline">
         <div class="top-card" v-if="formInline.length">
-          <div v-for="(item, index) in listData">
+          <div v-for="(item, index) in listData" :key="item.id">
             <el-row :gutter="24">
               <el-col :span="4">
                 <el-form-item prop="dominType">
@@ -26,7 +31,7 @@
                       {{ item.redirect }}
                     </div>
                     <div @click="handleDelete(item.id)" class="delete-btn">
-                      <span></span>
+                      <span />
                     </div>
                   </div>
                 </el-form-item>
@@ -172,9 +177,9 @@ const listData = reactive([
 // 添加
 const handleAdd = () => {
   const id = Date.now()
-  let Obj1 = Object.assign({ id: id }, JSON.parse(JSON.stringify(formInlineTemplateObj)))
+  const Obj1 = Object.assign({ id: id }, JSON.parse(JSON.stringify(formInlineTemplateObj)))
 
-  let Obj2 = Object.assign({ id: id }, JSON.parse(JSON.stringify(ListTemplateObj)))
+  const Obj2 = Object.assign({ id: id }, JSON.parse(JSON.stringify(ListTemplateObj)))
 
   formInline.push(Obj1)
   listData.push(Obj2)

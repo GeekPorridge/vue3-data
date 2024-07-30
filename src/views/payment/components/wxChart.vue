@@ -51,7 +51,7 @@ const handleEdit = (record: Object) => {
   handleModalOpen(editModalRef, record, "edite")
 }
 
-const handleSwitchChange = (record: Object) => {}
+const handleSwitchChange = () => {}
 
 const columns = [
   {

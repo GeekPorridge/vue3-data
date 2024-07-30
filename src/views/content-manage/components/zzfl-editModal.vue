@@ -106,7 +106,7 @@
 
 <script setup lang="ts">
 import { ElMessage } from "element-plus"
-import { ref, Ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
+import { ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
 
 const props = defineProps<{
   record: Object // 编辑的列表数据

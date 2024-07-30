@@ -13,8 +13,9 @@
           :fixed="column.fixed"
           align="center"
         >
-          <template fixed="right" v-if="column.type === 'button'" #default="scope">
-            <div>
+          <!-- 处理按钮和开关 -->
+          <template #default="scope">
+            <div v-if="column.type === 'button'">
               <el-button
                 v-for="action in column.actions"
                 :key="action.label"
@@ -31,15 +32,15 @@
                 {{ action.label }}
               </el-button>
             </div>
-          </template>
-          <template v-if="column.type === 'switch'" #default="scope">
-            <el-switch
-              v-model="scope.row[column.switchModel]"
-              inline-prompt
-              active-text="是"
-              inactive-text="否"
-              @change="column.switchChange(scope.row)"
-            />
+            <div v-else-if="column.type === 'switch'">
+              <el-switch
+                v-model="scope.row[column.switchModel]"
+                inline-prompt
+                active-text="是"
+                inactive-text="否"
+                @change="column.switchChange(scope.row)"
+              />
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -138,7 +139,7 @@ const handleCurrentChange = (val: number) => {
   page.value = val
 }
 
-watch([page, pageSize], ([]) => {
+watch([page, pageSize], () => {
   getTableData()
 })
 

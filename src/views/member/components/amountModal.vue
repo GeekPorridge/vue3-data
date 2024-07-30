@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="open" :title="data.id + '额度管理'">
+  <el-dialog style="height: 650px; overflow-y: auto" v-model="open" :title="data.id + '额度管理'">
     <el-card>
       <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0">
         <!-- 左侧 -->

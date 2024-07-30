@@ -153,7 +153,7 @@
           <el-col>
             <el-form-item prop="bfb">
               <template #label>
-                <div class="tab-title">按百分比输入框<span></span></div>
+                <div class="tab-title">按百分比输入框<span /></div>
               </template>
               <el-input-number v-model="formInline.bfb" controls-position="right" placeholder="请输入数字字段">
                 <template #decrease-icon>
@@ -176,7 +176,7 @@
     <el-form ref="formTabRef" :model="formTabInline">
       <el-card class="bottom-card">
         <el-tabs type="border-card" class="demo-tabs" @tab-change="tabChange">
-          <el-tab-pane v-for="item in tabConfig" :label="item.tab">
+          <el-tab-pane v-for="item in tabConfig" :key="item.key" :label="item.tab">
             <el-row :gutter="24">
               <el-col>
                 <el-form-item prop="zfbt" label="支付标题">
@@ -213,10 +213,10 @@
  * @record 当前编辑的数据
  */
 import { ElMessage } from "element-plus"
-import { ref, reactive, watch, nextTick, defineProps, defineExpose, defineEmits } from "vue"
+import { ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
 
 const props = defineProps<{
-  from: string
+  // from: string
   record: Object // 编辑的列表数据
 }>()
 

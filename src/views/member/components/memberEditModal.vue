@@ -1,11 +1,11 @@
 <template>
-  <el-dialog v-model="open" title="VIP2编辑'">
+  <el-dialog v-model="open" title="VIP2编辑">
     <el-card>
-      <el-form :label-position="'top'">
+      <el-form :model="form" :label-position="'top'">
         <el-row :gutter="24">
           <el-col :span="8">
             <el-form-item label="数字字段1">
-              <el-input-number controls-position="right" placeholder="请输入数字字段">
+              <el-input-number :min="0" v-model="form.sz1" controls-position="right" placeholder="请输入数字字段">
                 <template #decrease-icon>
                   <el-icon>
                     <Minus />
@@ -21,7 +21,7 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="数字字段2">
-              <el-input-number controls-position="right" placeholder="请输入数字字段">
+              <el-input-number :min="0" v-model="form.sz2" controls-position="right" placeholder="请输入数字字段">
                 <template #decrease-icon>
                   <el-icon>
                     <Minus />
@@ -37,7 +37,7 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="数字字段3">
-              <el-input-number controls-position="right" placeholder="请输入数字字段">
+              <el-input-number :min="0" v-model="form.sz3" controls-position="right" placeholder="请输入数字字段">
                 <template #decrease-icon>
                   <el-icon>
                     <Minus />
@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, defineProps, defineExpose } from "vue"
+import { ref, watch, defineProps, defineExpose, reactive } from "vue"
 
 const props = defineProps<{
   record: any
@@ -72,6 +72,11 @@ const props = defineProps<{
 
 const open = ref(false)
 const data = ref(props.record || {})
+const form = reactive({
+  sz1: 0,
+  sz2: 0,
+  sz3: 0
+})
 
 // 打开弹框
 const openModal = () => {

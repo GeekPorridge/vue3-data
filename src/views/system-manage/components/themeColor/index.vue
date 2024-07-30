@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 import list from "./list.vue"
 
 // 配置项

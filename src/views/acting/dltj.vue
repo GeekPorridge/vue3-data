@@ -134,7 +134,7 @@ const getTableData = async () => {
   }
 }
 
-watch([page, pageSize], ([]) => {
+watch([page, pageSize], () => {
   getTableData()
 })
 

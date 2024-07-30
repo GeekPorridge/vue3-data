@@ -1,6 +1,14 @@
 <template>
-  <el-dialog v-model="open" :title="data.id + '卡包'">
-    <div>未设计</div>
+  <el-dialog style="height: 650px; overflow-y: auto" v-model="open" :title="data.id + '卡包'">
+    <el-card style="margin-bottom: 20px">
+      <h4>银行卡</h4>
+      <ListTable :url="'table'" :columns="columns" :isPagination="false" />
+    </el-card>
+
+    <el-card>
+      <h4>支付宝</h4>
+      <ListTable :url="'table'" :columns="columns" :isPagination="false" />
+    </el-card>
     <template #footer>
       <div class="dialog-footer">
         <el-button @click="closeModal">取消</el-button>
@@ -11,6 +19,7 @@
 
 <script setup lang="ts">
 import { ref, watch, defineProps, defineExpose } from "vue"
+import ListTable from "@/components/ListTable/index.vue"
 
 const props = defineProps<{
   record: any
@@ -28,6 +37,37 @@ const openModal = () => {
 const closeModal = () => {
   open.value = false
 }
+
+const columns = [
+  {
+    name: "id",
+    label: "id"
+  },
+  {
+    name: "zd",
+    label: "卡包字段"
+  },
+  {
+    name: "zd",
+    label: "卡包字段"
+  },
+  {
+    name: "zd",
+    label: "卡包字段"
+  },
+  {
+    name: "zd",
+    label: "卡包字段"
+  },
+  {
+    name: "zd",
+    label: "卡包字段"
+  },
+  {
+    name: "zd",
+    label: "卡包字段"
+  }
+]
 
 watch(
   () => props.record,

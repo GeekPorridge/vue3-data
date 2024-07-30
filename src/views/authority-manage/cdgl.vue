@@ -24,7 +24,7 @@ const tableRef = ref(null) // 列表ref
 const listRecord = ref() // 编辑的列表数据
 const isShowBorder = ref<any>(true)
 
-const handleAdd = (record: Object) => {}
+const handleAdd = () => {}
 
 const handleSwitchChange = () => {}
 

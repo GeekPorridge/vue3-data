@@ -13,7 +13,7 @@ import ListTable from "@/components/ListTable/index.vue"
 const tableRef = ref<any>(null) // 列表ref
 const isShowBorder = ref<any>(true)
 
-const handleSwitchChange = (record: Object) => {}
+const handleSwitchChange = () => {}
 
 const columns = [
   {

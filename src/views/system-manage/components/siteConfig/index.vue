@@ -33,7 +33,7 @@ const handleEdit = (record: Object) => {
   handleModalOpen(editModalRef, record)
 }
 
-const updateList = (record: Object) => {
+const updateList = () => {
   if (tableRef.value) {
     tableRef.value.getTableData()
   }

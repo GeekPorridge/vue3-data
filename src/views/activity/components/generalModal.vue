@@ -1,7 +1,7 @@
 <template>
   <el-dialog v-model="open" :title="record ? data.id + '编辑' : '新增'">
     <el-card style="margin-bottom: 20px">
-      <el-form :label-position="'top'">
+      <el-form :model="form" :label-position="'top'">
         <el-row :gutter="24">
           <el-col :span="8">
             <el-form-item label="活动分类名称">
@@ -15,7 +15,7 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="排名权重数字越大排名越靠前">
-              <el-input-number controls-position="right" placeholder="">
+              <el-input-number :min="0" v-model="form.qz" controls-position="right" placeholder="">
                 <template #decrease-icon>
                   <el-icon>
                     <Minus />
@@ -94,7 +94,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, defineProps, defineExpose } from "vue"
+import { ref, watch, defineProps, defineExpose, reactive } from "vue"
 
 const props = defineProps<{
   record?: any
@@ -102,6 +102,9 @@ const props = defineProps<{
 
 const open = ref(false)
 const data = ref(props.record || {})
+const form = reactive({
+  qz: 0
+})
 
 // 打开弹框
 const openModal = () => {

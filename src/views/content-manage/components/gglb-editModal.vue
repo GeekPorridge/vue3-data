@@ -61,7 +61,7 @@
     <el-form ref="formTabRef" :model="formTabInline">
       <el-card class="bottom-card">
         <el-tabs type="border-card" class="demo-tabs" @tab-change="tabChange">
-          <el-tab-pane v-for="item in tabConfig" :label="item.tab">
+          <el-tab-pane v-for="item in tabConfig" :key="item.key" :label="item.tab">
             <el-row :gutter="24">
               <el-col>
                 <el-form-item prop="bt">

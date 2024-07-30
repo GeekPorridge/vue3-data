@@ -189,6 +189,22 @@ export const constantRoutes: RouteRecordRaw[] = [
     component: Layouts,
     children: [
       {
+        path: "hdlb",
+        component: () => import("@/views/activity/hdlb.vue"),
+        name: "HDLB",
+        meta: {
+          title: "活动列表"
+        }
+      },
+      {
+        path: "sqsh",
+        component: () => import("@/views/activity/sqsh.vue"),
+        name: "SQsh",
+        meta: {
+          title: "申请审核"
+        }
+      },
+      {
         path: "dlbl",
         component: () => import("@/views/activity/hdfl.vue"),
         name: "HDFL",
