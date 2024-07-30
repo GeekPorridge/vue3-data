@@ -70,7 +70,6 @@
 <script lang="ts" setup>
 import { ref, watch, defineProps, defineExpose } from "vue"
 import { request } from "@/utils/service"
-import { SuitcaseLine, Burger, CreditCard } from "@element-plus/icons-vue"
 
 /**
  * 组件的属性定义

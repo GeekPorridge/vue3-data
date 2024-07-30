@@ -35,7 +35,7 @@
           <el-col :span="8">
             <el-form-item prop="sfkq">
               <template #label>
-                <div class="tab-title">是否开启<span></span></div>
+                <div class="tab-title">是否开启<span /></div>
               </template>
               <el-radio-group v-model="formInline.sfkq" class="ml-4">
                 <el-radio value="1" size="large">开启</el-radio>
@@ -149,9 +149,9 @@
           <el-col>
             <el-form-item prop="img">
               <template #label>
-                <div class="tab-title">图片<span></span></div>
+                <div class="tab-title">图片<span /></div>
               </template>
-              <uploaded></uploaded>
+              <uploaded />
             </el-form-item>
           </el-col>
         </el-row>

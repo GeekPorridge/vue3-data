@@ -144,7 +144,7 @@
           <el-col :span="8">
             <el-form-item prop="zsbl">
               <template #label>
-                <div class="tab-title">赠送比例<span></span></div>
+                <div class="tab-title">赠送比例<span /></div>
               </template>
               <el-radio-group v-model="formInline.zsbl" class="ml-4">
                 <el-radio value="1">无</el-radio>

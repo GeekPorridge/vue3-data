@@ -110,7 +110,7 @@
         <el-row :gutter="24">
           <el-col v-if="from === 'banner'">
             <div class="img-title">banner图片<span>尺寸说明</span></div>
-            <uploaded></uploaded>
+            <uploaded />
           </el-col>
 
           <el-col v-if="from === 'pmd'">

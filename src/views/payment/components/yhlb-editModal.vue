@@ -93,7 +93,7 @@
             <template #label>
               <div class="tab-title">图片<span>预览图</span></div>
             </template>
-            <uploaded></uploaded>
+            <uploaded />
           </el-form-item>
         </el-col>
       </el-card>

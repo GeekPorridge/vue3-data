@@ -127,9 +127,9 @@
           <el-col :span="24">
             <el-form-item prop="img">
               <template #label>
-                <div class="tab-title">图标<span></span></div>
+                <div class="tab-title">图标<span /></div>
               </template>
-              <uploaded></uploaded>
+              <uploaded />
             </el-form-item>
           </el-col>
         </el-row>

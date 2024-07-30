@@ -30,7 +30,7 @@
           <el-row :gutter="24">
             <el-col>
               <div class="img-title">图片<span>尺寸描述</span></div>
-              <uploaded></uploaded>
+              <uploaded />
             </el-col>
           </el-row>
         </div>
