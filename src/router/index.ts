@@ -320,6 +320,22 @@ export const constantRoutes: RouteRecordRaw[] = [
     component: Layouts,
     children: [
       {
+        path: "zftd",
+        component: () => import("@/views/payment/zftd.vue"),
+        name: "ZFTD",
+        meta: {
+          title: "支付通道"
+        }
+      },
+      {
+        path: "zffl",
+        component: () => import("@/views/payment/zffl.vue"),
+        name: "ZFFL",
+        meta: {
+          title: "支付分类"
+        }
+      },
+      {
         path: "yhlb",
         component: () => import("@/views/payment/yhlb.vue"),
         name: "YHLB",
