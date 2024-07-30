@@ -27,7 +27,7 @@
 import { ref } from "vue"
 import { Delete, Plus, ZoomIn } from "@element-plus/icons-vue"
 
-import type { UploadFile } from "element-plus"
+import type { UploadFile, UploadUserFile } from "element-plus"
 
 const dialogImageUrl = ref("")
 const dialogVisible = ref(false)
