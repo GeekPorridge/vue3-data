@@ -114,6 +114,7 @@ const columns = [
   {
     name: "actions",
     label: "操作",
+    fixed: "right",
     type: "button",
     width: "160px",
     actions: [

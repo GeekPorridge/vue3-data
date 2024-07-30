@@ -84,6 +84,7 @@ const columns = [
     name: "actions",
     label: "操作",
     type: "button",
+    fixed: "right",
     actions: [
       {
         type: "primary",
