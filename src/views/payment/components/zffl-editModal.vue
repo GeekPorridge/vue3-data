@@ -1,29 +1,35 @@
 <template>
-  <el-dialog destroy-on-close v-model="open" :title="title[dialogType]" class="xtgl_siteConfig_edite-model__dialog">
+  <el-dialog destroy-on-close v-model="open" :title="title[dialogType]" class="zfgl_zffl_edite-model__dialog">
     <el-form ref="formRef" :label-position="'top'" :model="formInline">
       <el-card class="top-card">
         <el-row :gutter="24">
           <el-col :span="8">
-            <el-form-item prop="yhmc" label="银行名称">
-              <el-input v-model="formInline.yhmc" placeholder="请输入文字字段" />
+            <el-form-item prop="flmc" label="分类名称">
+              <el-input v-model="formInline.flmc" placeholder="请输入文字字段" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item prop="jcbs" label="简称标识">
-              <el-input v-model="formInline.jcbs" placeholder="请输入文字字段" />
+            <el-form-item prop="flbs" label="分类标识">
+              <el-input disabled v-model="formInline.flbs" placeholder="请输入文字字段" />
             </el-form-item>
           </el-col>
-          <el-col :span="8">
-            <el-form-item prop="sfkq">
-              <template #label>
-                <div class="tab-title">是否开启<span>默认开启</span></div>
+          <el-form-item prop="pmqz">
+            <template #label>
+              <div class="tab-title">排名权重<span>数字越大排名越靠前</span></div>
+            </template>
+            <el-input-number v-model="formInline.pmqz" controls-position="right" placeholder="请输入数字字段">
+              <template #decrease-icon>
+                <el-icon>
+                  <Minus />
+                </el-icon>
               </template>
-              <el-radio-group v-model="formInline.sfkq" class="ml-4">
-                <el-radio value="1" size="large">开启</el-radio>
-                <el-radio value="2" size="large">关闭</el-radio>
-              </el-radio-group>
-            </el-form-item>
-          </el-col>
+              <template #increase-icon>
+                <el-icon>
+                  <Plus />
+                </el-icon>
+              </template>
+            </el-input-number>
+          </el-form-item>
         </el-row>
       </el-card>
 
@@ -80,19 +86,6 @@
           </el-col>
         </el-row>
       </el-card>
-
-      <el-card class="bottom-card">
-        <el-col>
-          <el-form-item prop="img">
-            <template #label>
-              <div class="tab-title">图片<span>预览图</span></div>
-            </template>
-            <div class="img-box">
-              <el-image :src="formInline.img" fit="contain" />
-            </div>
-          </el-form-item>
-        </el-col>
-      </el-card>
     </el-form>
 
     <template #footer>
@@ -127,19 +120,9 @@ const title = ref<any>({
 
 // 表单模拟字段
 const formInline = reactive<any>({
-  btmc: "", // 标题名称
-  sfqy: "", // 是否启用
+  flmc: "", // 分类名称
+  flbs: "WeChatPay", // 分类标识
   pmqz: "", // 排名权重
-  shh: "",
-  my: "",
-  zfURL: "",
-  zfbs: "",
-  zflxdm: "",
-  bz: "",
-  zdcz: "",
-  zgcz: "",
-  zsbl: "",
-  bfb: "", //
   zd1: "",
   zd2: "",
   zd3: "",
@@ -148,8 +131,7 @@ const formInline = reactive<any>({
   zd6: "",
   zd7: "",
   zd8: "",
-  zd9: "",
-  img: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
+  zd9: ""
 })
 
 // 清空表单
@@ -163,6 +145,9 @@ const clearFrom = () => {
 const openModal = (type = "edite") => {
   dialogType.value = type
   open.value = true
+  setTimeout(() => {
+    clearFrom()
+  }, 500)
 }
 
 const saveData = () => {
@@ -211,7 +196,7 @@ defineExpose({ openModal })
 </script>
 
 <style lang="scss">
-.xtgl_siteConfig_edite-model__dialog {
+.zfgl_zffl_edite-model__dialog {
   padding: 0 0 16px;
   border-radius: 5px;
   overflow: hidden;
@@ -278,6 +263,9 @@ defineExpose({ openModal })
     box-shadow: 0 0 0 1px #409eff inset;
   }
 
+  .el-input-number {
+    width: auto;
+  }
   .el-input__inner {
     // height: 40px;
   }
