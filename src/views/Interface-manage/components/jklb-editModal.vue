@@ -143,11 +143,9 @@
           <el-col>
             <el-form-item prop="img">
               <template #label>
-                <div class="tab-title">图片<span>预览图</span></div>
+                <div class="tab-title">图片<span></span></div>
               </template>
-              <div class="img-box">
-                <el-image :src="formInline.img" fit="contain" />
-              </div>
+              <uploaded></uploaded>
             </el-form-item>
           </el-col>
         </el-row>
@@ -166,6 +164,7 @@
 <script setup lang="ts">
 import { ElMessage } from "element-plus"
 import { ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
+import uploaded from "@/components/uploadPhoto/index.vue"
 
 const props = defineProps<{
   record: Object // 编辑的列表数据
@@ -210,8 +209,7 @@ const formInline = reactive<any>({
   zd6: "",
   zd7: "",
   zd8: "",
-  zd9: "",
-  img: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
+  zd9: ""
 })
 
 // 清空表单
@@ -276,6 +274,11 @@ defineExpose({ openModal })
   padding: 0 0 16px;
   border-radius: 5px;
   overflow: hidden;
+
+  .el-input-number,
+  .el-select {
+    width: 100%;
+  }
 
   .el-card {
     border: transparent;

@@ -21,6 +21,7 @@
               <el-input-number
                 v-model="formInline.pmqz"
                 :step="10"
+                :min="10"
                 controls-position="right"
                 placeholder="请输入数字字段"
               >
@@ -256,6 +257,11 @@ defineExpose({ openModal })
 
   .el-input__wrapper:hover {
     box-shadow: 0 0 0 1px #409eff inset;
+  }
+
+  .el-input-number,
+  .el-select {
+    width: 100%;
   }
 
   .el-input__inner {

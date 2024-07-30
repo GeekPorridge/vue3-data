@@ -138,7 +138,7 @@
           <el-col :span="8">
             <el-form-item prop="zsbl">
               <template #label>
-                <div class="tab-title">赠送比例<span>默认不开启,开启百分比则显示百分比输入框</span></div>
+                <div class="tab-title">赠送比例<span></span></div>
               </template>
               <el-radio-group v-model="formInline.zsbl" class="ml-4">
                 <el-radio value="1">无</el-radio>
@@ -151,7 +151,7 @@
 
         <el-row :gutter="24">
           <el-col>
-            <el-form-item prop="bfb">
+            <el-form-item prop="bfb" v-if="formInline.zsbl === '2'">
               <template #label>
                 <div class="tab-title">按百分比输入框<span /></div>
               </template>
@@ -245,7 +245,7 @@ const formInline = reactive<any>({
   bz: "", // 备注
   zdcz: "", // 最低充值
   zgcz: "", // 最高充值
-  zsbl: "", // 赠送比例
+  zsbl: "1", // 赠送比例
   bfb: "" // 按百分百输入框
 })
 

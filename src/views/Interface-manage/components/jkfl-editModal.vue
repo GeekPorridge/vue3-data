@@ -118,25 +118,12 @@
 
       <el-card class="bottom-card img-card">
         <el-row :gutter="24">
-          <el-col :span="12">
+          <el-col :span="24">
             <el-form-item prop="img">
               <template #label>
-                <div class="tab-title">图标<span>未选中状态</span></div>
+                <div class="tab-title">图标<span></span></div>
               </template>
-              <div class="img-box">
-                <el-image :src="formInline.img" fit="contain" />
-              </div>
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item prop="img">
-              <template #label>
-                <div class="tab-title">图标<span>选中状态</span></div>
-              </template>
-              <div class="img-box">
-                <el-image :src="formInline.img" fit="contain" />
-              </div>
+              <uploaded></uploaded>
             </el-form-item>
           </el-col>
         </el-row>
@@ -155,6 +142,7 @@
 <script setup lang="ts">
 import { ElMessage } from "element-plus"
 import { ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
+import uploaded from "@/components/uploadPhoto/index.vue"
 
 const props = defineProps<{
   record: Object // 编辑的列表数据
@@ -251,6 +239,11 @@ defineExpose({ openModal })
   padding: 0 0 16px;
   border-radius: 5px;
   overflow: hidden;
+
+  .el-input-number,
+  .el-select {
+    width: 100%;
+  }
 
   .el-card {
     border: transparent;

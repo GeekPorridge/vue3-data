@@ -62,7 +62,6 @@
                 collapse-tags
                 collapse-tags-tooltip
                 placeholder="请选择类型"
-                style="width: 240px"
               >
                 <el-option v-for="item in bannerYXOptions" :key="item.value" :label="item.label" :value="item.value" />
               </el-select>
@@ -87,7 +86,7 @@
               <template #label>
                 <div class="tab-title">URL链接<span>可不填</span></div>
               </template>
-              <el-input style="width: 300px" v-model="formInline.url" placeholder="请输入文字字段" />
+              <el-input v-model="formInline.url" placeholder="请输入文字字段" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -105,9 +104,7 @@
         <el-row :gutter="24">
           <el-col v-if="from === 'banner'">
             <div class="img-title">banner图片<span>尺寸说明</span></div>
-            <div class="img-box">
-              <el-image :src="formInline.img" fit="contain" />
-            </div>
+            <uploaded></uploaded>
           </el-col>
 
           <el-col v-if="from === 'pmd'">
@@ -137,6 +134,7 @@
 
 import { ElMessage } from "element-plus"
 import { ref, reactive, watch, defineProps, defineExpose, defineEmits } from "vue"
+import uploaded from "@/components/uploadPhoto/index.vue"
 
 const props = defineProps<{
   record: Object // 编辑的列表数据
@@ -168,7 +166,6 @@ const formInline = reactive<any>({
   newWindow: "2", // 是否打开新窗口
   url: "",
   bz: "", // 备注
-  img: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
   pmdnr: "" // 跑马灯内容
 })
 
@@ -323,6 +320,10 @@ defineExpose({ openModal })
     line-height: 28px;
   }
 
+  .el-input-number,
+  .el-select {
+    width: 100%;
+  }
   .el-input__inner {
     // height: 38px;
   }

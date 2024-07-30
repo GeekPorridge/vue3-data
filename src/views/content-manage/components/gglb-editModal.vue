@@ -25,7 +25,7 @@
               <template #label>
                 <div class="tab-title">自助分类<span>请在自助分类创建分类类型</span></div>
               </template>
-              <el-select v-model="formInline.zzfl" placeholder="请选择类型">
+              <el-select style="width: 150px" v-model="formInline.zzfl" placeholder="请选择类型">
                 <el-option v-for="item in zzflOptions" :key="item.value" :label="item.label" :value="item.value" />
               </el-select>
             </el-form-item>

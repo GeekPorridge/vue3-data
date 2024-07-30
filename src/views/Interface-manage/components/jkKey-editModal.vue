@@ -174,6 +174,12 @@ defineExpose({ openModal })
   padding: 0 0 16px;
   border-radius: 5px;
   overflow: hidden;
+
+  .el-input-number,
+  .el-select {
+    width: 100%;
+  }
+
   .el-dialog__header {
     height: 50px;
     background-color: rgba(245, 245, 245, 1);
